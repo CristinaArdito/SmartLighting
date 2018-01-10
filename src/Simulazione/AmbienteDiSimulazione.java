@@ -3,6 +3,7 @@ package Simulazione;
 import java.util.ArrayList;
 import java.util.List;
 
+import InterfacciaGrafica.Interfaccia;
 import toAssign.Dispositivo;
 import toAssign.Sensore;
 
@@ -41,8 +42,10 @@ public class AmbienteDiSimulazione {
 				for(int i=0;i<random;i++) {
 					dispositivi.add(simulazione.generaDispositivo());
 				}
-			stanze.add(new Stanza(dispositivi, simulazione.generaSensore()));
+			stanze.add(new Stanza(j,dispositivi, simulazione.generaSensore()));
 		}
 		
+		Interfaccia frame = new Interfaccia(stanze);
+		frame.setVisible(true);
 	}
 }

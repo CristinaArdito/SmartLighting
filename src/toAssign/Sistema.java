@@ -8,15 +8,16 @@ public class Sistema {
 	private Configurazione configurazione;
 	private RisparmioEnergetico risparmio;
 	
-	public Sistema() {
-		
+	public Sistema(List<Stanza> stanze, Configurazione config) {
+		setStanze(stanze);
+		setConfigurazione(config);
 	}
 
-	public List<Stanza> getSensori() {
+	public List<Stanza> getStanze() {
 		return stanze;
 	}
 
-	public void setSensori(List<Stanza> stanze) {
+	public void setStanze(List<Stanza> stanze) {
 		this.stanze = stanze;
 	}
 
