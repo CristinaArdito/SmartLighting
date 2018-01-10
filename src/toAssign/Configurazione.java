@@ -1,32 +1,34 @@
 package toAssign;
 
+import java.util.List;
+
 public class Configurazione {
-	private Dispositivo dispositivi;
-	private Dispositivo eccezioni;
+	private List<Dispositivo> dispositivi;
+	private List<Dispositivo> eccezioni;
 	
-	public Configurazione(Dispositivo dispositivi, Dispositivo eccezioni) {
+	public Configurazione(List<Dispositivo> dispositivi, List<Dispositivo> eccezioni) {
 		super();
 		this.dispositivi = dispositivi;
 		this.eccezioni = eccezioni;
 	}
 
-	public Dispositivo getDispositivi() {
+	public List<Dispositivo> getDispositivi() {
 		return dispositivi;
 	}
 
-	public void setDispositivi(Dispositivo dispositivi) {
+	public void setDispositivi(List<Dispositivo> dispositivi) {
 		this.dispositivi = dispositivi;
 	}
 
-	public Dispositivo getEccezioni() {
+	public List<Dispositivo> getEccezioni() {
 		return eccezioni;
 	}
 
-	public void setEccezioni(Dispositivo eccezioni) {
+	public void setEccezioni(List<Dispositivo> eccezioni) {
 		this.eccezioni = eccezioni;
 	}
 	
-	public void setConfigurazione(Dispositivo dispositivi, Dispositivo eccezioni) {
+	public void setConfigurazione(List<Dispositivo> dispositivi, List<Dispositivo> eccezioni) {
 		this.dispositivi = dispositivi;
 		this.eccezioni = eccezioni;
 	}
