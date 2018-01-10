@@ -33,4 +33,8 @@ public class AmbienteDiSimulazione {
 	public void setStanze(List<Stanza> stanze) {
 		this.stanze = stanze;
 	}
+	
+	public static void main(String args[]) {
+		
+	}
 }
