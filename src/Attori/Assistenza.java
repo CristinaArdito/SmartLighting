@@ -1,3 +1,4 @@
+package Attori;
 
 public class Assistenza {
 	private String nome;
