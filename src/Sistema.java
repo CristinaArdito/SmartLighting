@@ -3,7 +3,7 @@ import java.util.List;
 public class Sistema {
 	private List<Sensore> sensori;
 	private Configurazione configurazione;
-//	private RisparmioEnergetico risparmio;
+	private RisparmioEnergetico risparmio;
 	
 	public Sistema() {
 		
@@ -25,6 +25,14 @@ public class Sistema {
 		this.configurazione = configurazione;
 	};
 	
+	public RisparmioEnergetico getRisparmio() {
+		return risparmio;
+	}
+
+	public void setRisparmio(RisparmioEnergetico risparmio) {
+		this.risparmio = risparmio;
+	}
+
 	public void lightOn() {
 		
 	}
