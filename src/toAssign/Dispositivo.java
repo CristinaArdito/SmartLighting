@@ -4,6 +4,10 @@ public class Dispositivo {
 	private String tipo;
 	private int codice;
 	
+	/*
+	 * Codice: accesso: 1, standby: 0, spento: -1
+	 */
+	
 	public Dispositivo(String tipo, int codice) {
 		super();
 		this.tipo = tipo;

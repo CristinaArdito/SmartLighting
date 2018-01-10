@@ -1,16 +1,18 @@
 package toAssign;
 
 public class Sensore {
-	private String tipo;
 	private int code;
 	
-	public Sensore(String tipo, int code) {
-		this.setTipo(tipo);
-		this.code = code;
+	/*
+	 * Codice: presente: 1, non presente: -1
+	 */
+	
+	public Sensore(int code) {
+		setSensore(code);
 	}
 	
-	public void setSensore(String tipo, int code) {
-		this.setTipo(tipo);
+	public void setSensore(int code) {
+		if(code == -1 || code == 1 )
 		this.code = code;
 	}
 	
@@ -20,13 +22,5 @@ public class Sensore {
 	
 	public int getCodice() {
 		return this.code;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 }

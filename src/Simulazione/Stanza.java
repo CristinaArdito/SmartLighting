@@ -7,11 +7,11 @@ import toAssign.Sensore;
 
 public class Stanza {
 	private List<Dispositivo> dispositivi;
-	private List<Sensore> sensori;
+	private Sensore sensori;
 	
-	public Stanza(List<Dispositivo> listaDispositivi, List<Sensore> listaSensori) {
+	public Stanza(List<Dispositivo> listaDispositivi, Sensore sensore) {
 		setDispositivi(listaDispositivi);
-		setSensori(listaSensori);
+		setSensori(sensore);
 	}
 	
 	public List<Dispositivo> getDispositivi() {
@@ -22,13 +22,11 @@ public class Stanza {
 		this.dispositivi = dispositivi;
 	}
 	
-	public List<Sensore> getSensori() {
+	public Sensore getSensori() {
 		return sensori;
 	}
 	
-	public void setSensori(List<Sensore> sensori) {
+	public void setSensori(Sensore sensori) {
 		this.sensori = sensori;
 	}
-	
-	
 }
