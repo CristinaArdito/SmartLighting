@@ -1,9 +1,9 @@
 package toAssign;
+import java.util.Iterator;
 import java.util.List;
-
 import Simulazione.Stanza;
 
-public class Sistema {
+public class Sistema extends Thread{
 	private List<Stanza> stanze;
 	private Configurazione configurazione;
 	private RisparmioEnergetico risparmio;
@@ -46,7 +46,25 @@ public class Sistema {
 	}
 	
 	public void Control() {
+		Thread t = new Thread();
+		t.setDaemon(true);
+		t.start();
+	}
 	
+	public void run() {
+		if(Thread.currentThread().isDaemon()){ 
+			Iterator<Stanza> i = stanze.iterator();
+			Stanza st;
+			while(true) {
+				while(i.hasNext()) {
+					st = i.next();
+					if(st.getSensore().getCodice() == 1) {
+						System.out.println("l'omino è qui");
+					}
+				}
+				i = stanze.iterator();
+			}
+		}
 	}
 	
 	public void deviceOn() {
