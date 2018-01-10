@@ -6,12 +6,22 @@ import toAssign.Dispositivo;
 import toAssign.Sensore;
 
 public class Stanza {
+	private int codice;
 	private List<Dispositivo> dispositivi;
 	private Sensore sensori;
 	
-	public Stanza(List<Dispositivo> listaDispositivi, Sensore sensore) {
+	public Stanza(int codice, List<Dispositivo> listaDispositivi, Sensore sensore) {
 		setDispositivi(listaDispositivi);
 		setSensori(sensore);
+		setCodice(codice);
+	}
+	
+	public int getCodice() {
+		return codice;
+	}
+
+	public void setCodice(int codice) {
+		this.codice = codice;
 	}
 	
 	public List<Dispositivo> getDispositivi() {
