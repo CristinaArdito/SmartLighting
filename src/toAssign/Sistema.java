@@ -1,8 +1,10 @@
 package toAssign;
 import java.util.List;
 
+import Simulazione.Stanza;
+
 public class Sistema {
-	private List<Sensore> sensori;
+	private List<Stanza> stanze;
 	private Configurazione configurazione;
 	private RisparmioEnergetico risparmio;
 	
@@ -10,12 +12,12 @@ public class Sistema {
 		
 	}
 
-	public List<Sensore> getSensori() {
-		return sensori;
+	public List<Stanza> getSensori() {
+		return stanze;
 	}
 
-	public void setSensori(List<Sensore> sensori) {
-		this.sensori = sensori;
+	public void setSensori(List<Stanza> stanze) {
+		this.stanze = stanze;
 	}
 
 	public Configurazione getConfigurazione() {
