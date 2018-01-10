@@ -1,3 +1,4 @@
+package toAssign;
 
 public class Configurazione {
 	private Dispositivo dispositivi;

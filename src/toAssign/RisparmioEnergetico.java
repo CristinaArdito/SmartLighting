@@ -1,3 +1,4 @@
+package toAssign;
 import java.util.*;
 
 public class RisparmioEnergetico {

@@ -1,3 +1,4 @@
+package toAssign;
 
 public class Sensore {
 	private String tipo;

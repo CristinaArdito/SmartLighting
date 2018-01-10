@@ -1,3 +1,4 @@
+package toAssign;
 
 public class Dispositivo {
 	private String tipo;
