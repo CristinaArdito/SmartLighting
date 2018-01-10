@@ -5,12 +5,12 @@ public class Sensore {
 	private int code;
 	
 	public Sensore(String tipo, int code) {
-		this.tipo = tipo;
+		this.setTipo(tipo);
 		this.code = code;
 	}
 	
 	public void setSensore(String tipo, int code) {
-		this.tipo = tipo;
+		this.setTipo(tipo);
 		this.code = code;
 	}
 	
@@ -20,5 +20,13 @@ public class Sensore {
 	
 	public int getCodice() {
 		return this.code;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 }
