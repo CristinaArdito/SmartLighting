@@ -1,9 +1,9 @@
 
-public class Sensor {
+public class Sensore {
 	private String tipo;
 	private int code;
 	
-	public Sensor(String tipo, int code) {
+	public Sensore(String tipo, int code) {
 		this.tipo = tipo;
 		this.code = code;
 	}
@@ -13,7 +13,7 @@ public class Sensor {
 		this.code = code;
 	}
 	
-	public Sensor getSensore() {
+	public Sensore getSensore() {
 		return this;
 	}
 	
