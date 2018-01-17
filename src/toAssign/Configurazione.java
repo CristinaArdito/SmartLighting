@@ -37,5 +37,19 @@ public class Configurazione {
 		return this;
 	}
 	
-	
+	public boolean ConfiguraDispositivo(int id, int stato, boolean attributo) {
+		for (Dispositivo dispositivo : dispositivi) {
+			 if(dispositivo.getId() == id) {
+				 switch(stato) {
+				 case 1: dispositivo.impostaAcceso(attributo);
+				 	 	 return true;
+				 case 2: dispositivo.impostaStandby(attributo);
+				 		 return true;
+				 case 3: dispositivo.impostaSpento(attributo);
+				 		 return true;
+				 }
+			 }
+		}
+		return false;
+	}
 }
