@@ -2,11 +2,14 @@ package toAssign;
 
 import java.util.List;
 
+import toAssign.Dispositivo;
+import toAssign.Luce;
+import toAssign.Sensore;
+
 public class Stanza {
 	private int codice;
-	private String nome;
-	private List<Luce> luci;
 	private List<Dispositivo> dispositivi;
+	private List<Luce> luci;
 	private Sensore sensore;
 	
 	public Stanza(int codice, List<Dispositivo> listaDispositivi, Sensore sensore) {
@@ -15,14 +18,6 @@ public class Stanza {
 		setCodice(codice);
 	}
 	
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public int getCodice() {
 		return codice;
 	}
@@ -39,19 +34,19 @@ public class Stanza {
 		this.dispositivi = dispositivi;
 	}
 	
-	public Sensore getSensore() {
-		return sensore;
-	}
-	
-	public void setSensore(Sensore sensori) {
-		this.sensore = sensori;
-	}
-
 	public List<Luce> getLuci() {
 		return luci;
 	}
 	
 	public void setLuci(List<Luce> luci) {
 		this.luci = luci;
+	}
+	
+	public Sensore getSensore() {
+		return sensore;
+	}
+	
+	public void setSensore(Sensore sensori) {
+		this.sensore = sensori;
 	}
 }
