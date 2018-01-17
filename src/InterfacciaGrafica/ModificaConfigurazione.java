@@ -51,7 +51,9 @@ public class ModificaConfigurazione extends JDialog{
 		listaStanze.setBounds(10, 26, 464, 657);
 		getContentPane().add(listaStanze);
 		DefaultListModel<String> model = new DefaultListModel<String>();
-		List<Integer> ids = new ArrayList<Integer>();
+		for (Stanza stanza : stanze) {
+			model.addElement(stanza.getNome());
+		}
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		
