@@ -6,9 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Simulazione.Stanza;
 import toAssign.Configurazione;
 import toAssign.Sistema;
+import toAssign.Stanza;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -31,7 +31,7 @@ public class Interfaccia extends JFrame {
 		JButton btnModificaConfigurazione = new JButton("Modifica Configurazione");
 		btnModificaConfigurazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModificaConfigurazione nuovaConfigurazione = new ModificaConfigurazione();
+				ModificaConfigurazione nuovaConfigurazione = new ModificaConfigurazione(config);
 				nuovaConfigurazione.setVisible(true);
 			}
 		});

@@ -1,7 +1,6 @@
 package toAssign;
 import java.util.Iterator;
 import java.util.List;
-import Simulazione.Stanza;
 
 public class Sistema implements Runnable{
 	private List<Stanza> stanze;

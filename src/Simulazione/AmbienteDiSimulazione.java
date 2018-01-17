@@ -6,6 +6,7 @@ import java.util.List;
 import InterfacciaGrafica.Interfaccia;
 import toAssign.Dispositivo;
 import toAssign.Sensore;
+import toAssign.Stanza;
 
 public class AmbienteDiSimulazione {
 	private List<Stanza> stanze;
