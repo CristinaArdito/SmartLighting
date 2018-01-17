@@ -5,6 +5,7 @@ public class Dispositivo {
 	private byte codice;
 	private int id;
 	private boolean puòEssereAcceso, puòEssereSpento, puòEssereMessoInStandby;
+	private double consumo;
 	
 	/*
 	 * Codice: accesso: 1, standby: 0, spento: -1
@@ -39,6 +40,15 @@ public class Dispositivo {
 		}
 	}
 	
+	
+	public double getConsumo() {
+		return consumo;
+	}
+
+	public void setConsumo(double consumo) {
+		this.consumo = consumo;
+	}
+
 	public boolean puòEssereAcceso() {
 		return puòEssereAcceso;
 	}
