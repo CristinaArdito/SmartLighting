@@ -9,6 +9,7 @@ import toAssign.Sensore;
 
 public class AmbienteDiSimulazione {
 	private List<Stanza> stanze;
+	private int idCorrente = 0;
 	
 	public AmbienteDiSimulazione() {
 		stanze = new ArrayList<Stanza>();
@@ -24,7 +25,9 @@ public class AmbienteDiSimulazione {
 	
 	public Dispositivo generaDispositivo() {
 		String[] nomi = {"Televisore", "Computer", "Radio", "Forno", "Luci", "Stereo", "Condizionatore"};
-		return new Dispositivo(nomi[(int) Math.random()], -1);
+		Dispositivo temporaneo = new Dispositivo(nomi[(int) Math.random()], -1, idCorrente);
+		idCorrente++;
+		return temporaneo;
 	};
 	
 	public Sensore generaSensore() {
