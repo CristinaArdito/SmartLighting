@@ -46,7 +46,7 @@ public class AmbienteDiSimulazione {
 				for(int i=0;i<random;i++) {
 					dispositivi.add(simulazione.generaDispositivo());
 				}
-			stanze.add(new Stanza(j,dispositivi, simulazione.generaSensore()));
+			stanze.add(new Stanza(j,"Stanza "+j, dispositivi, simulazione.generaSensore()));
 		}
 		return stanze;
 	}

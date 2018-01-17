@@ -13,10 +13,11 @@ public class Stanza {
 	private List<Luce> luci;
 	private Sensore sensore;
 	
-	public Stanza(int codice, List<Dispositivo> listaDispositivi, Sensore sensore) {
+	public Stanza(int codice, String nome, List<Dispositivo> listaDispositivi, Sensore sensore) {
 		setDispositivi(listaDispositivi);
 		setSensore(sensore);
 		setCodice(codice);
+		setNome(nome);
 	}
 	
 	public int getCodice() {

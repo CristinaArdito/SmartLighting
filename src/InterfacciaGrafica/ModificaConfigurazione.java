@@ -59,7 +59,7 @@ public class ModificaConfigurazione extends JDialog{
 		listaStanze.setModel(model);
 		listaStanze.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				
+				System.out.println("Stanza: "+listaStanze.getSelectedIndex());
 			}
 		});
 		contentPane = new JPanel();
