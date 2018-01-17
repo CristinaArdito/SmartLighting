@@ -5,12 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.Color;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -47,13 +49,19 @@ public class ModificaConfigurazione extends JDialog{
 		});
 		getContentPane().add(button);
 		
-		JList listaStanze = new JList();
+		JList<String> listaStanze = new JList<String>();
 		listaStanze.setBounds(10, 26, 464, 657);
 		getContentPane().add(listaStanze);
 		DefaultListModel<String> model = new DefaultListModel<String>();
 		for (Stanza stanza : stanze) {
-			model.addElement(stanza.getNome());
+			model.addElement(stanza.getNome()+" - ID:"+stanza.getCodice());
 		}
+		listaStanze.setModel(model);
+		listaStanze.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				
+			}
+		});
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		

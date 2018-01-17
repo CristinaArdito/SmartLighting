@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Simulazione.AmbienteDiSimulazione;
 import toAssign.Configurazione;
 import toAssign.Sistema;
 import toAssign.Stanza;
@@ -19,7 +20,7 @@ public class Interfaccia extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Configurazione config;
-	private List<Stanza> stanze;
+	private List<Stanza> stanze = AmbienteDiSimulazione.generaStanze();
 
 	public Interfaccia() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
