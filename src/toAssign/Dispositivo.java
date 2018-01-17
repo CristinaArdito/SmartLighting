@@ -3,6 +3,7 @@ package toAssign;
 public class Dispositivo {
 	private String tipo;
 	private int codice;
+	private boolean puòEssereAcceso, puòEssereSpento, puòEssereMessoInStandby;
 	
 	/*
 	 * Codice: accesso: 1, standby: 0, spento: -1
@@ -32,5 +33,15 @@ public class Dispositivo {
 		}
 	}
 	
+	public boolean puòEssereAcceso() {
+		return puòEssereAcceso;
+	}
 	
+	public boolean puòEssereSpento() {
+		return puòEssereSpento;
+	}
+	
+	public boolean puòEssereMessoInStandby() {
+		return puòEssereMessoInStandby;
+	}
 }

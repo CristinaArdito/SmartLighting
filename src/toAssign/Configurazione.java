@@ -36,4 +36,6 @@ public class Configurazione {
 	public Configurazione getConfigurazione() {
 		return this;
 	}
+	
+	
 }
