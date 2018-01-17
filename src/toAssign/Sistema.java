@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.List;
 import Simulazione.Stanza;
 
-public class Sistema extends Thread{
+public class Sistema implements Runnable{
 	private List<Stanza> stanze;
 	private Configurazione configurazione;
 	private RisparmioEnergetico risparmio;
@@ -55,11 +55,14 @@ public class Sistema extends Thread{
 		if(Thread.currentThread().isDaemon()){ 
 			Iterator<Stanza> i = stanze.iterator();
 			Stanza st;
+			int j = 0;
 			while(true) {
 				while(i.hasNext()) {
 					st = i.next();
 					if(st.getSensore().getCodice() == 1) {
+						j++;
 						System.out.println("l'omino è qui");
+						deviceOn(j);
 					}
 				}
 				i = stanze.iterator();
@@ -67,8 +70,10 @@ public class Sistema extends Thread{
 		}
 	}
 	
-	public void deviceOn() {
-	
+	public void deviceOn(int i) {
+		Stanza st = stanze.get(i);
+		List<Dispositivo> dispositivi = st.getDispositivi();
+
 	}
 	
 	public void deviceOff() {
