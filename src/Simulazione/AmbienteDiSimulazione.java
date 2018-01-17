@@ -35,7 +35,7 @@ public class AmbienteDiSimulazione {
 		return new Sensore(-1);
 	};
 	
-	public static void main(String args[]) {
+	public static List<Stanza> generaStanze(){
 		AmbienteDiSimulazione simulazione = new AmbienteDiSimulazione();
 		List<Stanza> stanze = new ArrayList<Stanza>();
 		List<Dispositivo> dispositivi = new ArrayList<Dispositivo>();
@@ -48,8 +48,11 @@ public class AmbienteDiSimulazione {
 				}
 			stanze.add(new Stanza(j,dispositivi, simulazione.generaSensore()));
 		}
-		
-		Interfaccia frame = new Interfaccia(stanze);
+		return stanze;
+	}
+	
+	public static void main(String args[]) {
+		Interfaccia frame = new Interfaccia();
 		frame.setVisible(true);
 	}
 }
