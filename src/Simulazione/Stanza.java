@@ -3,11 +3,13 @@ package Simulazione;
 import java.util.List;
 
 import toAssign.Dispositivo;
+import toAssign.Luce;
 import toAssign.Sensore;
 
 public class Stanza {
 	private int codice;
 	private List<Dispositivo> dispositivi;
+	private List<Luce> luci;
 	private Sensore sensore;
 	
 	public Stanza(int codice, List<Dispositivo> listaDispositivi, Sensore sensore) {
@@ -30,6 +32,14 @@ public class Stanza {
 	
 	public void setDispositivi(List<Dispositivo> dispositivi) {
 		this.dispositivi = dispositivi;
+	}
+	
+	public List<Luce> getLuci() {
+		return luci;
+	}
+	
+	public void setLuci(List<Luce> luci) {
+		this.luci = luci;
 	}
 	
 	public Sensore getSensore() {
