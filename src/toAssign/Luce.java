@@ -3,6 +3,7 @@ package toAssign;
 public class Luce {
 	private int id;
 	private int codice;
+	private double consumo;
 	private boolean puòEssereAccesa, puòEssereSpenta, puòEssereMessaInStandby;
 	
 	/*
@@ -31,6 +32,15 @@ public class Luce {
 		this.codice = codice;
 	}
 	
+	
+	public double getConsumo() {
+		return consumo;
+	}
+
+	public void setConsumo(double consumo) {
+		this.consumo = consumo;
+	}
+
 	public boolean puòEssereAccesa() {
 		return puòEssereAccesa;
 	}
