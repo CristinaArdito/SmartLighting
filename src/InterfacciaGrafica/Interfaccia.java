@@ -19,8 +19,9 @@ public class Interfaccia extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Configurazione config;
+	private List<Stanza> stanze;
 
-	public Interfaccia(List<Stanza> stanze) {
+	public Interfaccia() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
 		contentPane = new JPanel();
@@ -31,7 +32,7 @@ public class Interfaccia extends JFrame {
 		JButton btnModificaConfigurazione = new JButton("Modifica Configurazione");
 		btnModificaConfigurazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModificaConfigurazione nuovaConfigurazione = new ModificaConfigurazione(config);
+				ModificaConfigurazione nuovaConfigurazione = new ModificaConfigurazione(config, stanze);
 				nuovaConfigurazione.setVisible(true);
 			}
 		});

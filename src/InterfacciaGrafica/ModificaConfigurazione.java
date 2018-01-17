@@ -10,9 +10,13 @@ import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 import toAssign.Configurazione;
+import toAssign.Stanza;
+
 import javax.swing.JList;
 
 public class ModificaConfigurazione extends JDialog{
@@ -21,7 +25,7 @@ public class ModificaConfigurazione extends JDialog{
 	private JPanel contentPane;
 	private JTextField txtModificaConfigurazione;
 	
-	public ModificaConfigurazione(Configurazione config) {
+	public ModificaConfigurazione(Configurazione config, List<Stanza> stanze) {
 		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
@@ -47,6 +51,7 @@ public class ModificaConfigurazione extends JDialog{
 		listaStanze.setBounds(10, 26, 464, 657);
 		getContentPane().add(listaStanze);
 		DefaultListModel<String> model = new DefaultListModel<String>();
+		List<Integer> ids = new ArrayList<Integer>();
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		
