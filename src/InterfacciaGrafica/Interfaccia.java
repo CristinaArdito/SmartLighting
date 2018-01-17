@@ -38,9 +38,9 @@ public class Interfaccia extends JFrame {
 		btnModificaConfigurazione.setBounds(10, 11, 464, 59);
 		contentPane.add(btnModificaConfigurazione);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 76, 464, 537);
-		contentPane.add(panel);
+		JPanel panelloDati = new JPanel();
+		panelloDati.setBounds(10, 76, 464, 537);
+		contentPane.add(panelloDati);
 		
 		JButton btnAvvia = new JButton("Avvia");
 		btnAvvia.addActionListener(new ActionListener() {
