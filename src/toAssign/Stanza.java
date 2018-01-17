@@ -8,6 +8,7 @@ import toAssign.Sensore;
 
 public class Stanza {
 	private int codice;
+	private String nome;
 	private List<Dispositivo> dispositivi;
 	private List<Luce> luci;
 	private Sensore sensore;
@@ -48,5 +49,13 @@ public class Stanza {
 	
 	public void setSensore(Sensore sensori) {
 		this.sensore = sensori;
+	}
+
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }
