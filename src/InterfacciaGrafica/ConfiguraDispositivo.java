@@ -5,6 +5,7 @@ import java.awt.Font;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import toAssign.Configurazione;
 import toAssign.Dispositivo;
@@ -42,7 +43,7 @@ public class ConfiguraDispositivo extends JDialog {
 		JCheckBox checkStandBy = new JCheckBox();
 		checkStandBy.setHorizontalAlignment(SwingConstants.CENTER);
 		checkStandBy.setBounds(357, 181, 121, 67);
-		if(config.getDispositivo(idDispositivo).puòEssereAcceso() == true) checkStandBy.setSelected(true);
+		if(config.getDispositivo(idDispositivo).puòEssereMessoInStandby() == true) checkStandBy.setSelected(true);
 		else checkStandBy.setSelected(false);
 		getContentPane().add(checkStandBy);
 		
@@ -54,20 +55,23 @@ public class ConfiguraDispositivo extends JDialog {
 		JCheckBox checkSpegnibile = new JCheckBox();
 		checkSpegnibile.setHorizontalAlignment(SwingConstants.CENTER);
 		checkSpegnibile.setBounds(357, 268, 121, 67);
-		if(config.getDispositivo(idDispositivo).puòEssereAcceso() == true) checkSpegnibile.setSelected(true);
+		if(config.getDispositivo(idDispositivo).puòEssereSpento() == true) checkSpegnibile.setSelected(true);
 		else checkSpegnibile.setSelected(false);
 		getContentPane().add(checkSpegnibile);
 		
 		JButton btnConferma = new JButton("Conferma");
 		btnConferma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(checkAccendibile.isSelected()) dispositivo.impostaAcceso(true);
-				else dispositivo.impostaAcceso(false);
-				if(checkStandBy.isSelected()) dispositivo.impostaStandby(true);
-				else dispositivo.impostaStandby(false);
-				if(checkSpegnibile.isSelected()) dispositivo.impostaSpento(true);
-				else dispositivo.impostaSpento(false);
-				dispose();
+				if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler confermare le modifiche?", "Conferma modifiche",
+				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					if(checkAccendibile.isSelected()) config.ConfiguraDispositivo(idDispositivo, 1, true);
+					else config.ConfiguraDispositivo(idDispositivo, 1, false);
+					if(checkStandBy.isSelected()) config.ConfiguraDispositivo(idDispositivo, 2, true);
+					else config.ConfiguraDispositivo(idDispositivo, 2, false);
+					if(checkSpegnibile.isSelected()) config.ConfiguraDispositivo(idDispositivo, 3, true);
+					else config.ConfiguraDispositivo(idDispositivo, 3, false);
+					dispose();
+				}
 			}
 		});
 		btnConferma.setBounds(10, 616, 225, 85);
