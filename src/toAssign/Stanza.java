@@ -1,5 +1,6 @@
 package toAssign;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,4 +128,9 @@ public class Stanza {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public void writeStanzaOnFile() throws FileNotFoundException{
+		
+	}
+	
 }
