@@ -6,6 +6,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import toAssign.Configurazione;
 import toAssign.Dispositivo;
 import toAssign.Stanza;
@@ -34,11 +37,21 @@ public class ModificaDispositivi extends JDialog {
 			if(stanza.getCodice() == idStanza) {
 				for (Dispositivo dispositivo : stanza.getDispositivi()) {
 					modelloDispositivi.addElement(dispositivo.getTipo()+" - ID:"+dispositivo.getId());
-					System.out.println(dispositivo.getTipo()+" - ID:"+dispositivo.getId());
 				}
 				break;
 			}
 		}
+		listaDispositivi.addListSelectionListener(new ListSelectionListener() {
+			
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					String nomeDispositivo = listaDispositivi.getSelectedValue().substring(0, listaDispositivi.getSelectedValue().lastIndexOf(" - ID:"));
+					String idDispositivo = listaDispositivi.getSelectedValue().substring(listaDispositivi.getSelectedValue().lastIndexOf(" - ID:")+6, listaDispositivi.getSelectedValue().length());
+					ModificaSingoloDispositivo modificaDispositivo = new ModificaSingoloDispositivo(nomeDispositivo, Integer.parseInt(idDispositivo));
+					modificaDispositivo.setVisible(true);
+				}
+			}
+		});
 		listaDispositivi.setModel(modelloDispositivi);
 	}
 }
