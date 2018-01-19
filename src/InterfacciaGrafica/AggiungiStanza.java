@@ -6,6 +6,8 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AggiungiStanza extends JDialog {
 
@@ -75,6 +77,11 @@ public class AggiungiStanza extends JDialog {
 		getContentPane().add(lblAggiungiUnaStanza);
 		
 		JButton btnAnnulla = new JButton("Annulla");
+		btnAnnulla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnAnnulla.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAnnulla.setBounds(269, 636, 179, 43);
 		getContentPane().add(btnAnnulla);
