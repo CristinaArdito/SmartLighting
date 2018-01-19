@@ -12,6 +12,8 @@ import javax.swing.event.ListSelectionListener;
 import toAssign.Configurazione;
 import toAssign.Dispositivo;
 import toAssign.Stanza;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ModificaDispositivi extends JDialog {
 
@@ -24,9 +26,15 @@ public class ModificaDispositivi extends JDialog {
 		JButton btnConferma = new JButton("Conferma");
 		btnConferma.setBounds(12, 660, 226, 52);
 		getContentPane().add(btnConferma);
-		JButton btnAnnulla = new JButton("Annulla");
-		btnAnnulla.setBounds(248, 660, 226, 52);
-		getContentPane().add(btnAnnulla);
+		JButton btnAggiungiDispositivo = new JButton("Aggiungi Dispositivo");
+		btnAggiungiDispositivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AggiungiDispositivo aggiungiDispositivo = new AggiungiDispositivo();
+				aggiungiDispositivo.setVisible(true);
+			}
+		});
+		btnAggiungiDispositivo.setBounds(248, 660, 226, 52);
+		getContentPane().add(btnAggiungiDispositivo);
 		
 		JList<String> listaDispositivi = new JList<String>();
 		listaDispositivi.setBounds(10, 10, 462, 645);
