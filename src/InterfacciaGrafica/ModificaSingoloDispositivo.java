@@ -17,6 +17,7 @@ public class ModificaSingoloDispositivo extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
 
 	public ModificaSingoloDispositivo(String nomeDispositivo, int idDispositivo, Configurazione config) {
 		getContentPane().setLayout(null);
@@ -32,7 +33,7 @@ public class ModificaSingoloDispositivo extends JDialog {
 		getContentPane().add(lblInserisciLaTipologia);
 		
 		textField = new JTextField();
-		textField.setBounds(237, 81, 197, 32);
+		textField.setBounds(237, 81, 197, 27);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -54,6 +55,16 @@ public class ModificaSingoloDispositivo extends JDialog {
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setBounds(158, 616, 179, 43);
 		getContentPane().add(button);
+		
+		JLabel lblInserisciLaStanza = new JLabel("Inserisci la stanza in cui \u00E8 presente");
+		lblInserisciLaStanza.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblInserisciLaStanza.setBounds(10, 205, 252, 27);
+		getContentPane().add(lblInserisciLaStanza);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(251, 205, 183, 25);
+		getContentPane().add(textField_2);
+		textField_2.setColumns(10);
 		setBounds(100, 100, 500, 750);
 		
 		Dispositivo dispositivo = config.getDispositivo(idDispositivo);
