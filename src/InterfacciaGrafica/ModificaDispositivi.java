@@ -30,12 +30,7 @@ public class ModificaDispositivi extends JDialog {
 		getContentPane().add(listaDispositivi);
 		DefaultListModel<String> modelloDispositivi = new DefaultListModel<String>();
 		
-		System.out.println(idStanza);
-		System.out.println(stanze.size());
-		
 		for (Stanza stanza : stanze) {
-			System.out.println("Codice stanza attuale: "+stanza.getCodice());
-			System.out.println("Numero dispositivi: "+stanza.getDispositivi().size());
 			if(stanza.getCodice() == idStanza) {
 				for (Dispositivo dispositivo : stanza.getDispositivi()) {
 					modelloDispositivi.addElement(dispositivo.getTipo()+" - ID:"+dispositivo.getId());
