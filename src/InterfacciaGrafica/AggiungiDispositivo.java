@@ -5,16 +5,17 @@ import java.awt.Font;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class AggiungiDispositivo extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 
 	public AggiungiDispositivo() {
 		getContentPane().setLayout(null);
@@ -53,16 +54,6 @@ public class AggiungiDispositivo extends JDialog {
 		button.setBounds(27, 618, 179, 43);
 		getContentPane().add(button);
 		
-		JLabel lblInserisciLaStanza = new JLabel("Inserisci la stanza in cui \u00E8 presente");
-		lblInserisciLaStanza.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblInserisciLaStanza.setBounds(10, 205, 252, 27);
-		getContentPane().add(lblInserisciLaStanza);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(251, 205, 183, 25);
-		getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		
 		JButton btnAnnulla = new JButton("Annulla");
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -71,6 +62,20 @@ public class AggiungiDispositivo extends JDialog {
 		btnAnnulla.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAnnulla.setBounds(270, 618, 179, 43);
 		getContentPane().add(btnAnnulla);
+		
+		JComboBox<String> listaSensori = new JComboBox<String>();
+		listaSensori.setBounds(237, 191, 230, 27);
+		DefaultComboBoxModel<String> modelloSensori = new DefaultComboBoxModel<String>();
+		for (Integer id : Interfaccia.getSensori()) {
+			modelloSensori.addElement(id.toString());
+		}
+		listaSensori.setModel(modelloSensori);
+		getContentPane().add(listaSensori);
+		
+		JLabel lblSceltaSensore = new JLabel("Scegliere sensore da collegare");
+		lblSceltaSensore.setBounds(10, 191, 217, 27);
+		lblSceltaSensore.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		getContentPane().add(lblSceltaSensore);
 		setBounds(100, 100, 500, 750);
 	}
 }

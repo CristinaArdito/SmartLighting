@@ -4,10 +4,10 @@ import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 public class AggiungiStanza extends JDialog {
 
@@ -39,26 +39,14 @@ public class AggiungiStanza extends JDialog {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JRadioButton rdbtnTv = new JRadioButton("Tv");
-		rdbtnTv.setBounds(10, 177, 109, 23);
-		getContentPane().add(rdbtnTv);
-		
-		JRadioButton rdbtnComputer = new JRadioButton("Computer");
-		rdbtnComputer.setBounds(10, 203, 109, 23);
-		getContentPane().add(rdbtnComputer);
-		
-		JRadioButton rdbtnRadio = new JRadioButton("Radio");
-		rdbtnRadio.setBounds(10, 232, 109, 23);
-		getContentPane().add(rdbtnRadio);
-		
 		textField_1 = new JTextField();
-		textField_1.setBounds(174, 389, 86, 30);
+		textField_1.setBounds(184, 535, 86, 30);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblNumeroDiLuci = new JLabel("Numero di luci presenti:");
 		lblNumeroDiLuci.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNumeroDiLuci.setBounds(10, 387, 200, 30);
+		lblNumeroDiLuci.setBounds(10, 533, 171, 30);
 		getContentPane().add(lblNumeroDiLuci);
 		
 		JLabel lblListaDeiDispositivi = new JLabel("Lista dei dispositivi presenti");
@@ -85,5 +73,19 @@ public class AggiungiStanza extends JDialog {
 		btnAnnulla.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAnnulla.setBounds(269, 636, 179, 43);
 		getContentPane().add(btnAnnulla);
+		
+		JList<String> listaDispositiviStanza = new JList<String>();
+		listaDispositiviStanza.setBounds(10, 169, 464, 266);
+		getContentPane().add(listaDispositiviStanza);
+		
+		JButton btnAggiungiDispositivo = new JButton("Aggiungi");
+		btnAggiungiDispositivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AggiungiDispositivo aggiungiDispositivo = new AggiungiDispositivo();
+				aggiungiDispositivo.setVisible(true);
+			}
+		});
+		btnAggiungiDispositivo.setBounds(355, 446, 119, 30);
+		getContentPane().add(btnAggiungiDispositivo);
 	}
 }
