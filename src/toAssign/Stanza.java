@@ -1,5 +1,6 @@
 package toAssign;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import toAssign.Dispositivo;
@@ -33,7 +34,8 @@ public class Stanza {
 	}
 	
 	public void setDispositivi(List<Dispositivo> dispositivi) {
-		this.dispositivi = dispositivi;
+		this.dispositivi = new ArrayList<Dispositivo>();
+		this.dispositivi.addAll(dispositivi);
 	}
 	
 	public List<Luce> getLuci() {
