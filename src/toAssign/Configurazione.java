@@ -26,6 +26,15 @@ public class Configurazione {
 		return this;
 	}
 	
+	public Dispositivo getDispositivo(int idDispositivo) {
+		for (Dispositivo dispositivo : dispositivi) {
+			if(dispositivo.getCodice() == idDispositivo) {
+				return dispositivo;
+			}
+		}
+		return null;
+	}
+	
 	public boolean ConfiguraDispositivo(int id, int stato, boolean attributo) {
 		for (Dispositivo dispositivo : dispositivi) {
 			 if(dispositivo.getId() == id) {
