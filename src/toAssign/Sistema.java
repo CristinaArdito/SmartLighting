@@ -177,62 +177,128 @@ public class Sistema implements Runnable{
 		}
 	}
 	
+	/**
+	 * Mette in standby i dispositivi presenti nella stanza
+	 * @param i		indice della stanza
+	 */
 	public void deviceStandBy(int i) {
+		// Ottengo la stanza
 		Stanza st = stanze.get(i);
+		// Creo un dispositivo d'appoggio
 		Dispositivo d;
+		// Ottengo la lista dei dispositivi presenti nella stanza
 		List<Dispositivo> dispositivi = st.getDispositivi();
+		// Creo un iteratore dei dispositivi
 		Iterator<Dispositivo> j = dispositivi.iterator();
 		while(j.hasNext()) {
 			d = j.next();
+			/*
+			 * Verifico se il dispositivo può essere messo in standby ed, in tal caso,
+			 * lo metto in standby
+			 */
 			if(d.puòEssereMessoInStandby() == true) d.setCodice(0);
 		}
 	}
 	
+	/**
+	 * Accende le luci nella stanza
+	 * @param i		indice di stanza
+	 */
 	public void lightOn(int i) {
+		// Ottengo la stanza
 		Stanza st = stanze.get(i);
+		// Creo una luce di appoggio
 		Luce l;
+		// Creo una lista di luci presenti nella stanza
 		List<Luce> luci = st.getLuci();
+		// Creo un iteratore delle luci
 		Iterator<Luce> j = luci.iterator();
 		while(j.hasNext()) {
 			l = j.next();
+			/*
+			 * Verifico se la luce può essere accesa ed, in tal caso,
+			 * la accendo
+			 */
 			if(l.puòEssereAccesa() == true) l.setCodice(1);
 		}
 	}
 	
+	/**
+	 * Spegne le luci nella stanza
+	 * @param i		indice di stanza
+	 */
 	public void lightOff(int i) {
+		// Ottengo la stanza
 		Stanza st = stanze.get(i);
+		// Creo una luce di appoggio
 		Luce l;
+		// Creo una lista di luci presenti nella stanza
 		List<Luce> luci = st.getLuci();
+		// Creo un iteratore delle luci
 		Iterator<Luce> j = luci.iterator();
 		while(j.hasNext()) {
 			l = j.next();
+			/*
+			 * Verifico se la luce può essere spenta ed, in tal caso,
+			 * la spengo
+			 */
 			if(l.puòEssereSpenta() == true) l.setCodice(-1);
 		}
 	}
 	
+	/**
+	 * Calcola il consumo totale dei dispositivi sommati alle luci
+	 * presenti nella casa
+	 */
 	public void setConsumoTot() {
+		// Creo l'iteratore delle stanze
 		Iterator<Stanza> i = stanze.iterator();
 		Stanza st;		// Creo un stanza d'appoggio
-		Dispositivo d;
-			while(i.hasNext()) {
+		Dispositivo d;	// Dispositivo di appoggio
+		Luce l;
+			while(i.hasNext()) {		// Itero le stanze
 				st = i.next();
+				// Creo una lista di dispositivi presenti nella stanza
 				List<Dispositivo> dispositivi = st.getDispositivi();
+				// Creo un iteratore dei dispositivi
 				Iterator<Dispositivo> j = dispositivi.iterator();
 				while(j.hasNext()) {
 					d = j.next();
+					// Sommo il consumo di ogni singolo dispositivo della stanza
 					this.consumoTot += d.getConsumo();
+				}
+				// Creo una lista delle luci presenti nella stanza
+				List<Luce> luci = st.getLuci();
+				// Creo un iteratore
+				Iterator<Luce> z = luci.iterator();
+				while(z.hasNext()) {
+					l = z.next();
+					// Sommo il consumo di ogni singola luce della stanza
+					this.consumoTot +=  l.getConsumo();
 				}
 			}	
 	}	
 	
+	/** 
+	 * Ritorna il consumo totale
+	 * @return	consumoTot
+	 */
 	public double getConsumoTot() {
 		return consumoTot;
 	}
 	
+	/**
+	 * Calcola il consumo giornaliero dei vari dispositivi
+	 * e delle luci tenute accese durante la giornata
+	 */
 	public void setConsumoGiornaliero( ) {
 		
 	}
 	
+	/**
+	 * Ritorna il consumo giornaliero
+	 * @return
+	 */
 	public double getConsumoGiornaliero() {
 		return this.consumoGiornaliero;
 	}

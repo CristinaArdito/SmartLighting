@@ -64,6 +64,7 @@ public class Luce {
 	 * @param codice
 	 */
 	public void setCodice(int codice) {
+		if((codice == -1) || (codice == 1))
 		this.codice = codice;
 	}
 	
