@@ -29,7 +29,7 @@ public class AggiungiStanza extends JDialog {
 		
 		JButton button = new JButton("Conferma");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		button.setBounds(156, 657, 179, 43);
+		button.setBounds(28, 636, 179, 43);
 		getContentPane().add(button);
 		
 		textField = new JTextField();
@@ -73,5 +73,10 @@ public class AggiungiStanza extends JDialog {
 		lblAggiungiUnaStanza.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAggiungiUnaStanza.setBounds(171, 11, 153, 30);
 		getContentPane().add(lblAggiungiUnaStanza);
+		
+		JButton btnAnnulla = new JButton("Annulla");
+		btnAnnulla.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnAnnulla.setBounds(269, 636, 179, 43);
+		getContentPane().add(btnAnnulla);
 	}
 }

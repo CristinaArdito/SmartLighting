@@ -6,6 +6,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AggiungiDispositivo extends JDialog {
 
@@ -17,7 +19,7 @@ public class AggiungiDispositivo extends JDialog {
 	public AggiungiDispositivo() {
 		getContentPane().setLayout(null);
 		
-		JLabel lblModificaDispositivo = new JLabel("Modifica dispositivo");
+		JLabel lblModificaDispositivo = new JLabel("Aggiungi dispositivo");
 		lblModificaDispositivo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblModificaDispositivo.setBounds(158, 11, 217, 27);
 		getContentPane().add(lblModificaDispositivo);
@@ -48,7 +50,7 @@ public class AggiungiDispositivo extends JDialog {
 		
 		JButton button = new JButton("Conferma");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		button.setBounds(158, 616, 179, 43);
+		button.setBounds(27, 618, 179, 43);
 		getContentPane().add(button);
 		
 		JLabel lblInserisciLaStanza = new JLabel("Inserisci la stanza in cui \u00E8 presente");
@@ -60,6 +62,15 @@ public class AggiungiDispositivo extends JDialog {
 		textField_2.setBounds(251, 205, 183, 25);
 		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
+		
+		JButton btnAnnulla = new JButton("Annulla");
+		btnAnnulla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAnnulla.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnAnnulla.setBounds(270, 618, 179, 43);
+		getContentPane().add(btnAnnulla);
 		setBounds(100, 100, 500, 750);
 	}
 }
