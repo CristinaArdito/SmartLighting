@@ -60,6 +60,12 @@ public class ModificaConfigurazione extends JDialog{
 		listaStanze.setModel(model);
 		
 		JButton btnAggiungiStanza = new JButton("Aggiungi Stanza");
+		btnAggiungiStanza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AggiungiStanza aggiungiStanza = new AggiungiStanza();
+				aggiungiStanza.setVisible(true);
+			}
+		});
 		btnAggiungiStanza.setBounds(248, 660, 226, 52);
 		getContentPane().add(btnAggiungiStanza);
 		
