@@ -3,8 +3,6 @@ package InterfacciaGrafica;
 import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import java.awt.Color;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;

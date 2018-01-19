@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import Simulazione.AmbienteDiSimulazione;
 import toAssign.Configurazione;
+import toAssign.Dispositivo;
 import toAssign.Sistema;
 import toAssign.Stanza;
 
@@ -19,10 +20,13 @@ public class Interfaccia extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Configurazione config;
 	private List<Stanza> stanze = AmbienteDiSimulazione.generaStanze();
+	private Configurazione config = new Configurazione();
 
 	public Interfaccia() {
+		
+		importaConfigurazione();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
 		contentPane = new JPanel();
@@ -53,5 +57,13 @@ public class Interfaccia extends JFrame {
 		});
 		btnAvvia.setBounds(76, 624, 334, 59);
 		contentPane.add(btnAvvia);
+	}
+	
+	private void importaConfigurazione() {
+		for (Stanza stanza : stanze) {
+			for (Dispositivo dispositivo : stanza.getDispositivi()) {
+				config.addDispositivo(dispositivo);
+			}
+		}
 	}
 }

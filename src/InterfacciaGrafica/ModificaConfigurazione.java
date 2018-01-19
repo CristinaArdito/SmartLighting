@@ -62,6 +62,7 @@ public class ModificaConfigurazione extends JDialog{
 		JButton btnAggiungiStanza = new JButton("Aggiungi Stanza");
 		btnAggiungiStanza.setBounds(248, 660, 226, 52);
 		getContentPane().add(btnAggiungiStanza);
+		
 		listaStanze.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
