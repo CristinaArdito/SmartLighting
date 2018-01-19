@@ -1,13 +1,20 @@
 package toAssign;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Configurazione {
 	private List<Dispositivo> dispositivi;
 	
-	public Configurazione(List<Dispositivo> dispositivi, List<Dispositivo> eccezioni) {
+	public Configurazione(List<Dispositivo> dispositivi) {
 		super();
-		this.dispositivi = dispositivi;
+		this.dispositivi = new ArrayList<Dispositivo>();
+		this.dispositivi.addAll(dispositivi);
+	}
+	
+	public Configurazione() {
+		super();
+		this.dispositivi = new ArrayList<Dispositivo>();
 	}
 
 	public List<Dispositivo> getDispositivi() {
@@ -28,11 +35,20 @@ public class Configurazione {
 	
 	public Dispositivo getDispositivo(int idDispositivo) {
 		for (Dispositivo dispositivo : dispositivi) {
-			if(dispositivo.getCodice() == idDispositivo) {
+			if(dispositivo.getId() == idDispositivo) {
 				return dispositivo;
 			}
 		}
 		return null;
+	}
+	
+	public boolean addDispositivo(Dispositivo dispositivo) {
+		try {
+		dispositivi.add(dispositivo);
+		return true;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 	
 	public boolean ConfiguraDispositivo(int id, int stato, boolean attributo) {
