@@ -20,7 +20,7 @@ public class Interfaccia extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private List<Stanza> stanze = AmbienteDiSimulazione.generaStanze();
+	private List<Stanza> stanze;
 	private Configurazione config = new Configurazione();
 	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
 
