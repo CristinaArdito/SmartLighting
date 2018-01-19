@@ -47,7 +47,7 @@ public class ModificaDispositivi extends JDialog {
 				if (!e.getValueIsAdjusting()) {
 					String nomeDispositivo = listaDispositivi.getSelectedValue().substring(0, listaDispositivi.getSelectedValue().lastIndexOf(" - ID:"));
 					String idDispositivo = listaDispositivi.getSelectedValue().substring(listaDispositivi.getSelectedValue().lastIndexOf(" - ID:")+6, listaDispositivi.getSelectedValue().length());
-					ModificaSingoloDispositivo modificaDispositivo = new ModificaSingoloDispositivo(nomeDispositivo, Integer.parseInt(idDispositivo));
+					ModificaSingoloDispositivo modificaDispositivo = new ModificaSingoloDispositivo(nomeDispositivo, Integer.parseInt(idDispositivo), config);
 					modificaDispositivo.setVisible(true);
 				}
 			}
