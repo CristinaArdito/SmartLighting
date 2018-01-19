@@ -31,6 +31,14 @@ public class AmbienteDiSimulazione {
 		return temporaneo;
 	};
 	
+	public static List<Integer> ottieniSensori(){
+		List<Integer> listaSensori = new ArrayList<Integer>();
+		for(int i=0;i<25;i++) {
+			listaSensori.add(new Integer(i));
+		}
+		return listaSensori;
+	}
+	
 	public Sensore generaSensore() {
 		return new Sensore(-1);
 	};
