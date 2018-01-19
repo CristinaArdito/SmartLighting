@@ -22,6 +22,7 @@ public class Interfaccia extends JFrame {
 	private JPanel contentPane;
 	private List<Stanza> stanze = AmbienteDiSimulazione.generaStanze();
 	private Configurazione config = new Configurazione();
+	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
 
 	public Interfaccia() {
 		
@@ -65,5 +66,9 @@ public class Interfaccia extends JFrame {
 				config.addDispositivo(dispositivo);
 			}
 		}
+	}
+	
+	public static List<Integer> getSensori(){
+		return sensori;
 	}
 }
