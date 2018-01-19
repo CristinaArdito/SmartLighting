@@ -20,6 +20,16 @@ public class Sistema implements Runnable{
 	 */
 	private RisparmioEnergetico risparmio;
 	
+	/*
+	 * Consumo totale dei dispositivi e delle luci
+	 */
+	private double consumoTot;
+	
+	/*
+	 * Consumo giornaliero effettivo dei dispositivi e delle luci
+	 */
+	private double consumoGiornaliero;
+	
 	/**
 	 * Inizializza il sistema con la lista delle stanze presenti nell'appartamento
 	 * e la configurazione scelta dal cliente
@@ -200,11 +210,30 @@ public class Sistema implements Runnable{
 		}
 	}
 	
-	public void setConsumo() {
+	public void setConsumoTot() {
+		Iterator<Stanza> i = stanze.iterator();
+		Stanza st;		// Creo un stanza d'appoggio
+		Dispositivo d;
+			while(i.hasNext()) {
+				st = i.next();
+				List<Dispositivo> dispositivi = st.getDispositivi();
+				Iterator<Dispositivo> j = dispositivi.iterator();
+				while(j.hasNext()) {
+					d = j.next();
+					this.consumoTot += d.getConsumo();
+				}
+			}	
+	}	
+	
+	public double getConsumoTot() {
+		return consumoTot;
+	}
+	
+	public void setConsumoGiornaliero( ) {
 		
 	}
 	
-	public void getConsumo() {
-		
+	public double getConsumoGiornaliero() {
+		return this.consumoGiornaliero;
 	}
 }
