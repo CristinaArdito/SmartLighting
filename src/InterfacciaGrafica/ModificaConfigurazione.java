@@ -34,6 +34,7 @@ public class ModificaConfigurazione extends JDialog{
 		getContentPane().setLayout(null);
 		
 		txtModificaConfigurazione = new JTextField();
+		txtModificaConfigurazione.setEditable(false);
 		txtModificaConfigurazione.setBounds(0, 0, 484, 20);
 		txtModificaConfigurazione.setBackground(new Color(255, 255, 255));
 		txtModificaConfigurazione.setHorizontalAlignment(SwingConstants.CENTER);
@@ -42,7 +43,7 @@ public class ModificaConfigurazione extends JDialog{
 		txtModificaConfigurazione.setColumns(10);
 		
 		JButton button = new JButton("Conferma");
-		button.setBounds(0, 689, 484, 23);
+		button.setBounds(12, 660, 226, 52);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -50,16 +51,25 @@ public class ModificaConfigurazione extends JDialog{
 		getContentPane().add(button);
 		
 		JList<String> listaStanze = new JList<String>();
-		listaStanze.setBounds(10, 26, 464, 657);
+		listaStanze.setBounds(10, 26, 464, 632);
 		getContentPane().add(listaStanze);
 		DefaultListModel<String> model = new DefaultListModel<String>();
 		for (Stanza stanza : stanze) {
 			model.addElement(stanza.getNome()+" - ID:"+stanza.getCodice());
 		}
 		listaStanze.setModel(model);
+		
+		JButton btnAggiungiStanza = new JButton("Aggiungi Stanza");
+		btnAggiungiStanza.setBounds(248, 660, 226, 52);
+		getContentPane().add(btnAggiungiStanza);
 		listaStanze.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				System.out.println("Stanza: "+listaStanze.getSelectedIndex());
+				if (!e.getValueIsAdjusting()) {
+				String stringaTemporanea = listaStanze.getSelectedValue();
+				String idStanza = stringaTemporanea.substring(stringaTemporanea.lastIndexOf("- ID:")+5, stringaTemporanea.length());
+				ModificaDispositivi modificaDispositivo = new ModificaDispositivi(Integer.parseInt(idStanza), stanze, config);
+				modificaDispositivo.setVisible(true);
+				}
 			}
 		});
 		contentPane = new JPanel();
