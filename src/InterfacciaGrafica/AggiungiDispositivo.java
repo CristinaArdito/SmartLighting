@@ -4,22 +4,17 @@ import java.awt.Font;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import toAssign.Configurazione;
-import toAssign.Dispositivo;
-import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class ModificaSingoloDispositivo extends JDialog {
+public class AggiungiDispositivo extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 
-	public ModificaSingoloDispositivo(String nomeDispositivo, int idDispositivo, Configurazione config) {
+	public AggiungiDispositivo() {
 		getContentPane().setLayout(null);
 		
 		JLabel lblModificaDispositivo = new JLabel("Modifica dispositivo");
@@ -66,41 +61,5 @@ public class ModificaSingoloDispositivo extends JDialog {
 		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		setBounds(100, 100, 500, 750);
-		
-		Dispositivo dispositivo = config.getDispositivo(idDispositivo);
-		if(dispositivo != null) {
-		JLabel accendibile = new JLabel("Il dispositivo può essere acceso");
-		accendibile.setBounds(10, 99, 290, 64);
-		accendibile.setFont(new Font(lblModificaDispositivo.getFont().getFontName(),lblModificaDispositivo.getFont().getStyle(),18));
-		getContentPane().add(accendibile);	
-		
-		JCheckBox checkAccendibile = new JCheckBox();
-		checkAccendibile.setHorizontalAlignment(SwingConstants.CENTER);
-		checkAccendibile.setBounds(357, 99, 121, 67);
-		getContentPane().add(checkAccendibile);
-		
-		JLabel standBy = new JLabel("Il dispositivo può essere messo in standby");
-		standBy.setBounds(10, 184, 344, 64);
-		standBy.setFont(new Font(lblModificaDispositivo.getFont().getFontName(),lblModificaDispositivo.getFont().getStyle(),18));
-		getContentPane().add(standBy);	
-		
-		JCheckBox checkStandBy = new JCheckBox();
-		checkStandBy.setHorizontalAlignment(SwingConstants.CENTER);
-		checkStandBy.setBounds(357, 181, 121, 67);
-		getContentPane().add(checkStandBy);
-		
-		JLabel spegnibile = new JLabel("Il dispositivo può essere spento");
-		spegnibile.setBounds(10, 271, 290, 64);
-		spegnibile.setFont(new Font(lblModificaDispositivo.getFont().getFontName(),lblModificaDispositivo.getFont().getStyle(),18));
-		getContentPane().add(spegnibile);	
-		
-		JCheckBox checkSpegnibile = new JCheckBox();
-		checkSpegnibile.setHorizontalAlignment(SwingConstants.CENTER);
-		checkSpegnibile.setBounds(357, 268, 121, 67);
-		getContentPane().add(checkSpegnibile);
-		
-		
-		}
-		
 	}
 }
