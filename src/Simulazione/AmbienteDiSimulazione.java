@@ -26,7 +26,7 @@ public class AmbienteDiSimulazione {
 	
 	public Dispositivo generaDispositivo() {
 		String[] nomi = {"Televisore", "Computer", "Radio", "Forno", "Luci", "Stereo", "Condizionatore"};
-		Dispositivo temporaneo = new Dispositivo(nomi[(int) Math.random()*7], -1, idCorrente);
+		Dispositivo temporaneo = new Dispositivo(nomi[(int) Math.random()*7], -1, idCorrente, 40);
 		idCorrente++;
 		return temporaneo;
 	};
