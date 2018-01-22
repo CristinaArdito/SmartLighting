@@ -19,8 +19,6 @@ import toAssign.Sensore;
 import toAssign.Sistema;
 import toAssign.Stanza;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,11 +26,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.awt.event.ActionEvent;
-
-
-import toAssign.Sistema;
-import toAssign.Stanza;
 
 public class Interfaccia extends JFrame {
 
@@ -42,8 +35,7 @@ public class Interfaccia extends JFrame {
 	private Configurazione config = new Configurazione();
 	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
 	private ModificaConfigurazione nuovaConfigurazione;
-	private int indiceStanza = 0;
-
+	
 	public Interfaccia() throws FileNotFoundException, MalformedURLException {
 		
 		stanze = new ArrayList<Stanza>();
@@ -64,7 +56,7 @@ public class Interfaccia extends JFrame {
 			Iterator<Dispositivo> i = list.iterator();
 			while(i.hasNext()) {
 				d = i.next();
-				System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puï¿½EssereAcceso() + d.puï¿½EssereSpento() + d.puï¿½EssereMessoInStandby() + d.getConsumo());
+				System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() + d.getConsumo());
 			}
 			System.out.println(s1.getSensore().getCodice());
 		}
@@ -163,9 +155,9 @@ public class Interfaccia extends JFrame {
 			    	write.println("Tipo: " + d.getTipo() + " ,");
 			    	write.println("Codice: " + d.getCodice() + " ,");
 			    	write.println("Id: " + d.getId() + " ,");
-			    	write.println("Puï¿½EssereAcceso: " + d.puï¿½EssereAcceso() + " ,");
-			    	write.println("Puï¿½EssereSpento: " + d.puï¿½EssereSpento() + " ,");
-			    	write.println("Puï¿½EssereMessoInStandby: " + d.puï¿½EssereMessoInStandby() + " ,");
+			    	write.println("Puï¿½EssereAcceso: " + d.puòEssereAcceso() + " ,");
+			    	write.println("Puï¿½EssereSpento: " + d.puòEssereSpento() + " ,");
+			    	write.println("Puï¿½EssereMessoInStandby: " + d.puòEssereMessoInStandby() + " ,");
 			    	write.println("Consumo: " + d.getConsumo());
 			    	write.println("},");
 			    }
@@ -191,7 +183,6 @@ public class Interfaccia extends JFrame {
     	double consumo = 0;
     	String tipo = new String();
     	String nome = new String();
-    	Stanza app = null;
     	Sensore s;
     	List<Stanza> liststanze = new ArrayList<Stanza>();
         try {
