@@ -1,1 +1,1 @@
-# SmartLighting-
+# SmartLighting
