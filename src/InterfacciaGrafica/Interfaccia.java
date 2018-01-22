@@ -41,6 +41,8 @@ public class Interfaccia extends JFrame {
 	private List<Stanza> stanze;
 	private Configurazione config = new Configurazione();
 	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
+	private ModificaConfigurazione nuovaConfigurazione;
+	private int indiceStanza = 0;
 
 	public Interfaccia() throws FileNotFoundException, MalformedURLException {
 		
@@ -62,7 +64,7 @@ public class Interfaccia extends JFrame {
 			Iterator<Dispositivo> i = list.iterator();
 			while(i.hasNext()) {
 				d = i.next();
-				System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() + d.getConsumo());
+				System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puï¿½EssereAcceso() + d.puï¿½EssereSpento() + d.puï¿½EssereMessoInStandby() + d.getConsumo());
 			}
 			System.out.println(s1.getSensore().getCodice());
 		}
@@ -79,8 +81,20 @@ public class Interfaccia extends JFrame {
 		JButton btnModificaConfigurazione = new JButton("Modifica Configurazione");
 		btnModificaConfigurazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModificaConfigurazione nuovaConfigurazione = new ModificaConfigurazione(config, stanze);
+				nuovaConfigurazione = new ModificaConfigurazione(config, stanze);
 				nuovaConfigurazione.setVisible(true);
+				nuovaConfigurazione.addConfirmListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						nuovaConfigurazione.addConfirmListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								stanze = nuovaConfigurazione.getStanza();
+							}
+						});
+					}
+				});
 			}
 		});
 		btnModificaConfigurazione.setBounds(10, 11, 464, 59);
@@ -149,9 +163,9 @@ public class Interfaccia extends JFrame {
 			    	write.println("Tipo: " + d.getTipo() + " ,");
 			    	write.println("Codice: " + d.getCodice() + " ,");
 			    	write.println("Id: " + d.getId() + " ,");
-			    	write.println("PuòEssereAcceso: " + d.puòEssereAcceso() + " ,");
-			    	write.println("PuòEssereSpento: " + d.puòEssereSpento() + " ,");
-			    	write.println("PuòEssereMessoInStandby: " + d.puòEssereMessoInStandby() + " ,");
+			    	write.println("Puï¿½EssereAcceso: " + d.puï¿½EssereAcceso() + " ,");
+			    	write.println("Puï¿½EssereSpento: " + d.puï¿½EssereSpento() + " ,");
+			    	write.println("Puï¿½EssereMessoInStandby: " + d.puï¿½EssereMessoInStandby() + " ,");
 			    	write.println("Consumo: " + d.getConsumo());
 			    	write.println("},");
 			    }
@@ -206,13 +220,13 @@ public class Interfaccia extends JFrame {
         	else if(line.contains("Id") == true) {
         		id = Integer.parseInt(words[1]);
         	}
-        	else if(line.contains("PuòEssereAcceso") == true) {
+        	else if(line.contains("Puï¿½EssereAcceso") == true) {
         		on = Boolean.parseBoolean(words[1]);
         	}
-        	else if(line.contains("PuòEssereSpento") == true) {
+        	else if(line.contains("Puï¿½EssereSpento") == true) {
         		off = Boolean.parseBoolean(words[1]);
         	}
-        	else if(line.contains("PuòEssereMessoInStandby ") == true) {
+        	else if(line.contains("Puï¿½EssereMessoInStandby ") == true) {
         		stand = Boolean.parseBoolean(words[1]);
         	}
         	else if(line.contains("Consumo") == true) {

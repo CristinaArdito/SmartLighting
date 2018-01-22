@@ -13,17 +13,20 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
 
+import Simulazione.AmbienteDiSimulazione;
 import toAssign.Dispositivo;
+import toAssign.Stanza;
 
 public class AggiungiStanza extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField nomeStanza;
+	private JTextField numeroLuci;
 	private AggiungiDispositivo aggiungiDispositivo;
 	private List<Dispositivo> dispositivi = new ArrayList<Dispositivo>();
 	private JList<String> listaDispositiviStanza;
 	private DefaultListModel<String> modelloListaDispositiviStanza = new DefaultListModel<String>();
+	private JButton button;
 
 	public static void main(String[] args) {
 		try {
@@ -40,29 +43,29 @@ public class AggiungiStanza extends JDialog {
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
 		
-		JButton button = new JButton("Conferma");
+		button = new JButton("Conferma");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setBounds(28, 636, 179, 43);
 		getContentPane().add(button);
 		
-		textField = new JTextField();
-		textField.setBounds(74, 81, 171, 30);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		nomeStanza = new JTextField();
+		nomeStanza.setBounds(74, 81, 171, 30);
+		getContentPane().add(nomeStanza);
+		nomeStanza.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(184, 535, 86, 30);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		numeroLuci = new JTextField();
+		numeroLuci.setBounds(184, 506, 86, 30);
+		getContentPane().add(numeroLuci);
+		numeroLuci.setColumns(10);
 		
 		JLabel lblNumeroDiLuci = new JLabel("Numero di luci presenti:");
 		lblNumeroDiLuci.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNumeroDiLuci.setBounds(10, 533, 171, 30);
+		lblNumeroDiLuci.setBounds(10, 504, 171, 30);
 		getContentPane().add(lblNumeroDiLuci);
 		
 		JLabel lblListaDeiDispositivi = new JLabel("Lista dei dispositivi presenti");
 		lblListaDeiDispositivi.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblListaDeiDispositivi.setBounds(10, 134, 200, 36);
+		lblListaDeiDispositivi.setBounds(10, 135, 200, 36);
 		getContentPane().add(lblListaDeiDispositivi);
 		
 		JLabel lblNome = new JLabel("Nome:");
@@ -86,7 +89,7 @@ public class AggiungiStanza extends JDialog {
 		getContentPane().add(btnAnnulla);
 		
 		listaDispositiviStanza = new JList<String>();
-		listaDispositiviStanza.setBounds(10, 169, 464, 266);
+		listaDispositiviStanza.setBounds(10, 170, 464, 266);
 		getContentPane().add(listaDispositiviStanza);
 		
 		JButton btnAggiungiDispositivo = new JButton("Aggiungi");
@@ -109,7 +112,15 @@ public class AggiungiStanza extends JDialog {
 			}
 		});
 		
-		btnAggiungiDispositivo.setBounds(355, 446, 119, 30);
+		btnAggiungiDispositivo.setBounds(355, 447, 119, 30);
 		getContentPane().add(btnAggiungiDispositivo);
+	}
+	
+	public void addConfirmListener(ActionListener listener) {
+		button.addActionListener(listener);
+	}
+	
+	public Stanza getStanza() {
+		return new Stanza(-1, nomeStanza.getText(), dispositivi, AmbienteDiSimulazione.generaSensore());
 	}
 }

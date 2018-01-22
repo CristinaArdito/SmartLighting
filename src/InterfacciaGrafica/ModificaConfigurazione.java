@@ -25,7 +25,12 @@ public class ModificaConfigurazione extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private List<Stanza> stanze;
 	private JTextField txtModificaConfigurazione;
+	private JButton button;
+	private DefaultListModel<String> model;
+	private JList<String> listaStanze;
+	
 	
 	public ModificaConfigurazione(Configurazione config, List<Stanza> stanze) {
 		getContentPane().setBackground(Color.WHITE);
@@ -42,18 +47,14 @@ public class ModificaConfigurazione extends JDialog{
 		getContentPane().add(txtModificaConfigurazione);
 		txtModificaConfigurazione.setColumns(10);
 		
-		JButton button = new JButton("Conferma");
+		button = new JButton("Conferma");
 		button.setBounds(12, 660, 226, 52);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		getContentPane().add(button);
 		
-		JList<String> listaStanze = new JList<String>();
+		listaStanze = new JList<String>();
 		listaStanze.setBounds(10, 26, 464, 632);
 		getContentPane().add(listaStanze);
-		DefaultListModel<String> model = new DefaultListModel<String>();
+		model = new DefaultListModel<String>();
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
 				model.addElement(stanza.getNome()+" - ID:"+stanza.getCodice());
@@ -66,6 +67,17 @@ public class ModificaConfigurazione extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				AggiungiStanza aggiungiStanza = new AggiungiStanza();
 				aggiungiStanza.setVisible(true);
+				aggiungiStanza.addConfirmListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						Stanza s = aggiungiStanza.getStanza();
+						if(stanze.size() == 0) s.setCodice(0);
+						else s.setCodice(stanze.size());
+						model.addElement(s.getNome()+" - ID:"+s.getCodice());
+						listaStanze.setModel(model);
+						aggiungiStanza.dispose();
+					}
+				});
 			}
 		});
 		btnAggiungiStanza.setBounds(248, 660, 226, 52);
@@ -84,5 +96,13 @@ public class ModificaConfigurazione extends JDialog{
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		
+	}
+	
+	public void addConfirmListener(ActionListener listener) {
+		button.addActionListener(listener);
+	}
+	
+	public List<Stanza> getStanza() {
+		return stanze;
 	}
 }
