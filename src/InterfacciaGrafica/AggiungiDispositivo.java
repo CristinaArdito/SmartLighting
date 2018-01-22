@@ -5,6 +5,9 @@ import java.awt.Font;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import toAssign.Dispositivo;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -14,8 +17,10 @@ import javax.swing.JComboBox;
 public class AggiungiDispositivo extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tipoDispositivo;
+	private JTextField consumoDispositivo;
+	private JComboBox<String> listaSensori;
+	private JButton button;
 
 	public AggiungiDispositivo() {
 		getContentPane().setLayout(null);
@@ -30,26 +35,26 @@ public class AggiungiDispositivo extends JDialog {
 		lblInserisciLaTipologia.setBounds(10, 82, 217, 27);
 		getContentPane().add(lblInserisciLaTipologia);
 		
-		textField = new JTextField();
-		textField.setBounds(237, 81, 197, 27);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		tipoDispositivo = new JTextField();
+		tipoDispositivo.setBounds(237, 81, 197, 27);
+		getContentPane().add(tipoDispositivo);
+		tipoDispositivo.setColumns(10);
 		
 		JLabel lblInserisciIlConsumo = new JLabel("Inserisci il consumo");
 		lblInserisciIlConsumo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblInserisciIlConsumo.setBounds(10, 140, 217, 27);
 		getContentPane().add(lblInserisciIlConsumo);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(158, 145, 104, 20);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		consumoDispositivo = new JTextField();
+		consumoDispositivo.setBounds(158, 145, 104, 20);
+		getContentPane().add(consumoDispositivo);
+		consumoDispositivo.setColumns(10);
 		
 		JLabel lblWatt = new JLabel("watt");
 		lblWatt.setBounds(272, 148, 46, 14);
 		getContentPane().add(lblWatt);
 		
-		JButton button = new JButton("Conferma");
+		button = new JButton("Conferma");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setBounds(27, 618, 179, 43);
 		getContentPane().add(button);
@@ -63,7 +68,7 @@ public class AggiungiDispositivo extends JDialog {
 		btnAnnulla.setBounds(270, 618, 179, 43);
 		getContentPane().add(btnAnnulla);
 		
-		JComboBox<String> listaSensori = new JComboBox<String>();
+		listaSensori = new JComboBox<String>();
 		listaSensori.setBounds(237, 191, 230, 27);
 		DefaultComboBoxModel<String> modelloSensori = new DefaultComboBoxModel<String>();
 		for (Integer id : Interfaccia.getSensori()) {
@@ -77,5 +82,13 @@ public class AggiungiDispositivo extends JDialog {
 		lblSceltaSensore.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		getContentPane().add(lblSceltaSensore);
 		setBounds(100, 100, 500, 750);
+	}
+	
+	public void addConfirmListener(ActionListener listener) {
+		button.addActionListener(listener);
+	}
+	
+	public Dispositivo getDispositivo() {
+		return new Dispositivo(tipoDispositivo.getText(), -1, Integer.parseInt((String) listaSensori.getSelectedItem()), Double.parseDouble(consumoDispositivo.getText()));
 	}
 }

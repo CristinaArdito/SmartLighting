@@ -1,19 +1,29 @@
 package InterfacciaGrafica;
 
-import javax.swing.JDialog;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextField;
+
+import toAssign.Dispositivo;
 
 public class AggiungiStanza extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private AggiungiDispositivo aggiungiDispositivo;
+	private List<Dispositivo> dispositivi = new ArrayList<Dispositivo>();
+	private JList<String> listaDispositiviStanza;
+	private DefaultListModel<String> modelloListaDispositiviStanza = new DefaultListModel<String>();
 
 	public static void main(String[] args) {
 		try {
@@ -26,6 +36,7 @@ public class AggiungiStanza extends JDialog {
 	}
 
 	public AggiungiStanza() {
+		
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
 		
@@ -74,17 +85,30 @@ public class AggiungiStanza extends JDialog {
 		btnAnnulla.setBounds(269, 636, 179, 43);
 		getContentPane().add(btnAnnulla);
 		
-		JList<String> listaDispositiviStanza = new JList<String>();
+		listaDispositiviStanza = new JList<String>();
 		listaDispositiviStanza.setBounds(10, 169, 464, 266);
 		getContentPane().add(listaDispositiviStanza);
 		
 		JButton btnAggiungiDispositivo = new JButton("Aggiungi");
 		btnAggiungiDispositivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AggiungiDispositivo aggiungiDispositivo = new AggiungiDispositivo();
+				aggiungiDispositivo = new AggiungiDispositivo();
 				aggiungiDispositivo.setVisible(true);
+				aggiungiDispositivo.addConfirmListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						 dispositivi.add(aggiungiDispositivo.getDispositivo());
+						 for (Dispositivo dispositivo : dispositivi) {
+							 modelloListaDispositiviStanza.addElement(dispositivo.toString());
+						}
+						listaDispositiviStanza.setModel(modelloListaDispositiviStanza);
+						aggiungiDispositivo.dispose();
+					}
+				});
 			}
 		});
+		
 		btnAggiungiDispositivo.setBounds(355, 446, 119, 30);
 		getContentPane().add(btnAggiungiDispositivo);
 	}
