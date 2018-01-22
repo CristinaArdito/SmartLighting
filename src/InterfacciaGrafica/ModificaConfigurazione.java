@@ -21,51 +21,42 @@ import toAssign.Dispositivo;
 import toAssign.Stanza;
 
 import javax.swing.JList;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class ModificaConfigurazione extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private List<Stanza> stanze;
-	private JTextField txtModificaConfigurazione;
 	private JButton button;
 	private DefaultListModel<String> model;
 	private JList<String> listaStanze;
+	private JLabel lblModificaConfigurazione;
 	
 	
 	public ModificaConfigurazione(Configurazione config, List<Stanza> stanze) {
 		this.stanze = stanze;
 		
-		getContentPane().setBackground(Color.WHITE);
+		getContentPane().setBackground(UIManager.getColor("Label.background"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
 		
-		txtModificaConfigurazione = new JTextField();
-		txtModificaConfigurazione.setEditable(false);
-		txtModificaConfigurazione.setBounds(0, 0, 484, 20);
-		txtModificaConfigurazione.setBackground(new Color(255, 255, 255));
-		txtModificaConfigurazione.setHorizontalAlignment(SwingConstants.CENTER);
-		txtModificaConfigurazione.setText("Modifica configurazione");
-		getContentPane().add(txtModificaConfigurazione);
-		txtModificaConfigurazione.setColumns(10);
+		lblModificaConfigurazione = new JLabel("Modifica Configurazione");
+		lblModificaConfigurazione.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblModificaConfigurazione.setBounds(161, 11, 180, 26);
+		getContentPane().add(lblModificaConfigurazione);
 		
 		button = new JButton("Conferma");
-		button.setBounds(12, 660, 226, 52);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		button.setBounds(34, 633, 162, 52);
 		getContentPane().add(button);
 		
-		listaStanze = new JList<String>();
-		listaStanze.setBounds(10, 26, 464, 632);
-		getContentPane().add(listaStanze);
-		model = new DefaultListModel<String>();
-		if(stanze.size() != 0) {
-			for (Stanza stanza : stanze) {
-				model.addElement(stanza.getNome()+" - ID:"+stanza.getCodice());
-			}
-		}
-		listaStanze.setModel(model);
-		
 		JButton btnAggiungiStanza = new JButton("Aggiungi Stanza");
+		btnAggiungiStanza.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAggiungiStanza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AggiungiStanza aggiungiStanza = new AggiungiStanza();
@@ -87,8 +78,19 @@ public class ModificaConfigurazione extends JDialog{
 				});
 			}
 		});
-		btnAggiungiStanza.setBounds(248, 660, 226, 52);
+		btnAggiungiStanza.setBounds(265, 633, 185, 52);
 		getContentPane().add(btnAggiungiStanza);
+		
+		listaStanze = new JList<String>();
+		listaStanze.setBounds(10, 45, 464, 575);
+		getContentPane().add(listaStanze);
+		model = new DefaultListModel<String>();
+		if(stanze.size() != 0) {
+			for (Stanza stanza : stanze) {
+				model.addElement(stanza.getNome()+" - ID:"+stanza.getCodice());
+			}
+		}
+		listaStanze.setModel(model);
 		
 		listaStanze.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {

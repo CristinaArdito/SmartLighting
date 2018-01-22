@@ -171,7 +171,7 @@ public class Interfaccia extends JFrame {
 			    	write.println("},");
 			    }
 			    write.println("Sensore: " + s.getSensore().getCodice());
-			    write.print("};");		    
+			    write.println("};");		    
 			    write.close();
 		    }
 		    catch (IOException e) {
