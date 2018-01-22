@@ -1,5 +1,6 @@
 package InterfacciaGrafica;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -26,7 +27,8 @@ public class Interfaccia extends JFrame {
 
 	public Interfaccia() {
 		
-		importaConfigurazione();
+		stanze = new ArrayList<Stanza>();
+//		importaConfigurazione();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
@@ -60,6 +62,7 @@ public class Interfaccia extends JFrame {
 		contentPane.add(btnAvvia);
 	}
 	
+	/*
 	private void importaConfigurazione() {
 		for (Stanza stanza : stanze) {
 			for (Dispositivo dispositivo : stanza.getDispositivi()) {
@@ -67,6 +70,7 @@ public class Interfaccia extends JFrame {
 			}
 		}
 	}
+	*/
 	
 	public static List<Integer> getSensori(){
 		return sensori;
