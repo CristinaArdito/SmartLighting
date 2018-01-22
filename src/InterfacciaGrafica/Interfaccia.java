@@ -155,9 +155,9 @@ public class Interfaccia extends JFrame {
 			    	write.println("Tipo: " + d.getTipo() + " ,");
 			    	write.println("Codice: " + d.getCodice() + " ,");
 			    	write.println("Id: " + d.getId() + " ,");
-			    	write.println("Puï¿½EssereAcceso: " + d.puòEssereAcceso() + " ,");
-			    	write.println("Puï¿½EssereSpento: " + d.puòEssereSpento() + " ,");
-			    	write.println("Puï¿½EssereMessoInStandby: " + d.puòEssereMessoInStandby() + " ,");
+			    	write.println("PuòEssereAcceso: " + d.puòEssereAcceso() + " ,");
+			    	write.println("PuòEssereSpento: " + d.puòEssereSpento() + " ,");
+			    	write.println("PuòEssereMessoInStandby: " + d.puòEssereMessoInStandby() + " ,");
 			    	write.println("Consumo: " + d.getConsumo());
 			    	write.println("},");
 			    }
@@ -185,6 +185,9 @@ public class Interfaccia extends JFrame {
     	String nome = new String();
     	Sensore s;
     	List<Stanza> liststanze = new ArrayList<Stanza>();
+    	if(file.length() == 0) {
+    		return liststanze;
+    	}
         try {
         	/* Leggo tutti i byte del file */
             bytes = java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(uri));
@@ -211,13 +214,13 @@ public class Interfaccia extends JFrame {
         	else if(line.contains("Id") == true) {
         		id = Integer.parseInt(words[1]);
         	}
-        	else if(line.contains("Puï¿½EssereAcceso") == true) {
+        	else if(line.contains("PuòEssereAcceso") == true) {
         		on = Boolean.parseBoolean(words[1]);
         	}
-        	else if(line.contains("Puï¿½EssereSpento") == true) {
+        	else if(line.contains("PuòEssereSpento") == true) {
         		off = Boolean.parseBoolean(words[1]);
         	}
-        	else if(line.contains("Puï¿½EssereMessoInStandby ") == true) {
+        	else if(line.contains("PuòEssereMessoInStandby ") == true) {
         		stand = Boolean.parseBoolean(words[1]);
         	}
         	else if(line.contains("Consumo") == true) {
