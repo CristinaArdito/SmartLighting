@@ -1,6 +1,6 @@
 {
 Nome: Cucina ,
-Codice: 0 ,
+CodiceStanza: 0 ,
 Lista Dispositivi: 
 {
 Tipo: Tv ,
@@ -50,7 +50,7 @@ Consumo: 10.0
 Sensore: 1
 };{
 Nome: Bagno ,
-Codice: 1 ,
+CodiceStanza: 1 ,
 Lista Dispositivi: 
 {
 Tipo: Tv ,

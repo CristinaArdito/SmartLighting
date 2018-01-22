@@ -140,7 +140,7 @@ public class Interfaccia extends JFrame {
 			    
 			    write.println("{");
 			    write.println("Nome: " + s.getNome() + " ,");
-			    write.println("Codice: " + s.getCodice() + " ,");
+			    write.println("CodiceStanza: " + s.getCodice() + " ,");
 			    write.print("Lista Dispositivi: ");
 			    write.println();
 			    while(i.hasNext()) {
@@ -194,7 +194,7 @@ public class Interfaccia extends JFrame {
         	if(line.contains("Nome") == true) {
         		nome = words[1];
         	}
-        	else if(line.contains("Codice") == true) {
+        	else if(line.contains("CodiceStanza") == true) {
         		codicestanza = Integer.parseInt(words[1]);
         	}
         	else if(line.contains("Tipo") == true) {
