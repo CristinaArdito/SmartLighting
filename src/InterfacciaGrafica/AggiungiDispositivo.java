@@ -89,6 +89,6 @@ public class AggiungiDispositivo extends JDialog {
 	}
 	
 	public Dispositivo getDispositivo() {
-		return new Dispositivo(tipoDispositivo.getText(), -1, Integer.parseInt((String) listaSensori.getSelectedItem()), Double.parseDouble(consumoDispositivo.getText()));
+		return new Dispositivo(tipoDispositivo.getText(), -1, Integer.parseInt((String) listaSensori.getSelectedItem()), Double.parseDouble(consumoDispositivo.getText()), false,false,false);
 	}
 }
