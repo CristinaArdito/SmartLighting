@@ -39,6 +39,7 @@ public class Interfaccia extends JFrame {
 	public Interfaccia() throws FileNotFoundException, MalformedURLException {
 		
 		stanze = new ArrayList<Stanza>();
+		
 		stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), new Sensore(1)));
 		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), new Sensore(-1)));
 		File file = new File("Stanze.txt");
@@ -59,6 +60,14 @@ public class Interfaccia extends JFrame {
 				System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() + d.getConsumo());
 			}
 			System.out.println(s1.getSensore().getCodice());
+		}
+		
+		if(stanze.size() != 0) {
+			for (Stanza stanza : stanze) {
+				for (Dispositivo dispositivo : stanza.getDispositivi()) {
+					config.addDispositivo(dispositivo);
+				}
+			}
 		}
 		
 //		importaConfigurazione();

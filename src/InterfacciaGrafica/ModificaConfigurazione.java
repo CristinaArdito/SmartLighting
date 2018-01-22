@@ -17,6 +17,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 import toAssign.Configurazione;
+import toAssign.Dispositivo;
 import toAssign.Stanza;
 
 import javax.swing.JList;
@@ -34,6 +35,7 @@ public class ModificaConfigurazione extends JDialog{
 	
 	public ModificaConfigurazione(Configurazione config, List<Stanza> stanze) {
 		this.stanze = stanze;
+		
 		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
@@ -77,6 +79,9 @@ public class ModificaConfigurazione extends JDialog{
 						model.addElement(s.getNome()+" - ID:"+s.getCodice());
 						listaStanze.setModel(model);
 						stanze.add(s);
+						for (Dispositivo dispositivo : s.getDispositivi()) {
+							config.addDispositivo(dispositivo);
+						}
 						aggiungiStanza.dispose();
 					}
 				});
