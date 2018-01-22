@@ -1,6 +1,7 @@
 package toAssign;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Configurazione {
@@ -21,8 +22,21 @@ public class Configurazione {
 		return dispositivi;
 	}
 
-	public void setDispositivi(List<Dispositivo> dispositivi) {
-		this.dispositivi = dispositivi;
+	public void setDispositivi(List<Stanza> stanze) {
+		Iterator<Stanza> i = stanze.iterator();
+		Dispositivo d;
+		Stanza stanza;
+		
+		while(i.hasNext()) {
+			stanza = i.next();
+			List<Dispositivo> listdisp = stanza.getDispositivi();
+			Iterator<Dispositivo> j = listdisp.iterator();
+			while(j.hasNext()) {
+				d = j.next();
+				dispositivi.add(d);
+			}
+		}
+		
 	}
 	
 	public void setConfigurazione(List<Dispositivo> dispositivi, List<Dispositivo> eccezioni) {
