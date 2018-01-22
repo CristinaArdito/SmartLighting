@@ -161,4 +161,8 @@ public class Dispositivo {
 			return false;
 		}
 	}
+	
+	public String toString() {
+		return "Tipo: "+tipo+" - ID: "+id+" - Consumo: "+consumo+" watt";
+	}
 }
