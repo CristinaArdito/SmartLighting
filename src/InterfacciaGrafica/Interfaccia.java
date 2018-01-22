@@ -82,7 +82,7 @@ public class Interfaccia extends JFrame {
 							
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								stanze = nuovaConfigurazione.getStanza();
+								stanze = nuovaConfigurazione.getStanze();
 							}
 						});
 					}

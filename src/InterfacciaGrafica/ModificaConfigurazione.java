@@ -33,6 +33,7 @@ public class ModificaConfigurazione extends JDialog{
 	
 	
 	public ModificaConfigurazione(Configurazione config, List<Stanza> stanze) {
+		this.stanze = stanze;
 		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
@@ -75,6 +76,7 @@ public class ModificaConfigurazione extends JDialog{
 						else s.setCodice(stanze.size());
 						model.addElement(s.getNome()+" - ID:"+s.getCodice());
 						listaStanze.setModel(model);
+						stanze.add(s);
 						aggiungiStanza.dispose();
 					}
 				});
@@ -102,7 +104,7 @@ public class ModificaConfigurazione extends JDialog{
 		button.addActionListener(listener);
 	}
 	
-	public List<Stanza> getStanza() {
+	public List<Stanza> getStanze() {
 		return stanze;
 	}
 }
