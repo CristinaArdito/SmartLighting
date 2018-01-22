@@ -37,8 +37,10 @@ public class AmbienteDiSimulazione {
 	}
 	
 	public static void main(String args[]) throws FileNotFoundException, MalformedURLException {
-		/*Interfaccia frame = new Interfaccia();
-		frame.setVisible(true);*/
+		Interfaccia frame = new Interfaccia();
+		frame.setVisible(true);
+		
+		/*
 		Stanza s = new Stanza(0, "Cucina", ottiniDispositivi(), generaSensore());
 		File file = new File("Stanza.txt");
 		s.writeStanzaOnFile(file);
@@ -54,6 +56,7 @@ public class AmbienteDiSimulazione {
 			System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() + d.getConsumo());
 		}
 		System.out.println(s1.getSensore().getCodice());
+		*/
 		
 	}
 }

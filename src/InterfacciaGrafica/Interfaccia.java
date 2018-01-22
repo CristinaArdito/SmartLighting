@@ -1,21 +1,20 @@
 package InterfacciaGrafica;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Simulazione.AmbienteDiSimulazione;
 import toAssign.Configurazione;
-import toAssign.Dispositivo;
 import toAssign.Sistema;
 import toAssign.Stanza;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Interfaccia extends JFrame {
 
@@ -54,8 +53,12 @@ public class Interfaccia extends JFrame {
 		JButton btnAvvia = new JButton("Avvia");
 		btnAvvia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sistema sistema = new Sistema(stanze, config);
-				sistema.Control();
+				if(stanze.size() == 0) {
+					JOptionPane.showMessageDialog(null, "Configurazione inesistente, modificare la configurazione");
+				}else {
+					Sistema sistema = new Sistema(stanze, config);
+					sistema.Control();
+				}
 			}
 		});
 		btnAvvia.setBounds(76, 624, 334, 59);
