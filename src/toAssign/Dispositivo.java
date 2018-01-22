@@ -34,7 +34,7 @@ public class Dispositivo {
 	 * @param id			id del dispositivo
 	 * @param consumo		consumo medio orario
 	 */
-	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso, boolean puòEsserSpento, boolean puòEssereMessoInStandby) {
+	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso, boolean puòEssereSpento, boolean puòEssereMessoInStandby) {
 		super();
 		this.id = id;
 		this.tipo = tipo;
