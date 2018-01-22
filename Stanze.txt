@@ -98,6 +98,7 @@ PuòEssereMessoInStandby: false ,
 Consumo: 10.0
 },
 Sensore: -1
+<<<<<<< HEAD
 };{
 Nome: Cucina ,
 CodiceStanza: 0 ,
@@ -798,4 +799,6 @@ Puï¿½EssereMessoInStandby: false ,
 Consumo: 10.0
 },
 Sensore: -1
+=======
+>>>>>>> master
 };
