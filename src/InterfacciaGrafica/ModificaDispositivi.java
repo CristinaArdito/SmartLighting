@@ -14,6 +14,7 @@ import toAssign.Dispositivo;
 import toAssign.Stanza;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class ModificaDispositivi extends JDialog {
 
@@ -24,25 +25,27 @@ public class ModificaDispositivi extends JDialog {
 		getContentPane().setLayout(null);
 		
 		JButton btnConferma = new JButton("Conferma");
+		btnConferma.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnConferma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnConferma.setBounds(12, 660, 226, 52);
+		btnConferma.setBounds(20, 629, 190, 52);
 		getContentPane().add(btnConferma);
 		JButton btnAggiungiDispositivo = new JButton("Aggiungi Dispositivo");
+		btnAggiungiDispositivo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAggiungiDispositivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AggiungiDispositivo aggiungiDispositivo = new AggiungiDispositivo();
 				aggiungiDispositivo.setVisible(true);
 			}
 		});
-		btnAggiungiDispositivo.setBounds(248, 660, 226, 52);
+		btnAggiungiDispositivo.setBounds(284, 629, 190, 52);
 		getContentPane().add(btnAggiungiDispositivo);
 		
 		JList<String> listaDispositivi = new JList<String>();
-		listaDispositivi.setBounds(10, 10, 462, 645);
+		listaDispositivi.setBounds(10, 10, 462, 608);
 		getContentPane().add(listaDispositivi);
 		DefaultListModel<String> modelloDispositivi = new DefaultListModel<String>();
 		

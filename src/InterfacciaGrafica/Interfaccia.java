@@ -2,12 +2,16 @@ package InterfacciaGrafica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -27,6 +31,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Interfaccia extends JFrame {
 
@@ -37,7 +43,7 @@ public class Interfaccia extends JFrame {
 	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
 	private ModificaConfigurazione nuovaConfigurazione;
 	
-	public Interfaccia() throws FileNotFoundException, MalformedURLException {
+	public Interfaccia() throws IOException {
 		
 		stanze = new ArrayList<Stanza>();
 		
@@ -80,7 +86,13 @@ public class Interfaccia extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		BufferedImage myPicture = ImageIO.read(new File("light.png"));
+		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		picLabel.setBounds(10, 11, 34, 38);
+		getContentPane().add(picLabel);
+		
 		JButton btnModificaConfigurazione = new JButton("Modifica Configurazione");
+		btnModificaConfigurazione.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnModificaConfigurazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nuovaConfigurazione = new ModificaConfigurazione(config, stanze);
@@ -105,14 +117,15 @@ public class Interfaccia extends JFrame {
 				});
 			}
 		});
-		btnModificaConfigurazione.setBounds(10, 11, 464, 59);
+		btnModificaConfigurazione.setBounds(76, 64, 316, 59);
 		contentPane.add(btnModificaConfigurazione);
 		
 		JPanel panelloDati = new JPanel();
-		panelloDati.setBounds(10, 76, 464, 537);
+		panelloDati.setBounds(10, 134, 464, 449);
 		contentPane.add(panelloDati);
 		
 		JButton btnAvvia = new JButton("Avvia");
+		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAvvia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(stanze.size() == 0) {
@@ -123,8 +136,19 @@ public class Interfaccia extends JFrame {
 				}
 			}
 		});
-		btnAvvia.setBounds(76, 624, 334, 59);
+		btnAvvia.setBounds(144, 605, 191, 49);
 		contentPane.add(btnAvvia);
+		
+		JLabel lblSmartLighting = new JLabel("Smart Lighting");
+		lblSmartLighting.setFont(new Font("Bookman Old Style", Font.ITALIC, 17));
+		lblSmartLighting.setBounds(54, 11, 153, 38);
+		contentPane.add(lblSmartLighting);
+		
+		JLabel lblNewLabel = new JLabel("Ardito Cristina  Contigiani Mattia  \u00A92018 - All rights reserved. ");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblNewLabel.setBounds(121, 686, 266, 14);
+		contentPane.add(lblNewLabel);
 	}
 	
 	/*
@@ -203,8 +227,8 @@ public class Interfaccia extends JFrame {
 		    catch (Exception e) {
 			    System.out.println(e.getMessage());		   
 		    } 
-		    write.close();
 		}
+		  write.close();
 	}  
 	
 	/**

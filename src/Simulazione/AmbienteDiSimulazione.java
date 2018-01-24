@@ -2,6 +2,7 @@ package Simulazione;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -55,7 +56,7 @@ public class AmbienteDiSimulazione {
 		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1)));
 	}
 	
-	public static void main(String args[]) throws FileNotFoundException, MalformedURLException {
+	public static void main(String args[]) throws IOException {
 		Interfaccia frame = new Interfaccia();
 		frame.setVisible(true);
 		
