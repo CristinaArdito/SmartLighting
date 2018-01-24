@@ -150,7 +150,7 @@ public class Interfaccia extends JFrame {
 			Dispositivo d;
 			
 		    try {
-			    FileOutputStream output = new FileOutputStream(file, true);
+			    FileOutputStream output = new FileOutputStream(file);
 			    PrintStream write = new PrintStream(output); 
 			    
 			    write.println("{");
