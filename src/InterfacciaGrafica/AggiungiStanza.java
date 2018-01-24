@@ -102,6 +102,7 @@ public class AggiungiStanza extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						 dispositivi.add(aggiungiDispositivo.getDispositivo());
+						 modelloListaDispositiviStanza.clear();
 						 for (Dispositivo dispositivo : dispositivi) {
 							 modelloListaDispositiviStanza.addElement(dispositivo.toString());
 						}

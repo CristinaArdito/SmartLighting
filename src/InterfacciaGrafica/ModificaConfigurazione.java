@@ -46,11 +46,6 @@ public class ModificaConfigurazione extends JDialog{
 		getContentPane().add(lblModificaConfigurazione);
 		
 		button = new JButton("Conferma");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setBounds(34, 633, 162, 52);
 		getContentPane().add(button);
