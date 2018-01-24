@@ -93,6 +93,12 @@ public class Interfaccia extends JFrame {
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								stanze = nuovaConfigurazione.getStanze();
+								try {
+									writeStanzaOnFile(new File("Stanze.txt"));
+								} catch (FileNotFoundException | MalformedURLException e1) {
+									e1.printStackTrace();
+								}
+								dispose();
 							}
 						});
 					}

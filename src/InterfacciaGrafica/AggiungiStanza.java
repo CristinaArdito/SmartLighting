@@ -124,6 +124,9 @@ public class AggiungiStanza extends JDialog {
 	}
 	
 	public Stanza getStanza() {
+		for(int i=0;i<Integer.parseInt(numeroLuci.getText());i++) {
+			luci.add(new Luce(i, -1, 200, true, true));
+		}
 		return new Stanza(-1, nomeStanza.getText(), dispositivi, luci, AmbienteDiSimulazione.generaSensore());
 	}
 }
