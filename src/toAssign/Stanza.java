@@ -1,16 +1,7 @@
 package toAssign;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.net.MalformedURLException;
-import java.net.URI;
-
 import toAssign.Dispositivo;
 import toAssign.Luce;
 import toAssign.Sensore;
