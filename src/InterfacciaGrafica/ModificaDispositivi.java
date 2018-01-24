@@ -24,6 +24,11 @@ public class ModificaDispositivi extends JDialog {
 		getContentPane().setLayout(null);
 		
 		JButton btnConferma = new JButton("Conferma");
+		btnConferma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnConferma.setBounds(12, 660, 226, 52);
 		getContentPane().add(btnConferma);
 		JButton btnAggiungiDispositivo = new JButton("Aggiungi Dispositivo");

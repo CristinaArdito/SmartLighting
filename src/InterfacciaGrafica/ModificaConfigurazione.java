@@ -3,12 +3,8 @@ package InterfacciaGrafica;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import java.awt.Color;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -23,7 +19,6 @@ import toAssign.Stanza;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.SystemColor;
 import javax.swing.UIManager;
 
 public class ModificaConfigurazione extends JDialog{
@@ -51,6 +46,11 @@ public class ModificaConfigurazione extends JDialog{
 		getContentPane().add(lblModificaConfigurazione);
 		
 		button = new JButton("Conferma");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setBounds(34, 633, 162, 52);
 		getContentPane().add(button);
