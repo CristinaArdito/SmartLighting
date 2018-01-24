@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import Simulazione.AmbienteDiSimulazione;
 import toAssign.Dispositivo;
+import toAssign.Luce;
 import toAssign.Stanza;
 
 public class AggiungiStanza extends JDialog {
@@ -24,6 +25,7 @@ public class AggiungiStanza extends JDialog {
 	private JTextField numeroLuci;
 	private AggiungiDispositivo aggiungiDispositivo;
 	private List<Dispositivo> dispositivi = new ArrayList<Dispositivo>();
+	private List<Luce> luci = new ArrayList<Luce>();
 	private JList<String> listaDispositiviStanza;
 	private DefaultListModel<String> modelloListaDispositiviStanza = new DefaultListModel<String>();
 	private JButton button;
@@ -122,6 +124,6 @@ public class AggiungiStanza extends JDialog {
 	}
 	
 	public Stanza getStanza() {
-		return new Stanza(-1, nomeStanza.getText(), dispositivi, AmbienteDiSimulazione.generaSensore());
+		return new Stanza(-1, nomeStanza.getText(), dispositivi, luci, AmbienteDiSimulazione.generaSensore());
 	}
 }

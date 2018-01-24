@@ -39,7 +39,8 @@ public class Stanza {
 	 * @param listaDispositivi		lista dei dispositivi presenti nella stanza
 	 * @param sensore				sensore della stanza
 	 */
-	public Stanza(int codice, String nome, List<Dispositivo> listaDispositivi, Sensore sensore) {
+	public Stanza(int codice, String nome, List<Dispositivo> listaDispositivi, List<Luce> listaLuci, Sensore sensore) {
+		setLuci(listaLuci);
 		setDispositivi(listaDispositivi);
 		setSensore(sensore);
 		setCodice(codice);

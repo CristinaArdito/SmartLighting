@@ -47,5 +47,23 @@ PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
 Consumo: 10.0
 },
+<<<<<<< HEAD
+Lista Luci: 
+{
+CodiceLuce: -1 ,
+IdLuce: 1 ,
+PuòEssereAccesa: true ,
+PuòEssereSpenta: true ,
+ConsumoLuce: 10.0
+},
+{
+CodiceLuce: 1 ,
+IdLuce: 2 ,
+PuòEssereAccesa: true ,
+PuòEssereSpenta: true ,
+ConsumoLuce: 5.0
+},
+=======
+>>>>>>> 17510718bb071dd039c4109d80a5757e1e1a5628
 Sensore: 1
 };

@@ -20,7 +20,7 @@ public class Luce {
 	 * Flag per verificare in base alla configurazione se la luce
 	 * può essere accesa/spenta/messa in standby dal sistema
 	 */
-	private boolean puòEssereAccesa, puòEssereSpenta, puòEssereMessaInStandby;
+	private boolean puòEssereAccesa, puòEssereSpenta;
 	
 	/**
 	 * Costruttore della luce
@@ -28,11 +28,13 @@ public class Luce {
 	 * @param codice		codice
 	 * @param consumo		consumo orario
 	 */
-	public Luce(int id, int codice, double consumo) {
+	public Luce(int id, int codice, double consumo, boolean puòEssereAccesa, boolean puòEssereSpenta) {
 		super();
 		this.id = id;
 		this.codice = codice;
 		this.consumo = consumo;
+		this.puòEssereAccesa = puòEssereAccesa;
+		this.puòEssereSpenta = puòEssereSpenta;
 	}
 	
 	/**
@@ -100,12 +102,5 @@ public class Luce {
 		return puòEssereSpenta;
 	}
 	
-	/**
-	 * Verifica se la luce può essere messa in standby in base alla configurazione
-	 * @return	boolean
-	 */
-	public boolean puòEssereMessaInStandby() {
-		return puòEssereMessaInStandby;
-	}
 	
 }

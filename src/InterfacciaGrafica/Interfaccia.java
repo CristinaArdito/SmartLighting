@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import Simulazione.AmbienteDiSimulazione;
 import toAssign.Configurazione;
 import toAssign.Dispositivo;
+import toAssign.Luce;
 import toAssign.Sensore;
 import toAssign.Sistema;
 import toAssign.Stanza;
@@ -40,8 +41,8 @@ public class Interfaccia extends JFrame {
 		
 		stanze = new ArrayList<Stanza>();
 		
-		stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), new Sensore(1)));
-		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), new Sensore(-1)));
+		stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1)));
+		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1)));
 		File file = new File("Stanze.txt");
 		writeStanzaOnFile(file);
 		List<Stanza> list1= readStanzaFromFile(file);
@@ -141,23 +142,32 @@ public class Interfaccia extends JFrame {
 	 * @throws MalformedURLException
 	 */
 	public void writeStanzaOnFile(File file) throws FileNotFoundException, MalformedURLException {
+    	// Scrittura su file
+	    FileOutputStream output = new FileOutputStream(file);
+	    PrintStream write = new PrintStream(output); 
+		// Iteratore delle stanze
 		Iterator<Stanza> j = stanze.iterator();
+		// Creo un stanza di appoggio
 		Stanza s;
 		while(j.hasNext()) {
 			s = j.next();
+			// Ottengo i dispositivi della stanza
 			List<Dispositivo> dispositivi = s.getDispositivi();
+			// Creo un iteratore per i dispositivi
 			Iterator<Dispositivo> i = dispositivi.iterator();
 			Dispositivo d;
+			Luce l;
+			// Ottengo le luci della stanza
+			List<Luce> luci = s.getLuci();
+			// Creo un iteratore per le luci
+			Iterator<Luce> z = luci.iterator();
 			
 		    try {
-			    FileOutputStream output = new FileOutputStream(file);
-			    PrintStream write = new PrintStream(output); 
-			    
+			    // Organizzo il file con una struttura json
 			    write.println("{");
 			    write.println("Nome: " + s.getNome() + " ,");
 			    write.println("CodiceStanza: " + s.getCodice() + " ,");
-			    write.print("Lista Dispositivi: ");
-			    write.println();
+			    write.println("Lista Dispositivi: ");
 			    while(i.hasNext()) {
 			    	d = i.next();
 			    	write.println("{");
@@ -170,26 +180,56 @@ public class Interfaccia extends JFrame {
 			    	write.println("Consumo: " + d.getConsumo());
 			    	write.println("},");
 			    }
+			    write.println("Lista Luci: ");
+			    while(z.hasNext()) {
+			    	l = z.next();
+			    	write.println("{");
+			    	write.println("CodiceLuce: " + l.getCodice() + " ,");
+			    	write.println("IdLuce: " + l.getId() + " ,");
+			    	write.println("PuòEssereAccesa: " + l.puòEssereAccesa() + " ,");
+			    	write.println("PuòEssereSpenta: " + l.puòEssereSpenta() + " ,");
+			    	write.println("ConsumoLuce: " + l.getConsumo());
+			    	write.println("},");
+			    }
 			    write.println("Sensore: " + s.getSensore().getCodice());
 			    write.println("};");		    
-			    write.close();
-		    }
-		    catch (IOException e) {
-			    System.out.println(e.getMessage());
 		    }
 		    catch (Exception e) {
 			    System.out.println(e.getMessage());		   
 		    } 
+		    write.close();
 		}
 	}  
 	
+	/**
+	 * Lettura del file
+	 * @param file
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	public List<Stanza> readStanzaFromFile(File file) throws FileNotFoundException{
-    	URI uri = file.toURI();		/* Restituisce un URI assoluto con uno schema uguale al file */
-    	byte[] bytes = null;		/* Creo un array di bytes */
+		// Restituisce un URI assoluto con uno schema uguale al file 
+    	URI uri = file.toURI();	
+    	// Creo un array di bytes 
+    	byte[] bytes = null;		
+    	// Creo una lista per i dispositivi
     	List<Dispositivo> list = new ArrayList<Dispositivo>();
-    	int codice = 0, id = 0, codicestanza = 0;
+    	// Creo una lista per le luci
+    	List<Luce> listluci = new ArrayList<Luce>();
+    	// Creo variabili di appoggio per codice id e codice della stanza
+    	int codice = 0;
+    	int id = 0;
+    	int codicestanza = 0;
+    	// Creo variabili di appoggio per codice e id delle luci
+    	int codiceluce = 0;
+    	int idluce = 0;
+    	// Creo i boolean per verificare se i dispositivi possono essere accesi spenti o messi in standby
     	boolean on = false, off = false, stand = false;
+    	// Creo i boolean per verificare se le luci possono essere accese o spente
+    	boolean luceon = false;
+    	boolean luceoff = false;
     	double consumo = 0;
+    	double consumoluce = 0;
     	String tipo = new String();
     	String nome = new String();
     	Sensore s;
@@ -236,9 +276,25 @@ public class Interfaccia extends JFrame {
         		consumo = Double.parseDouble(words[1]);
         		list.add(new Dispositivo(tipo, codice, id, consumo, on, off, stand));
         	}
+        	else if(line.contains("CodiceLuce") == true) {
+        		codiceluce = Integer.parseInt(words[1]);
+        	}
+        	else if(line.contains("IdLuce") == true) {
+        		idluce = Integer.parseInt(words[1]);
+        	}
+        	else if(line.contains("PuòEssereAccesa") == true) {
+        		luceon = Boolean.parseBoolean(words[1]);
+        	}
+        	else if(line.contains("PuòEssereSpenta") == true) {
+        		luceoff = Boolean.parseBoolean(words[1]);
+        	}
+        	else if(line.contains("ConsumoLuce") == true) {
+        		consumoluce = Double.parseDouble(words[1]);
+        		listluci.add(new Luce(idluce, codiceluce, consumoluce, luceon, luceoff));
+        	}
         	else if(line.contains("Sensore") == true) {
         		s = new Sensore(Integer.parseInt(words[1]));
-        		liststanze.add(new Stanza(codicestanza, nome, list, s));
+        		liststanze.add(new Stanza(codicestanza, nome, list, listluci, s));
         		list.clear();
         	}
         }
@@ -253,5 +309,12 @@ public class Interfaccia extends JFrame {
 		listaDispositivi.add(new Dispositivo("Lavatrice", -1, 03, 220.00, true, false, false));
 		listaDispositivi.add(new Dispositivo("Radio", 0, 04, 10.00, true, false, false));
 		return listaDispositivi;
+	}
+	
+	public static List<Luce> ottieniLuci() {
+		List<Luce> listaLuci = new ArrayList<Luce>();
+		listaLuci.add(new Luce(1, -1, 10.00, true, true));
+		listaLuci.add(new Luce(2, 1, 5.00, true, true));
+		return listaLuci;
 	}
 }

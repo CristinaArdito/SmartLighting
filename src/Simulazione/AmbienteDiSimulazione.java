@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import Attori.Cliente;
 import InterfacciaGrafica.Interfaccia;
 import toAssign.Dispositivo;
+import toAssign.Luce;
 import toAssign.Sensore;
 import toAssign.Stanza;
 
@@ -26,6 +28,13 @@ public class AmbienteDiSimulazione {
 		return new Sensore(-1);
 	};
 	
+	public static List<Luce> ottieniLuci() {
+		List<Luce> listaLuci = new ArrayList<Luce>();
+		listaLuci.add(new Luce(1, -1, 10.00, true, true));
+		listaLuci.add(new Luce(2, 1, 5.00, true, true));
+		return listaLuci;
+	} 
+	
 	public static List<Dispositivo> ottiniDispositivi() {
 		List<Dispositivo> listaDispositivi = new ArrayList<Dispositivo>();
 		listaDispositivi.add(new Dispositivo("Tv", 1, 00, 120.00, true, false, false));
@@ -36,27 +45,20 @@ public class AmbienteDiSimulazione {
 		return listaDispositivi;
 	}
 	
+	public void posizionaCliente() {
+		Cliente c = new Cliente("Rosario", "Culmone", "0737666666", "rosario.culmone@polmoni.it", "Via Merelli 1");
+	}
+	
+	public void generaStanze() {
+		List<Stanza> stanze = new ArrayList<Stanza>();		
+		stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1)));
+		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1)));
+	}
+	
 	public static void main(String args[]) throws FileNotFoundException, MalformedURLException {
 		Interfaccia frame = new Interfaccia();
 		frame.setVisible(true);
 		
-		/*
-		Stanza s = new Stanza(0, "Cucina", ottiniDispositivi(), generaSensore());
-		File file = new File("Stanza.txt");
-		s.writeStanzaOnFile(file);
-		Stanza s1 = s.readStanzaFromFile(file);
-		System.out.println(s1.getNome());
-		System.out.println(s1.getCodice());
-		System.out.println("dispositivi:");
-		List<Dispositivo> list = s1.getDispositivi();
-		Dispositivo d;
-		Iterator<Dispositivo> i = list.iterator();
-		while(i.hasNext()) {
-			d = i.next();
-			System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() + d.getConsumo());
-		}
-		System.out.println(s1.getSensore().getCodice());
-		*/
 		
 	}
 }
