@@ -153,15 +153,13 @@ public class Interfaccia extends JFrame {
 		panelloDati.add(lblConfigurazioneCorrente);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(45, 95, 353, 310);
+		scrollPane.setBounds(57, 95, 353, 310);
 		panelloDati.add(scrollPane);
 				
 		listaStanze = new JList<String>();
 		scrollPane.setViewportView(listaStanze);
 		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
 		listaStanze.setModel(model);
-		
-		panelloDati.add(listaStanze);
 		
 		JButton btnAvvia = new JButton("Avvia");
 		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 18));
