@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -48,10 +47,13 @@ public class Interfaccia extends JFrame {
 	private JList<String> listaStanze;
 	private DefaultListModel<String> model;
 	
-	public Interfaccia() throws IOException {
+	public Interfaccia(List<Integer> listaIdDispositivi) throws IOException {
 		
 		stanze = new ArrayList<Stanza>();
 		
+		stanze = readStanzaFromFile(new File("Stanze.txt"));
+		
+		/*
 		stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1)));
 		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1)));
 		File file = new File("Stanze.txt");
@@ -73,6 +75,8 @@ public class Interfaccia extends JFrame {
 			}
 			System.out.println(s1.getSensore().getCodice());
 		}
+		
+		*/
 		
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
@@ -100,12 +104,9 @@ public class Interfaccia extends JFrame {
 		btnModificaConfigurazione.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnModificaConfigurazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nuovaConfigurazione = new ModificaConfigurazione(config, stanze);
+				nuovaConfigurazione = new ModificaConfigurazione(config, stanze,listaIdDispositivi);
 				nuovaConfigurazione.setVisible(true);
 				nuovaConfigurazione.addConfirmListener(new ActionListener() {
-					
-					public void actionPerformed(ActionEvent e) {
-						nuovaConfigurazione.addConfirmListener(new ActionListener() {
 							
 							@Override
 							public void actionPerformed(ActionEvent e) {
@@ -115,11 +116,9 @@ public class Interfaccia extends JFrame {
 								} catch (FileNotFoundException | MalformedURLException e1) {
 									e1.printStackTrace();
 								}
-								dispose();
+								nuovaConfigurazione.dispose();
 							}
 						});
-					}
-				});
 			}
 		});
 		btnModificaConfigurazione.setBounds(83, 108, 316, 59);
