@@ -95,6 +95,8 @@ public class Interfaccia extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		ImageIcon img = new ImageIcon("icon.png");
+		this.setIconImage(img.getImage());
 		BufferedImage myPicture = ImageIO.read(new File("sls_logo.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		picLabel.setBounds(0, 11, 290, 42);
