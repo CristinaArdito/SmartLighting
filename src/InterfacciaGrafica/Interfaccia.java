@@ -35,6 +35,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class Interfaccia extends JFrame {
 
@@ -94,6 +96,7 @@ public class Interfaccia extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(236,248,250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -131,13 +134,10 @@ public class Interfaccia extends JFrame {
 		contentPane.add(btnModificaConfigurazione);
 		
 		JPanel panelloDati = new JPanel();
+		panelloDati.setBackground(new Color(236,248,250));
 		panelloDati.setBounds(10, 167, 464, 416);
 		panelloDati.setLayout(null);
 		contentPane.add(panelloDati);
-		
-		listaStanze = new JList<String>();
-		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
-		listaStanze.setBounds(45, 95, 353, 140);
 		model = new DefaultListModel<String>();
 		
 		if(stanze.size() != 0) {
@@ -153,6 +153,16 @@ public class Interfaccia extends JFrame {
 		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblConfigurazioneCorrente.setBounds(10, 53, 421, 31);
 		panelloDati.add(lblConfigurazioneCorrente);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(45, 95, 353, 310);
+		panelloDati.add(scrollPane);
+				
+		listaStanze = new JList<String>();
+		scrollPane.setViewportView(listaStanze);
+		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		listaStanze.setModel(model);
+		
 		panelloDati.add(listaStanze);
 		
 		JButton btnAvvia = new JButton("Avvia");
