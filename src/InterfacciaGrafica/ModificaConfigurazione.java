@@ -3,9 +3,6 @@ package InterfacciaGrafica;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -20,6 +17,8 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.UIManager;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ModificaConfigurazione extends JDialog{
 
@@ -77,6 +76,14 @@ public class ModificaConfigurazione extends JDialog{
 		getContentPane().add(btnAggiungiStanza);
 		
 		listaStanze = new JList<String>();
+		listaStanze.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				String stringaTemporanea = listaStanze.getSelectedValue();
+				String idStanza = stringaTemporanea.substring(stringaTemporanea.lastIndexOf("- ID:")+5, stringaTemporanea.length());
+				ModificaDispositivi modificaDispositivo = new ModificaDispositivi(Integer.parseInt(idStanza), stanze, config, listaIdDispositivi);
+				modificaDispositivo.setVisible(true);
+			}
+		});
 		listaStanze.setBounds(10, 45, 464, 575);
 		getContentPane().add(listaStanze);
 		model = new DefaultListModel<String>();
@@ -87,16 +94,6 @@ public class ModificaConfigurazione extends JDialog{
 		}
 		listaStanze.setModel(model);
 		
-		listaStanze.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				if (!e.getValueIsAdjusting()) {
-				String stringaTemporanea = listaStanze.getSelectedValue();
-				String idStanza = stringaTemporanea.substring(stringaTemporanea.lastIndexOf("- ID:")+5, stringaTemporanea.length());
-				ModificaDispositivi modificaDispositivo = new ModificaDispositivi(Integer.parseInt(idStanza), stanze, config, listaIdDispositivi);
-				modificaDispositivo.setVisible(true);
-				}
-			}
-		});
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		
