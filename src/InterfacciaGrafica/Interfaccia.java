@@ -82,9 +82,12 @@ public class Interfaccia extends JFrame {
 			for (Stanza stanza : stanze) {
 				for (Dispositivo dispositivo : stanza.getDispositivi()) {
 					config.addDispositivo(dispositivo);
+					listaIdDispositivi.remove(dispositivo.getId());
 				}
 			}
 		}
+		
+		
 		
 //		importaConfigurazione();
 		
