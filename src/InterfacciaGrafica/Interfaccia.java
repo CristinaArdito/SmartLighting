@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -129,7 +130,8 @@ public class Interfaccia extends JFrame {
 		contentPane.add(panelloDati);
 		
 		listaStanze = new JList<String>();
-		listaStanze.setBounds(187, 95, 77, 50);
+		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 13));
+		listaStanze.setBounds(45, 95, 353, 140);
 		model = new DefaultListModel<String>();
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
@@ -141,8 +143,8 @@ public class Interfaccia extends JFrame {
 		
 		JLabel lblConfigurazioneCorrente = new JLabel("La configurazione corrente contiene le seguenti stanze:");
 		lblConfigurazioneCorrente.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblConfigurazioneCorrente.setBounds(47, 53, 362, 31);
+		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblConfigurazioneCorrente.setBounds(10, 53, 421, 31);
 		panelloDati.add(lblConfigurazioneCorrente);
 		listaStanze.setModel(model);
 		panelloDati.add(listaStanze);
