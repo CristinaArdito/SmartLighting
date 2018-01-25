@@ -8,10 +8,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -42,6 +45,8 @@ public class Interfaccia extends JFrame {
 	private Configurazione config = new Configurazione();
 	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
 	private ModificaConfigurazione nuovaConfigurazione;
+	private JList<String> listaStanze;
+	private DefaultListModel<String> model;
 	
 	public Interfaccia() throws IOException {
 		
@@ -124,6 +129,26 @@ public class Interfaccia extends JFrame {
 		panelloDati.setBounds(10, 134, 464, 449);
 		contentPane.add(panelloDati);
 		
+		listaStanze = new JList<String>();
+		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 13));
+		listaStanze.setBounds(45, 95, 353, 140);
+		model = new DefaultListModel<String>();
+		if(stanze.size() != 0) {
+			for (Stanza stanza : stanze) {
+				model.addElement(stanza.getNome());
+			}
+		}
+		panelloDati.setLayout(null);
+		
+		
+		JLabel lblConfigurazioneCorrente = new JLabel("La configurazione corrente contiene le seguenti stanze:");
+		lblConfigurazioneCorrente.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblConfigurazioneCorrente.setBounds(10, 53, 421, 31);
+		panelloDati.add(lblConfigurazioneCorrente);
+		listaStanze.setModel(model);
+		panelloDati.add(listaStanze);
+		
 		JButton btnAvvia = new JButton("Avvia");
 		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAvvia.addActionListener(new ActionListener() {
@@ -149,6 +174,7 @@ public class Interfaccia extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel.setBounds(121, 686, 266, 14);
 		contentPane.add(lblNewLabel);
+
 	}
 	
 	/*
