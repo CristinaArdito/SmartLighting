@@ -54,7 +54,7 @@ public class Interfaccia extends JFrame {
 		stanze = readStanzaFromFile(new File("Stanze.txt"));
 		
 		
-		stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1)));
+	/*	stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1)));
 		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1)));
 		File file = new File("Stanze.txt");
 		writeStanzaOnFile(file);
@@ -74,7 +74,7 @@ public class Interfaccia extends JFrame {
 				System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() + d.getConsumo());
 			}
 			System.out.println(s1.getSensore().getCodice());
-		}
+		} */
 		
 		
 		
@@ -192,6 +192,7 @@ public class Interfaccia extends JFrame {
 	 * @throws MalformedURLException
 	 */
 	public void writeStanzaOnFile(File file) throws FileNotFoundException, MalformedURLException {
+		try {
     	// Scrittura su file
 	    FileOutputStream output = new FileOutputStream(file);
 	    PrintStream write = new PrintStream(output); 
@@ -211,8 +212,6 @@ public class Interfaccia extends JFrame {
 			List<Luce> luci = s.getLuci();
 			// Creo un iteratore per le luci
 			Iterator<Luce> z = luci.iterator();
-			
-		    try {
 			    // Organizzo il file con una struttura json
 			    write.println("{");
 			    write.println("Nome: " + s.getNome() + " ,");
@@ -244,12 +243,16 @@ public class Interfaccia extends JFrame {
 			    write.println("Sensore: " + s.getSensore().getCodice());
 			    write.println("};");		    
 		    }
+			write.close();
+			}
+			catch (IOException e) {
+				System.out.println(e.getMessage());	
+			}
 		    catch (Exception e) {
 			    System.out.println(e.getMessage());		   
 		    } 
-		}
-		  write.close();
-	}  
+	}
+ 
 	
 	/**
 	 * Lettura del file
