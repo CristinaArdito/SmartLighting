@@ -19,8 +19,11 @@ import java.awt.Font;
 public class ModificaDispositivi extends JDialog {
 
 	private static final long serialVersionUID = 1L;
+	private JList<String> listaDispositivi;
+	DefaultListModel<String> modelloDispositivi;
+	
 
-	public ModificaDispositivi(int idStanza, List<Stanza> stanze, Configurazione config) {
+	public ModificaDispositivi(int idStanza, List<Stanza> stanze, Configurazione config, List<Integer> listaIdDispositivi) {
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
 		
@@ -35,19 +38,13 @@ public class ModificaDispositivi extends JDialog {
 		getContentPane().add(btnConferma);
 		JButton btnAggiungiDispositivo = new JButton("Aggiungi Dispositivo");
 		btnAggiungiDispositivo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAggiungiDispositivo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AggiungiDispositivo aggiungiDispositivo = new AggiungiDispositivo();
-				aggiungiDispositivo.setVisible(true);
-			}
-		});
 		btnAggiungiDispositivo.setBounds(284, 629, 190, 52);
 		getContentPane().add(btnAggiungiDispositivo);
 		
-		JList<String> listaDispositivi = new JList<String>();
+		listaDispositivi = new JList<String>();
 		listaDispositivi.setBounds(10, 10, 462, 608);
 		getContentPane().add(listaDispositivi);
-		DefaultListModel<String> modelloDispositivi = new DefaultListModel<String>();
+		modelloDispositivi = new DefaultListModel<String>();
 		
 		for (Stanza stanza : stanze) {
 			if(stanza.getCodice() == idStanza) {
@@ -69,5 +66,26 @@ public class ModificaDispositivi extends JDialog {
 			}
 		});
 		listaDispositivi.setModel(modelloDispositivi);
+		
+		btnAggiungiDispositivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AggiungiDispositivo aggiungiDispositivo = new AggiungiDispositivo(false, listaIdDispositivi);
+				aggiungiDispositivo.setVisible(true);
+				aggiungiDispositivo.addRoomListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						for (Stanza stanza : stanze) {
+							if(stanza.getCodice() == idStanza) {
+								Dispositivo temp = aggiungiDispositivo.getDispositivo();
+								stanza.getDispositivi().add(temp);
+								modelloDispositivi.addElement(temp.getTipo()+" - ID:"+temp.getId());
+								listaDispositivi.setModel(modelloDispositivi);
+							}
+						}
+					aggiungiDispositivo.dispose();
+					}
+				});
+			}
+		});
 	}
 }

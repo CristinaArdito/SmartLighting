@@ -32,7 +32,7 @@ public class ModificaConfigurazione extends JDialog{
 	private JLabel lblModificaConfigurazione;
 	
 	
-	public ModificaConfigurazione(Configurazione config, List<Stanza> stanze) {
+	public ModificaConfigurazione(Configurazione config, List<Stanza> stanze, List<Integer> listaIdDispositivi) {
 		this.stanze = stanze;
 		
 		getContentPane().setBackground(UIManager.getColor("Label.background"));
@@ -54,7 +54,7 @@ public class ModificaConfigurazione extends JDialog{
 		btnAggiungiStanza.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAggiungiStanza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AggiungiStanza aggiungiStanza = new AggiungiStanza();
+				AggiungiStanza aggiungiStanza = new AggiungiStanza(listaIdDispositivi);
 				aggiungiStanza.setVisible(true);
 				aggiungiStanza.addConfirmListener(new ActionListener() {
 					
@@ -92,7 +92,7 @@ public class ModificaConfigurazione extends JDialog{
 				if (!e.getValueIsAdjusting()) {
 				String stringaTemporanea = listaStanze.getSelectedValue();
 				String idStanza = stringaTemporanea.substring(stringaTemporanea.lastIndexOf("- ID:")+5, stringaTemporanea.length());
-				ModificaDispositivi modificaDispositivo = new ModificaDispositivi(Integer.parseInt(idStanza), stanze, config);
+				ModificaDispositivi modificaDispositivo = new ModificaDispositivi(Integer.parseInt(idStanza), stanze, config, listaIdDispositivi);
 				modificaDispositivo.setVisible(true);
 				}
 			}
