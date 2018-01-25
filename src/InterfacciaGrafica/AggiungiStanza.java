@@ -30,17 +30,7 @@ public class AggiungiStanza extends JDialog {
 	private DefaultListModel<String> modelloListaDispositiviStanza = new DefaultListModel<String>();
 	private JButton button;
 
-	public static void main(String[] args) {
-		try {
-			AggiungiStanza dialog = new AggiungiStanza();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public AggiungiStanza() {
+	public AggiungiStanza(List<Integer> listaIdDispositivi) {
 		
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
@@ -97,7 +87,7 @@ public class AggiungiStanza extends JDialog {
 		JButton btnAggiungiDispositivo = new JButton("Aggiungi");
 		btnAggiungiDispositivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				aggiungiDispositivo = new AggiungiDispositivo();
+				aggiungiDispositivo = new AggiungiDispositivo(true,listaIdDispositivi);
 				aggiungiDispositivo.setVisible(true);
 				aggiungiDispositivo.addConfirmListener(new ActionListener() {
 					
