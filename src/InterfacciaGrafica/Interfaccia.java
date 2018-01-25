@@ -98,6 +98,7 @@ public class Interfaccia extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
 		ImageIcon img = new ImageIcon("icon.png");
 		this.setIconImage(img.getImage());
 		BufferedImage myPicture = ImageIO.read(new File("sls_logo.png"));
@@ -131,26 +132,27 @@ public class Interfaccia extends JFrame {
 		
 		JPanel panelloDati = new JPanel();
 		panelloDati.setBounds(10, 167, 464, 416);
+		panelloDati.setLayout(null);
 		contentPane.add(panelloDati);
 		
 		listaStanze = new JList<String>();
 		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		listaStanze.setBounds(45, 95, 353, 140);
 		model = new DefaultListModel<String>();
+		
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
 				model.addElement(stanza.getNome());
 			}
 		}
-		panelloDati.setLayout(null);
 		
+		listaStanze.setModel(model);
 		
 		JLabel lblConfigurazioneCorrente = new JLabel("La configurazione corrente contiene le seguenti stanze:");
 		lblConfigurazioneCorrente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblConfigurazioneCorrente.setBounds(10, 53, 421, 31);
 		panelloDati.add(lblConfigurazioneCorrente);
-		listaStanze.setModel(model);
 		panelloDati.add(listaStanze);
 		
 		JButton btnAvvia = new JButton("Avvia");
