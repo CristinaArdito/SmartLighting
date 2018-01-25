@@ -91,9 +91,9 @@ public class Interfaccia extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		BufferedImage myPicture = ImageIO.read(new File("light.png"));
+		BufferedImage myPicture = ImageIO.read(new File("sls_logo.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		picLabel.setBounds(10, 11, 34, 38);
+		picLabel.setBounds(0, 11, 290, 42);
 		getContentPane().add(picLabel);
 		
 		JButton btnModificaConfigurazione = new JButton("Modifica Configurazione");
@@ -122,11 +122,11 @@ public class Interfaccia extends JFrame {
 				});
 			}
 		});
-		btnModificaConfigurazione.setBounds(76, 64, 316, 59);
+		btnModificaConfigurazione.setBounds(83, 108, 316, 59);
 		contentPane.add(btnModificaConfigurazione);
 		
 		JPanel panelloDati = new JPanel();
-		panelloDati.setBounds(10, 134, 464, 449);
+		panelloDati.setBounds(10, 167, 464, 416);
 		contentPane.add(panelloDati);
 		
 		listaStanze = new JList<String>();
@@ -163,11 +163,6 @@ public class Interfaccia extends JFrame {
 		});
 		btnAvvia.setBounds(144, 605, 191, 49);
 		contentPane.add(btnAvvia);
-		
-		JLabel lblSmartLighting = new JLabel("Smart Lighting");
-		lblSmartLighting.setFont(new Font("Bookman Old Style", Font.ITALIC, 17));
-		lblSmartLighting.setBounds(54, 11, 153, 38);
-		contentPane.add(lblSmartLighting);
 		
 		JLabel lblNewLabel = new JLabel("Ardito Cristina  Contigiani Mattia  \u00A92018 - All rights reserved. ");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
