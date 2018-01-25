@@ -146,8 +146,6 @@ public class Interfaccia extends JFrame {
 			}
 		}
 		
-		listaStanze.setModel(model);
-		
 		JLabel lblConfigurazioneCorrente = new JLabel("La configurazione corrente contiene le seguenti stanze:");
 		lblConfigurazioneCorrente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 17));
