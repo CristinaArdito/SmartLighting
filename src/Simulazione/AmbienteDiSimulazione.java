@@ -55,6 +55,7 @@ public class AmbienteDiSimulazione {
 	
 	public void posizionaCliente() {
 		Cliente c = new Cliente("Rosario", "Culmone", "0737666666", "rosario.culmone@polmoni.it", "Via Merelli 1");
+		c.getNome();
 	}
 	
 	public void generaStanze() {
