@@ -99,11 +99,11 @@ public class Interfaccia extends JFrame {
 		this.setIconImage(img.getImage());
 		BufferedImage myPicture = ImageIO.read(new File("sls_logo.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		picLabel.setBounds(0, 11, 290, 42);
+		picLabel.setBounds(97, 25, 290, 42);
 		getContentPane().add(picLabel);
 		
 		JButton btnModificaConfigurazione = new JButton("Modifica Configurazione");
-		btnModificaConfigurazione.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnModificaConfigurazione.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnModificaConfigurazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nuovaConfigurazione = new ModificaConfigurazione(config, stanze,listaIdDispositivi);
@@ -131,7 +131,7 @@ public class Interfaccia extends JFrame {
 		contentPane.add(panelloDati);
 		
 		listaStanze = new JList<String>();
-		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 13));
+		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
 		listaStanze.setBounds(45, 95, 353, 140);
 		model = new DefaultListModel<String>();
 		if(stanze.size() != 0) {
@@ -144,14 +144,14 @@ public class Interfaccia extends JFrame {
 		
 		JLabel lblConfigurazioneCorrente = new JLabel("La configurazione corrente contiene le seguenti stanze:");
 		lblConfigurazioneCorrente.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblConfigurazioneCorrente.setBounds(10, 53, 421, 31);
 		panelloDati.add(lblConfigurazioneCorrente);
 		listaStanze.setModel(model);
 		panelloDati.add(listaStanze);
 		
 		JButton btnAvvia = new JButton("Avvia");
-		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAvvia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(stanze.size() == 0) {
