@@ -11,6 +11,7 @@ import toAssign.Dispositivo;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -22,7 +23,7 @@ public class AggiungiDispositivo extends JDialog {
 	private JComboBox<String> listaSensori;
 	private JButton button;
 
-	public AggiungiDispositivo() {
+	public AggiungiDispositivo(boolean nuovaStanza, List<Integer> listaIdDispositivi) {
 		getContentPane().setLayout(null);
 		
 		JLabel lblModificaDispositivo = new JLabel("Aggiungi dispositivo");
@@ -85,6 +86,10 @@ public class AggiungiDispositivo extends JDialog {
 	}
 	
 	public void addConfirmListener(ActionListener listener) {
+		button.addActionListener(listener);
+	}
+	
+	public void addRoomListener(ActionListener listener) {
 		button.addActionListener(listener);
 	}
 	
