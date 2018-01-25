@@ -1,11 +1,13 @@
 package InterfacciaGrafica;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -35,7 +37,7 @@ public class AggiungiStanza extends JDialog {
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
 		setUndecorated(true);
-		
+		getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		button = new JButton("Conferma");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setBounds(28, 636, 179, 43);

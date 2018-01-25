@@ -1,5 +1,6 @@
 package InterfacciaGrafica;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JDialog;
@@ -8,6 +9,7 @@ import javax.swing.JTextField;
 
 import toAssign.Dispositivo;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -28,6 +30,7 @@ public class AggiungiDispositivo extends JDialog {
 	public AggiungiDispositivo(boolean nuovaStanza, List<Integer> listaIdDispositivi) {
 		getContentPane().setLayout(null);
 		setUndecorated(true);
+		getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		this.listaID = listaIdDispositivi;
 		
 		JLabel lblModificaDispositivo = new JLabel("Aggiungi dispositivo");

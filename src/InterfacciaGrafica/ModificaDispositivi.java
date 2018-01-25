@@ -2,6 +2,7 @@ package InterfacciaGrafica;
 
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 
@@ -27,6 +29,7 @@ public class ModificaDispositivi extends JDialog {
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
 		setUndecorated(true);
+		getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		
 		JButton btnConferma = new JButton("Conferma");
 		btnConferma.setFont(new Font("Tahoma", Font.PLAIN, 15));

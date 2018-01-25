@@ -3,6 +3,7 @@ package InterfacciaGrafica;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,6 +16,8 @@ import toAssign.Stanza;
 
 import javax.swing.JList;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
@@ -39,6 +42,7 @@ public class ModificaConfigurazione extends JDialog{
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
 		setUndecorated(true);
+		getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		
 		lblModificaConfigurazione = new JLabel("Modifica Configurazione");
 		lblModificaConfigurazione.setFont(new Font("Tahoma", Font.PLAIN, 16));

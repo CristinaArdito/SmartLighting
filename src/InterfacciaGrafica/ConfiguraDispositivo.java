@@ -1,5 +1,6 @@
 package InterfacciaGrafica;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JCheckBox;
@@ -9,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import toAssign.Configurazione;
 import toAssign.Dispositivo;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,6 +24,7 @@ public class ConfiguraDispositivo extends JDialog {
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
 		setUndecorated(true);
+		getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		
 		Dispositivo dispositivo = config.getDispositivo(idDispositivo);
 		

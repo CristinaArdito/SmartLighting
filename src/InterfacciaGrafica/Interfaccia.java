@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -102,12 +103,12 @@ public class Interfaccia extends JFrame {
 		contentPane.setLayout(null);
 		setUndecorated(true);
 		
-		
+		getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		ImageIcon img = new ImageIcon("icon.png");
 		this.setIconImage(img.getImage());
-		BufferedImage myPicture = ImageIO.read(new File("sls_logo.png"));
+		BufferedImage myPicture = ImageIO.read(new File("sls_logo1.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		picLabel.setBounds(97, 25, 290, 42);
+		picLabel.setBounds(29, 11, 432, 86);
 		getContentPane().add(picLabel);
 		
 		JButton btnModificaConfigurazione = new JButton("Modifica Configurazione");
@@ -136,14 +137,14 @@ public class Interfaccia extends JFrame {
 		
 		JPanel panelloDati = new JPanel();
 		panelloDati.setBackground(new Color(236,248,250));
-		panelloDati.setBounds(10, 167, 464, 416);
+		panelloDati.setBounds(10, 167, 464, 436);
 		panelloDati.setLayout(null);
 		contentPane.add(panelloDati);
 		
 		JLabel lblConfigurazioneCorrente = new JLabel("La configurazione corrente contiene le seguenti stanze:");
 		lblConfigurazioneCorrente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblConfigurazioneCorrente.setBounds(10, 11, 421, 31);
+		lblConfigurazioneCorrente.setBounds(33, 27, 421, 31);
 		panelloDati.add(lblConfigurazioneCorrente);
 		model = new DefaultListModel<String>();
 		
@@ -153,19 +154,19 @@ public class Interfaccia extends JFrame {
 			}
 		}
 		
+		JButton btnRisparmioEnergetico = new JButton("Risparmio Energetico");
+		btnRisparmioEnergetico.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnRisparmioEnergetico.setBounds(111, 388, 236, 48);
+		panelloDati.add(btnRisparmioEnergetico);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(59, 42, 351, 308);
+		scrollPane.setBounds(66, 69, 349, 306);
 		panelloDati.add(scrollPane);
 		
 		listaStanze = new JList<String>();
 		scrollPane.setViewportView(listaStanze);
 		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
 		listaStanze.setModel(model);
-		
-		JButton btnRisparmioEnergetico = new JButton("Risparmio Energetico");
-		btnRisparmioEnergetico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnRisparmioEnergetico.setBounds(108, 357, 236, 48);
-		panelloDati.add(btnRisparmioEnergetico);
 		
 		JButton btnAvvia = new JButton("Avvia");
 		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -179,13 +180,13 @@ public class Interfaccia extends JFrame {
 				}
 			}
 		});
-		btnAvvia.setBounds(31, 610, 191, 49);
+		btnAvvia.setBounds(29, 641, 191, 49);
 		contentPane.add(btnAvvia);
 		
 		JLabel lblNewLabel = new JLabel("Ardito Cristina  Contigiani Mattia  \u00A92018 - All rights reserved. ");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		lblNewLabel.setBounds(121, 686, 266, 14);
+		lblNewLabel.setBounds(121, 713, 266, 14);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnSpegni = new JButton("Spegni");
@@ -195,7 +196,7 @@ public class Interfaccia extends JFrame {
 			}
 		});
 		btnSpegni.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnSpegni.setBounds(248, 610, 191, 49);
+		btnSpegni.setBounds(265, 641, 191, 49);
 		contentPane.add(btnSpegni);
 
 	}
