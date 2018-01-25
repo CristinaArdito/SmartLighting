@@ -66,6 +66,7 @@ public class AggiungiDispositivo extends JDialog {
 		JButton btnAnnulla = new JButton("Annulla");
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 		btnAnnulla.setFont(new Font("Tahoma", Font.PLAIN, 15));
