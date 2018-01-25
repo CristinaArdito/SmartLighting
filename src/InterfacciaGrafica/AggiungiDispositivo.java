@@ -20,11 +20,14 @@ public class AggiungiDispositivo extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTextField tipoDispositivo;
 	private JTextField consumoDispositivo;
-	private JComboBox<String> listaSensori;
+	private JComboBox<String> listaIDDispositivi;
 	private JButton button;
+	private List<Integer> listaID;
+	private DefaultComboBoxModel<String> modelloIDDispositivi;
 
 	public AggiungiDispositivo(boolean nuovaStanza, List<Integer> listaIdDispositivi) {
 		getContentPane().setLayout(null);
+		this.listaID = listaIdDispositivi;
 		
 		JLabel lblModificaDispositivo = new JLabel("Aggiungi dispositivo");
 		lblModificaDispositivo.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -69,14 +72,14 @@ public class AggiungiDispositivo extends JDialog {
 		btnAnnulla.setBounds(270, 618, 179, 43);
 		getContentPane().add(btnAnnulla);
 		
-		listaSensori = new JComboBox<String>();
-		listaSensori.setBounds(237, 191, 230, 27);
-		DefaultComboBoxModel<String> modelloSensori = new DefaultComboBoxModel<String>();
-		for (Integer id : Interfaccia.getSensori()) {
-			modelloSensori.addElement(id.toString());
+		listaIDDispositivi = new JComboBox<String>();
+		listaIDDispositivi.setBounds(237, 191, 230, 27);
+		modelloIDDispositivi = new DefaultComboBoxModel<String>();
+		for (Integer id : listaID) {
+			modelloIDDispositivi.addElement(id.toString());
 		}
-		listaSensori.setModel(modelloSensori);
-		getContentPane().add(listaSensori);
+		listaIDDispositivi.setModel(modelloIDDispositivi);
+		getContentPane().add(listaIDDispositivi);
 		
 		JLabel lblSceltaSensore = new JLabel("Scegliere sensore da collegare");
 		lblSceltaSensore.setBounds(10, 191, 217, 27);
@@ -94,6 +97,13 @@ public class AggiungiDispositivo extends JDialog {
 	}
 	
 	public Dispositivo getDispositivo() {
-		return new Dispositivo(tipoDispositivo.getText(), -1, Integer.parseInt((String) listaSensori.getSelectedItem()), Double.parseDouble(consumoDispositivo.getText()), false,false,false);
+		int id;
+		try {
+			id = Integer.parseInt((String) listaIDDispositivi.getSelectedItem());
+		}catch(Exception e) {
+			id = Integer.parseInt((String) modelloIDDispositivi.getElementAt(0));
+		}
+		listaID.remove(id);
+		return new Dispositivo(tipoDispositivo.getText(), -1, id, Double.parseDouble(consumoDispositivo.getText()), false,false,false);
 	}
 }
