@@ -3,44 +3,58 @@ Nome: Cucina ,
 CodiceStanza: 0 ,
 Lista Dispositivi: 
 {
-Tipo: Televisore ,
-Codice: 0 ,
-Id: 1 ,
-PuòEssereAcceso: false ,
+Tipo: Tv ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 0 ,
+PuòEssereAcceso: true ,
 PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
-Consumo: 1234.0
+ConsumoDispositivo: 120.0
 },
 Lista Luci: 
 {
 CodiceLuce: -1 ,
-IdLuce: 0 ,
+IdLuce: 1 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 200.0
+ConsumoLuce: 10.0
 },
-Sensore: -1
+{
+CodiceLuce: 1 ,
+IdLuce: 2 ,
+PuòEssereAccesa: true ,
+PuòEssereSpenta: true ,
+ConsumoLuce: 5.0
+},
+Sensore: 1
 };
 {
 Nome: Bagno ,
 CodiceStanza: 1 ,
 Lista Dispositivi: 
 {
-Tipo: Stufa ,
-Codice: 0 ,
-Id: 2 ,
-PuòEssereAcceso: false ,
+Tipo: Tv ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 0 ,
+PuòEssereAcceso: true ,
 PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
-Consumo: 1233.0
+ConsumoDispositivo: 120.0
 },
 Lista Luci: 
 {
 CodiceLuce: -1 ,
-IdLuce: 0 ,
+IdLuce: 1 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 200.0
+ConsumoLuce: 10.0
+},
+{
+CodiceLuce: 1 ,
+IdLuce: 2 ,
+PuòEssereAccesa: true ,
+PuòEssereSpenta: true ,
+ConsumoLuce: 5.0
 },
 Sensore: -1
 };

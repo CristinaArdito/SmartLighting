@@ -53,7 +53,7 @@ public class Interfaccia extends JFrame {
 		
 		stanze = readStanzaFromFile(new File("Stanze.txt"));
 		
-		/*
+		
 		stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1)));
 		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1)));
 		File file = new File("Stanze.txt");
@@ -76,7 +76,7 @@ public class Interfaccia extends JFrame {
 			System.out.println(s1.getSensore().getCodice());
 		}
 		
-		*/
+		
 		
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
@@ -222,12 +222,12 @@ public class Interfaccia extends JFrame {
 			    	d = i.next();
 			    	write.println("{");
 			    	write.println("Tipo: " + d.getTipo() + " ,");
-			    	write.println("Codice: " + d.getCodice() + " ,");
-			    	write.println("Id: " + d.getId() + " ,");
+			    	write.println("CodiceDispositivo: " + d.getCodice() + " ,");
+			    	write.println("IdDispositivo: " + d.getId() + " ,");
 			    	write.println("PuòEssereAcceso: " + d.puòEssereAcceso() + " ,");
 			    	write.println("PuòEssereSpento: " + d.puòEssereSpento() + " ,");
 			    	write.println("PuòEssereMessoInStandby: " + d.puòEssereMessoInStandby() + " ,");
-			    	write.println("Consumo: " + d.getConsumo());
+			    	write.println("ConsumoDispositivo: " + d.getConsumo());
 			    	write.println("},");
 			    }
 			    write.println("Lista Luci: ");
@@ -307,10 +307,10 @@ public class Interfaccia extends JFrame {
         	else if(line.contains("Tipo") == true) {
         		tipo = words[1];
         	}
-        	else if(line.contains("Codice") == true) {
+        	else if(line.contains("CodiceDispositivo") == true) {
         		codice = Integer.parseInt(words[1]);
         	}
-        	else if(line.contains("Id") == true) {
+        	else if(line.contains("IdDispositivo") == true) {
         		id = Integer.parseInt(words[1]);
         	}
         	else if(line.contains("PuòEssereAcceso") == true) {
@@ -322,7 +322,7 @@ public class Interfaccia extends JFrame {
         	else if(line.contains("PuòEssereMessoInStandby ") == true) {
         		stand = Boolean.parseBoolean(words[1]);
         	}
-        	else if(line.contains("Consumo") == true) {
+        	else if(line.contains("ConsumoDispositivo") == true) {
         		consumo = Double.parseDouble(words[1]);
         		list.add(new Dispositivo(tipo, codice, id, consumo, on, off, stand));
         	}
@@ -346,6 +346,7 @@ public class Interfaccia extends JFrame {
         		s = new Sensore(Integer.parseInt(words[1]));
         		liststanze.add(new Stanza(codicestanza, nome, list, listluci, s));
         		list.clear();
+        		listluci.clear();
         	}
         }
         return liststanze;
@@ -354,10 +355,10 @@ public class Interfaccia extends JFrame {
 	public static List<Dispositivo> ottiniDispositivi() {
 		List<Dispositivo> listaDispositivi = new ArrayList<Dispositivo>();
 		listaDispositivi.add(new Dispositivo("Tv", 1, 00, 120.00, true, false, false));
-		listaDispositivi.add(new Dispositivo("Minitor", 1, 01, 90.00, true, false, false));
+		/*listaDispositivi.add(new Dispositivo("Minitor", 1, 01, 90.00, true, false, false));
 		listaDispositivi.add(new Dispositivo("Computer", 0, 02, 20.00, true, false, false));
 		listaDispositivi.add(new Dispositivo("Lavatrice", -1, 03, 220.00, true, false, false));
-		listaDispositivi.add(new Dispositivo("Radio", 0, 04, 10.00, true, false, false));
+		listaDispositivi.add(new Dispositivo("Radio", 0, 04, 10.00, true, false, false));*/
 		return listaDispositivi;
 	}
 	
