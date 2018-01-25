@@ -142,16 +142,8 @@ public class Interfaccia extends JFrame {
 		JLabel lblConfigurazioneCorrente = new JLabel("La configurazione corrente contiene le seguenti stanze:");
 		lblConfigurazioneCorrente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblConfigurazioneCorrente.setBounds(10, 53, 421, 31);
+		lblConfigurazioneCorrente.setBounds(10, 11, 421, 31);
 		panelloDati.add(lblConfigurazioneCorrente);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 95, 353, 310);
-		panelloDati.add(scrollPane);
-				
-		listaStanze = new JList<String>();
-		scrollPane.setViewportView(listaStanze);
-		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
 		model = new DefaultListModel<String>();
 		
 		if(stanze.size() != 0) {
@@ -159,7 +151,20 @@ public class Interfaccia extends JFrame {
 				model.addElement(stanza.getNome());
 			}
 		}
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(59, 42, 351, 308);
+		panelloDati.add(scrollPane);
+		
+		listaStanze = new JList<String>();
+		scrollPane.setViewportView(listaStanze);
+		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
 		listaStanze.setModel(model);
+		
+		JButton btnRisparmioEnergetico = new JButton("Risparmio Energetico");
+		btnRisparmioEnergetico.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnRisparmioEnergetico.setBounds(108, 357, 236, 48);
+		panelloDati.add(btnRisparmioEnergetico);
 		
 		JButton btnAvvia = new JButton("Avvia");
 		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -173,7 +178,7 @@ public class Interfaccia extends JFrame {
 				}
 			}
 		});
-		btnAvvia.setBounds(144, 605, 191, 49);
+		btnAvvia.setBounds(31, 610, 191, 49);
 		contentPane.add(btnAvvia);
 		
 		JLabel lblNewLabel = new JLabel("Ardito Cristina  Contigiani Mattia  \u00A92018 - All rights reserved. ");
@@ -181,6 +186,11 @@ public class Interfaccia extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel.setBounds(121, 686, 266, 14);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnSpegni = new JButton("Spegni");
+		btnSpegni.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSpegni.setBounds(248, 610, 191, 49);
+		contentPane.add(btnSpegni);
 
 	}
 	
