@@ -100,6 +100,7 @@ public class Interfaccia extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setUndecorated(true);
 		
 		
 		ImageIcon img = new ImageIcon("icon.png");
@@ -188,6 +189,11 @@ public class Interfaccia extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnSpegni = new JButton("Spegni");
+		btnSpegni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnSpegni.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSpegni.setBounds(248, 610, 191, 49);
 		contentPane.add(btnSpegni);

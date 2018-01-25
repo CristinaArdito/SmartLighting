@@ -34,6 +34,7 @@ public class AggiungiStanza extends JDialog {
 		
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
+		setUndecorated(true);
 		
 		button = new JButton("Conferma");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 15));

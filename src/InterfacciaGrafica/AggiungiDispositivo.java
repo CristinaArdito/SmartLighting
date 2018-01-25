@@ -27,6 +27,7 @@ public class AggiungiDispositivo extends JDialog {
 
 	public AggiungiDispositivo(boolean nuovaStanza, List<Integer> listaIdDispositivi) {
 		getContentPane().setLayout(null);
+		setUndecorated(true);
 		this.listaID = listaIdDispositivi;
 		
 		JLabel lblModificaDispositivo = new JLabel("Aggiungi dispositivo");

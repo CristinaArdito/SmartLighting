@@ -20,6 +20,7 @@ public class ConfiguraDispositivo extends JDialog {
 	public ConfiguraDispositivo(String nomeDispositivo, int idDispositivo, Configurazione config) {
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
+		setUndecorated(true);
 		
 		Dispositivo dispositivo = config.getDispositivo(idDispositivo);
 		

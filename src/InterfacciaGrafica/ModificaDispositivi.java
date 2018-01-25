@@ -25,6 +25,7 @@ public class ModificaDispositivi extends JDialog {
 	public ModificaDispositivi(int idStanza, List<Stanza> stanze, Configurazione config, List<Integer> listaIdDispositivi) {
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
+		setUndecorated(true);
 		
 		JButton btnConferma = new JButton("Conferma");
 		btnConferma.setFont(new Font("Tahoma", Font.PLAIN, 15));

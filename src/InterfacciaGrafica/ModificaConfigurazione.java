@@ -38,6 +38,7 @@ public class ModificaConfigurazione extends JDialog{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
 		getContentPane().setLayout(null);
+		setUndecorated(true);
 		
 		lblModificaConfigurazione = new JLabel("Modifica Configurazione");
 		lblModificaConfigurazione.setFont(new Font("Tahoma", Font.PLAIN, 16));
