@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JLabel;
 
 public class ModificaDispositivi extends JDialog {
 
@@ -36,13 +37,13 @@ public class ModificaDispositivi extends JDialog {
 		});
 		btnConferma.setBounds(20, 629, 190, 52);
 		getContentPane().add(btnConferma);
-		JButton btnAggiungiDispositivo = new JButton("Aggiungi Dispositivo");
+		JButton btnAggiungiDispositivo = new JButton("Aggiungi");
 		btnAggiungiDispositivo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAggiungiDispositivo.setBounds(284, 629, 190, 52);
 		getContentPane().add(btnAggiungiDispositivo);
 		
 		listaDispositivi = new JList<String>();
-		listaDispositivi.setBounds(10, 10, 462, 608);
+		listaDispositivi.setBounds(10, 52, 462, 566);
 		getContentPane().add(listaDispositivi);
 		modelloDispositivi = new DefaultListModel<String>();
 		
@@ -64,6 +65,11 @@ public class ModificaDispositivi extends JDialog {
 			}
 		});
 		listaDispositivi.setModel(modelloDispositivi);
+		
+		JLabel lblAggiungiDispositivo = new JLabel("Aggiungi Dispositivo");
+		lblAggiungiDispositivo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblAggiungiDispositivo.setBounds(161, 11, 180, 26);
+		getContentPane().add(lblAggiungiDispositivo);
 		
 		btnAggiungiDispositivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
