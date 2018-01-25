@@ -52,6 +52,15 @@ PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
 ConsumoDispositivo: 800.0
 },
+{
+Tipo: Xbox ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 22 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 230.0
+},
 Lista Luci: 
 Sensore: -1
 };

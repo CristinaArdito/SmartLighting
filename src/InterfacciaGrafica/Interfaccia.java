@@ -138,13 +138,6 @@ public class Interfaccia extends JFrame {
 		panelloDati.setBounds(10, 167, 464, 416);
 		panelloDati.setLayout(null);
 		contentPane.add(panelloDati);
-		model = new DefaultListModel<String>();
-		
-		if(stanze.size() != 0) {
-			for (Stanza stanza : stanze) {
-				model.addElement(stanza.getNome());
-			}
-		}
 		
 		JLabel lblConfigurazioneCorrente = new JLabel("La configurazione corrente contiene le seguenti stanze:");
 		lblConfigurazioneCorrente.setHorizontalAlignment(SwingConstants.CENTER);
@@ -159,6 +152,13 @@ public class Interfaccia extends JFrame {
 		listaStanze = new JList<String>();
 		scrollPane.setViewportView(listaStanze);
 		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		model = new DefaultListModel<String>();
+		
+		if(stanze.size() != 0) {
+			for (Stanza stanza : stanze) {
+				model.addElement(stanza.getNome());
+			}
+		}
 		listaStanze.setModel(model);
 		
 		JButton btnAvvia = new JButton("Avvia");
