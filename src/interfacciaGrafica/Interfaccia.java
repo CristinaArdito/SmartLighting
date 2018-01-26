@@ -56,6 +56,8 @@ public class Interfaccia extends JFrame {
 		
 		stanze = readStanzaFromFile(new File("Stanze.txt"));
 		
+		//DEBUG
+		
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
 				for (Dispositivo dispositivo : stanza.getDispositivi()) {
@@ -86,7 +88,11 @@ public class Interfaccia extends JFrame {
 		btnModificaConfigurazione.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnModificaConfigurazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nuovaConfigurazione = new ModificaConfigurazione(config, stanze,listaIdDispositivi);
+				try {
+					nuovaConfigurazione = new ModificaConfigurazione(config, stanze,listaIdDispositivi);
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
 				nuovaConfigurazione.setVisible(true);
 				nuovaConfigurazione.addConfirmListener(new ActionListener() {
 							
