@@ -48,38 +48,13 @@ public class Interfaccia extends JFrame {
 	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
 	private ModificaConfigurazione nuovaConfigurazione;
 	private JList<String> listaStanze;
-	private DefaultListModel<String> model;
+	private DefaultListModel<String> modello = new DefaultListModel<String>();
 	
 	public Interfaccia(List<Integer> listaIdDispositivi) throws IOException {
 		
 		stanze = new ArrayList<Stanza>();
 		
 		stanze = readStanzaFromFile(new File("Stanze.txt"));
-		
-		
-	/*	stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1)));
-		stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1)));
-		File file = new File("Stanze.txt");
-		writeStanzaOnFile(file);
-		List<Stanza> list1= readStanzaFromFile(file);
-		Iterator<Stanza> j = list1.iterator();
-		Stanza s1;
-		while(j.hasNext()) {
-			s1 = j.next();
-			System.out.println(s1.getNome());
-			System.out.println(s1.getCodice());
-			System.out.println("dispositivi:");
-			List<Dispositivo> list = s1.getDispositivi();
-			Dispositivo d;
-			Iterator<Dispositivo> i = list.iterator();
-			while(i.hasNext()) {
-				d = i.next();
-				System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() + d.getConsumo());
-			}
-			System.out.println(s1.getSensore().getCodice());
-		} */
-		
-		
 		
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
@@ -89,10 +64,6 @@ public class Interfaccia extends JFrame {
 				}
 			}
 		}
-		
-		
-		
-//		importaConfigurazione();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
@@ -124,6 +95,11 @@ public class Interfaccia extends JFrame {
 								stanze = nuovaConfigurazione.getStanze();
 								try {
 									writeStanzaOnFile(new File("Stanze.txt"));
+									modello.clear();
+									for (Stanza stanza : stanze) {
+										modello.addElement(stanza.getNome());
+									}
+									listaStanze.setModel(modello);
 								} catch (FileNotFoundException | MalformedURLException e1) {
 									e1.printStackTrace();
 								}
@@ -146,11 +122,10 @@ public class Interfaccia extends JFrame {
 		lblConfigurazioneCorrente.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblConfigurazioneCorrente.setBounds(33, 27, 421, 31);
 		panelloDati.add(lblConfigurazioneCorrente);
-		model = new DefaultListModel<String>();
 		
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
-				model.addElement(stanza.getNome());
+				modello.addElement(stanza.getNome());
 			}
 		}
 		
@@ -166,7 +141,7 @@ public class Interfaccia extends JFrame {
 		listaStanze = new JList<String>();
 		scrollPane.setViewportView(listaStanze);
 		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
-		listaStanze.setModel(model);
+		listaStanze.setModel(modello);
 		
 		JButton btnAvvia = new JButton("Avvia");
 		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 18));

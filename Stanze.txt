@@ -24,7 +24,7 @@ CodiceDispositivo: 0 ,
 IdDispositivo: 2 ,
 PuòEssereAcceso: false ,
 PuòEssereSpento: false ,
-PuòEssereMessoInStandby: true ,
+PuòEssereMessoInStandby: false ,
 ConsumoDispositivo: 2500.0
 },
 Lista Luci: 
