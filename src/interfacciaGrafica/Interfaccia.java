@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import simulazione.AmbienteDiSimulazione;
+import simulazione.PannelloControlloSimulazione;
 import sistema.Configurazione;
 import sistema.Dispositivo;
 import sistema.Luce;
@@ -56,7 +57,8 @@ public class Interfaccia extends JFrame {
 		
 		stanze = readStanzaFromFile(new File("Stanze.txt"));
 		
-		//DEBUG
+		PannelloControlloSimulazione pannello = new PannelloControlloSimulazione(stanze);
+		pannello.setVisible(true);
 		
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
