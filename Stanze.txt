@@ -1,31 +1,76 @@
 {
-Nome: Cucina ,
+Nome: Bagno ,
 CodiceStanza: 0 ,
 Lista Dispositivi: 
 {
-Tipo: Televisore ,
+Tipo: Stufa ,
 CodiceDispositivo: 0 ,
 IdDispositivo: 3 ,
 PuòEssereAcceso: false ,
 PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 1234.0
+ConsumoDispositivo: 1500.0
+},
+{
+Tipo: Televisore ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 5 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 200.0
 },
 Lista Luci: 
 Sensore: -1
 };
 {
-Nome: Bagno ,
+Nome: Cucina ,
 CodiceStanza: 1 ,
 Lista Dispositivi: 
 {
-Tipo: Stufa ,
+Tipo: Forno ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 1 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 2500.0
+},
+{
+Tipo: Frigorifero ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 0 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 1500.0
+},
+{
+Tipo: Tostapane ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 4 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 100.0
+},
+{
+Tipo: Televore ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 28 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 250.0
+},
+{
+Tipo: Radio ,
 CodiceDispositivo: 0 ,
 IdDispositivo: 2 ,
 PuòEssereAcceso: false ,
 PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 2500.0
+ConsumoDispositivo: 200.0
 },
 Lista Luci: 
 Sensore: -1
@@ -37,29 +82,11 @@ Lista Dispositivi:
 {
 Tipo: Televisore ,
 CodiceDispositivo: 0 ,
-IdDispositivo: 5 ,
+IdDispositivo: 10 ,
 PuòEssereAcceso: false ,
 PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 450.0
-},
-{
-Tipo: Pc ,
-CodiceDispositivo: 0 ,
-IdDispositivo: 0 ,
-PuòEssereAcceso: false ,
-PuòEssereSpento: false ,
-PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 800.0
-},
-{
-Tipo: Xbox ,
-CodiceDispositivo: 0 ,
-IdDispositivo: 22 ,
-PuòEssereAcceso: false ,
-PuòEssereSpento: false ,
-PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 230.0
+ConsumoDispositivo: 250.0
 },
 Lista Luci: 
 Sensore: -1
