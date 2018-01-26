@@ -94,7 +94,8 @@ public class Stanza {
 	 * @param luci
 	 */
 	public void setLuci(List<Luce> luci) {
-		this.luci = luci;
+		this.luci = new ArrayList<Luce>();
+		this.luci.addAll(luci);
 	}
 	
 	/**
