@@ -11,24 +11,6 @@ PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
 ConsumoDispositivo: 1234.0
 },
-{
-Tipo: Frigorifero ,
-CodiceDispositivo: 0 ,
-IdDispositivo: 22 ,
-PuòEssereAcceso: false ,
-PuòEssereSpento: false ,
-PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 200.0
-},
-{
-Tipo: Forno ,
-CodiceDispositivo: 0 ,
-IdDispositivo: 11 ,
-PuòEssereAcceso: false ,
-PuòEssereSpento: false ,
-PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 2000.0
-},
 Lista Luci: 
 Sensore: -1
 };

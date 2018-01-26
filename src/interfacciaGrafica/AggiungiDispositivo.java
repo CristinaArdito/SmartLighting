@@ -9,15 +9,10 @@ import javax.swing.JTextField;
 
 import sistema.Dispositivo;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -32,58 +27,44 @@ public class AggiungiDispositivo extends JDialog {
 	private List<Integer> listaID;
 	private DefaultComboBoxModel<String> modelloIDDispositivi;
 
-	public AggiungiDispositivo(boolean nuovaStanza, List<Integer> listaIdDispositivi)  {
-		getContentPane().setBackground(new Color(236,248,250));
+	public AggiungiDispositivo(boolean nuovaStanza, List<Integer> listaIdDispositivi) {
 		getContentPane().setLayout(null);
 		setUndecorated(true);
 		getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		this.listaID = listaIdDispositivi;
 		
-		ImageIcon img = new ImageIcon("icon.png");
-		this.setIconImage(img.getImage());
-		BufferedImage myPicture = null;
-		try {
-			myPicture = ImageIO.read(new File("sls_logo.png"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		picLabel.setBounds(27, 22, 432, 86);
-		getContentPane().add(picLabel);
-		
 		JLabel lblModificaDispositivo = new JLabel("Aggiungi dispositivo");
-		lblModificaDispositivo.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblModificaDispositivo.setBounds(158, 138, 217, 27);
+		lblModificaDispositivo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblModificaDispositivo.setBounds(158, 11, 217, 27);
 		getContentPane().add(lblModificaDispositivo);
 		
-		JLabel lblInserisciLaTipologia = new JLabel("Inserisci la tipologia: ");
-		lblInserisciLaTipologia.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblInserisciLaTipologia.setBounds(10, 201, 274, 27);
+		JLabel lblInserisciLaTipologia = new JLabel("Inserisci la tipologia di dispositivo");
+		lblInserisciLaTipologia.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblInserisciLaTipologia.setBounds(10, 82, 217, 27);
 		getContentPane().add(lblInserisciLaTipologia);
 		
 		tipoDispositivo = new JTextField();
-		tipoDispositivo.setBounds(180, 204, 197, 27);
+		tipoDispositivo.setBounds(237, 81, 197, 27);
 		getContentPane().add(tipoDispositivo);
 		tipoDispositivo.setColumns(10);
 		
-		JLabel lblInserisciIlConsumo = new JLabel("Inserisci il consumo:");
+		JLabel lblInserisciIlConsumo = new JLabel("Inserisci il consumo");
 		lblInserisciIlConsumo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblInserisciIlConsumo.setBounds(10, 265, 217, 27);
+		lblInserisciIlConsumo.setBounds(10, 140, 217, 27);
 		getContentPane().add(lblInserisciIlConsumo);
 		
 		consumoDispositivo = new JTextField();
-		consumoDispositivo.setBounds(180, 270, 104, 20);
+		consumoDispositivo.setBounds(158, 145, 104, 20);
 		getContentPane().add(consumoDispositivo);
 		consumoDispositivo.setColumns(10);
 		
 		JLabel lblWatt = new JLabel("watt");
-		lblWatt.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblWatt.setBounds(294, 268, 61, 19);
+		lblWatt.setBounds(272, 148, 46, 14);
 		getContentPane().add(lblWatt);
 		
 		button = new JButton("Conferma");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		button.setBounds(27, 654, 191, 49);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		button.setBounds(27, 618, 179, 43);
 		getContentPane().add(button);
 		
 		JButton btnAnnulla = new JButton("Annulla");
@@ -92,12 +73,12 @@ public class AggiungiDispositivo extends JDialog {
 				dispose();
 			}
 		});
-		btnAnnulla.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnAnnulla.setBounds(268, 654, 191, 49);
+		btnAnnulla.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnAnnulla.setBounds(270, 618, 179, 43);
 		getContentPane().add(btnAnnulla);
 		
 		listaIDDispositivi = new JComboBox<String>();
-		listaIDDispositivi.setBounds(270, 332, 189, 27);
+		listaIDDispositivi.setBounds(237, 191, 230, 27);
 		modelloIDDispositivi = new DefaultComboBoxModel<String>();
 		for (Integer id : listaID) {
 			modelloIDDispositivi.addElement(id.toString());
@@ -105,9 +86,9 @@ public class AggiungiDispositivo extends JDialog {
 		listaIDDispositivi.setModel(modelloIDDispositivi);
 		getContentPane().add(listaIDDispositivi);
 		
-		JLabel lblSceltaSensore = new JLabel("Scegliere sensore da collegare: ");
-		lblSceltaSensore.setBounds(10, 329, 249, 27);
-		lblSceltaSensore.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblSceltaSensore = new JLabel("Scegliere sensore da collegare");
+		lblSceltaSensore.setBounds(10, 191, 217, 27);
+		lblSceltaSensore.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		getContentPane().add(lblSceltaSensore);
 		setBounds(100, 100, 500, 750);
 	}
