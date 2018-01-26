@@ -58,7 +58,7 @@ public class Interfaccia extends JFrame {
 		stanze = readStanzaFromFile(new File("Stanze.txt"));
 		
 		//DEBUG
-		 /*   File file = new File("Stanze.txt"); 
+		/*    File file = new File("Stanze.txt"); 
 		    stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1))); 
 		    stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1))); 
 		    writeStanzaOnFile(file); 

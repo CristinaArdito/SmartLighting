@@ -91,7 +91,7 @@ public class ModificaConfigurazione extends JDialog{
 				});
 			}
 		});
-		btnAggiungiStanza.setBounds(265, 654, 191, 49);
+		btnAggiungiStanza.setBounds(277, 654, 191, 49);
 		getContentPane().add(btnAggiungiStanza);
 		
 		listaStanze = new JList<String>();
