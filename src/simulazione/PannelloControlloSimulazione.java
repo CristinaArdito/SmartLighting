@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import sistema.Dispositivo;
@@ -58,6 +58,10 @@ public class PannelloControlloSimulazione extends JFrame {
 			//Modifica JList delle specifiche
 			temp.getSpecifiche().setBounds(x, y+25, 300, 200);
 			pannelloDestro.add(temp.getSpecifiche());
+			//Modifica JCheckBox per la presenza dell'utente
+			temp.getPresenza().setBounds(x+150, y+230, 20, 20);
+			pannelloDestro.add(temp.getPresenza());
+			
 			if(x+530 > pannelloDestro.getWidth()) {
 				y += 330;
 				x = 0;
@@ -71,7 +75,7 @@ public class PannelloControlloSimulazione extends JFrame {
 		private JLabel nome = new JLabel();
 		private JList<String> specifiche = new JList<String>();
 		private DefaultListModel<String> modello = new DefaultListModel<String>();
-		private JRadioButton presenzaUtente = new JRadioButton();
+		private JCheckBox presenzaUtente = new JCheckBox();
 		
 		public EspositoreStanze(String nome, List<Dispositivo> dispositivi, List<Luce> luci, Sensore sensore) {
 			this.nome.setText(nome);
@@ -125,7 +129,7 @@ public class PannelloControlloSimulazione extends JFrame {
 			return specifiche;
 		}
 		
-		public JRadioButton getPresenza() {
+		public JCheckBox getPresenza() {
 			return presenzaUtente;
 		}
 	}
