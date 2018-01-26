@@ -1,4 +1,4 @@
-package toAssign;
+package sistema;
 import java.util.*;
 
 public class RisparmioEnergetico {

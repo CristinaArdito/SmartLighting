@@ -1,4 +1,4 @@
-package InterfacciaGrafica;
+package interfacciaGrafica;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -10,16 +10,17 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-import toAssign.Configurazione;
-import toAssign.Dispositivo;
-import toAssign.Stanza;
-
 import javax.swing.JList;
 import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.UIManager;
+
+import sistema.Configurazione;
+import sistema.Dispositivo;
+import sistema.Stanza;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

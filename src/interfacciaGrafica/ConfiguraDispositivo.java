@@ -1,4 +1,4 @@
-package InterfacciaGrafica;
+package interfacciaGrafica;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,8 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import toAssign.Configurazione;
-import toAssign.Dispositivo;
+
+import sistema.Configurazione;
+import sistema.Dispositivo;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;

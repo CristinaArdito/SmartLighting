@@ -1,10 +1,11 @@
-package toAssign;
+package sistema;
 
 import java.util.ArrayList;
 import java.util.List;
-import toAssign.Dispositivo;
-import toAssign.Luce;
-import toAssign.Sensore;
+
+import sistema.Dispositivo;
+import sistema.Luce;
+import sistema.Sensore;
 
 public class Stanza {
 	/*

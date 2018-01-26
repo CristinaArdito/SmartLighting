@@ -1,15 +1,15 @@
-package Simulazione;
+package simulazione;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Attori.Cliente;
-import InterfacciaGrafica.Interfaccia;
-import toAssign.Dispositivo;
-import toAssign.Luce;
-import toAssign.Sensore;
-import toAssign.Stanza;
+import attori.Cliente;
+import interfacciaGrafica.Interfaccia;
+import sistema.Dispositivo;
+import sistema.Luce;
+import sistema.Sensore;
+import sistema.Stanza;
 
 public class AmbienteDiSimulazione {
 	

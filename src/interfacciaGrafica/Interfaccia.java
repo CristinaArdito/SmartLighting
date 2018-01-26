@@ -1,4 +1,4 @@
-package InterfacciaGrafica;
+package interfacciaGrafica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,13 +19,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Simulazione.AmbienteDiSimulazione;
-import toAssign.Configurazione;
-import toAssign.Dispositivo;
-import toAssign.Luce;
-import toAssign.Sensore;
-import toAssign.Sistema;
-import toAssign.Stanza;
+import simulazione.AmbienteDiSimulazione;
+import sistema.Configurazione;
+import sistema.Dispositivo;
+import sistema.Luce;
+import sistema.Sensore;
+import sistema.Sistema;
+import sistema.Stanza;
 
 import java.io.File;
 import java.io.FileNotFoundException;

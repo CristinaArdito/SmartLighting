@@ -1,4 +1,4 @@
-package InterfacciaGrafica;
+package interfacciaGrafica;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,10 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
 
-import Simulazione.AmbienteDiSimulazione;
-import toAssign.Dispositivo;
-import toAssign.Luce;
-import toAssign.Stanza;
+import simulazione.AmbienteDiSimulazione;
+import sistema.Dispositivo;
+import sistema.Luce;
+import sistema.Stanza;
 
 public class AggiungiStanza extends JDialog {
 

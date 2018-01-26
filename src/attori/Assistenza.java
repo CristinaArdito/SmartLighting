@@ -1,4 +1,4 @@
-package Attori;
+package attori;
 
 public class Assistenza {
 	/*

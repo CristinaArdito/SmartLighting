@@ -1,4 +1,4 @@
-package InterfacciaGrafica;
+package interfacciaGrafica;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,7 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import toAssign.Dispositivo;
+import sistema.Dispositivo;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
