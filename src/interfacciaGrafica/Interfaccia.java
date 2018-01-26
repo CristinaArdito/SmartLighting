@@ -57,6 +57,36 @@ public class Interfaccia extends JFrame {
 		
 		stanze = readStanzaFromFile(new File("Stanze.txt"));
 		
+		//DEBUG
+		 /*   File file = new File("Stanze.txt"); 
+		    stanze.add(new Stanza(0, "Cucina", ottiniDispositivi(), ottieniLuci(), new Sensore(1))); 
+		    stanze.add(new Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1))); 
+		    writeStanzaOnFile(file); 
+		    List<Stanza> list1= readStanzaFromFile(file); 
+		    Iterator<Stanza> j = list1.iterator(); 
+		    Stanza s1; 
+		    while(j.hasNext()) { 
+		      s1 = j.next(); 
+		      System.out.println(s1.getNome()); 
+		      System.out.println(s1.getCodice()); 
+		      System.out.println("dispositivi:"); 
+		      List<Dispositivo> list = s1.getDispositivi(); 
+		      Dispositivo d; 
+		      Iterator<Dispositivo> i = list.iterator(); 
+		      while(i.hasNext()) { 
+		        d = i.next(); 
+		        System.out.println(d.getTipo() + d.getCodice() + d.getId() + d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() + d.getConsumo());
+		      } 
+		      List<Luce> luci = s1.getLuci();
+		      Iterator<Luce> z = luci.iterator();
+		      Luce l;
+		      while(z.hasNext()) {
+		    	  l = z.next();
+		    	  System.out.println(l.getCodice() + l.getId() + l.getConsumo());
+		      }
+		      System.out.println(s1.getSensore().getCodice()); 
+		    }*/
+		    
 		PannelloControlloSimulazione pannello = new PannelloControlloSimulazione(stanze);
 		pannello.setVisible(true);
 		
