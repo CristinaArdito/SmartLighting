@@ -112,10 +112,8 @@ public class Sistema extends Thread{
 	
 	public void run() {
 		
-		System.out.println("Esecuzione thread");
 		// Verifica se il thread è un demone
 		if(Thread.currentThread().isDaemon()){
-			System.out.println("Il thread è un demone");
 			// Creo un iteratore delle stanze
 			
 			Timer t = new Timer(1500, new ActionListener() {
@@ -133,7 +131,6 @@ public class Sistema extends Thread{
 						if(st.getSensore().getCodice() == 1) {
 							
 							if(eraNellaStanza[j] == false) {
-								System.out.println("Omino");
 								// Avvio i dispositivi
 								deviceOn(j);
 								//Avvio le luci
@@ -203,29 +200,6 @@ public class Sistema extends Thread{
 			 */
 			if(d.puòEssereSpento() == true) d.setCodice(-1);
 			else if(d.puòEssereMessoInStandby() == true) d.setCodice(0);
-		}
-	}
-	
-	/**
-	 * Mette in standby i dispositivi presenti nella stanza
-	 * @param i		indice della stanza
-	 */
-	public void deviceStandBy(int i) {
-		// Ottengo la stanza
-		Stanza st = stanze.get(i);
-		// Creo un dispositivo d'appoggio
-		Dispositivo d;
-		// Ottengo la lista dei dispositivi presenti nella stanza
-		List<Dispositivo> dispositivi = st.getDispositivi();
-		// Creo un iteratore dei dispositivi
-		Iterator<Dispositivo> j = dispositivi.iterator();
-		while(j.hasNext()) {
-			d = j.next();
-			/*
-			 * Verifico se il dispositivo può essere messo in standby ed, in tal caso,
-			 * lo metto in standby
-			 */
-			if(d.puòEssereMessoInStandby() == true) d.setCodice(0);
 		}
 	}
 	
