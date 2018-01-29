@@ -9,7 +9,7 @@ public class Dispositivo {
 	/*
 	 * Codice: accesso: 1, standby: 0, spento: -1
 	 */
-	private byte codice;
+	private int codice;
 	
 	/*
 	 * Id
@@ -36,6 +36,7 @@ public class Dispositivo {
 	 */
 	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso, boolean puòEssereSpento, boolean puòEssereMessoInStandby) {
 		super();
+		this.codice = codice;
 		this.id = id;
 		this.tipo = tipo;
 		this.consumo = consumo;
