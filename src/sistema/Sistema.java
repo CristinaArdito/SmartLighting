@@ -112,10 +112,8 @@ public class Sistema extends Thread{
 	
 	public void run() {
 		
-		System.out.println("Esecuzione thread");
 		// Verifica se il thread è un demone
 		if(Thread.currentThread().isDaemon()){
-			System.out.println("Il thread è un demone");
 			// Creo un iteratore delle stanze
 			
 			Timer t = new Timer(1500, new ActionListener() {
@@ -133,7 +131,6 @@ public class Sistema extends Thread{
 						if(st.getSensore().getCodice() == 1) {
 							
 							if(eraNellaStanza[j] == false) {
-								System.out.println("Omino");
 								// Avvio i dispositivi
 								deviceOn(j);
 								//Avvio le luci

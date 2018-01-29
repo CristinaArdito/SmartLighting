@@ -66,7 +66,7 @@ public class PannelloControlloSimulazione extends JFrame {
 					for (EspositoreStanze espositore : espositoreStanze) {
 						espositore.setSpecifiche();
 					}
-					System.out.println("Timer");
+//					System.out.println("Timer");
 				}
 			});
 			time.start();
@@ -139,18 +139,20 @@ public class PannelloControlloSimulazione extends JFrame {
 			String temp = "";
 			modello.addElement("Dispositivi:");
 			for (Dispositivo dispositivo : dispositivi) {
+				temp = "<html>";
 				temp += dispositivo.getTipo();
 				switch (dispositivo.getCodice()) {
 				case -1:
-					temp += " - Stato: spento";
+					temp += " - Stato: <font color=red>spento</font>";
 					break;
 				case 0:
-					temp += " - Stato: standby";
+					temp += " - Stato: <font color=orange>standby</font>";
 					break;
 				case 1:
-					temp += " - Stato: acceso";
+					temp += " - Stato: <font color=green>acceso</font>";
 					break;
 				}
+				temp += "</html>";
 				modello.addElement(temp);
 				temp = "";
 			}
@@ -158,10 +160,10 @@ public class PannelloControlloSimulazione extends JFrame {
 			for (Luce luce : luci) {
 				switch (luce.getCodice()) {
 				case 1:
-					modello.addElement("Luce n: "+luce.getId()+" - Stato: accesa");
+					modello.addElement("<html>Luce n: "+luce.getId()+" - Stato: <font color=green>accesa</font></html>");
 					break;
 				case -1:
-					modello.addElement("Luce n: "+luce.getId()+" - Stato: spenta");
+					modello.addElement("<html>Luce n: "+luce.getId()+" - Stato: <font color=red>spenta</font></html>");
 					break;
 				}
 			}
@@ -191,29 +193,32 @@ public class PannelloControlloSimulazione extends JFrame {
 			modello.clear();
 			modello.addElement("Dispositivi:");
 			for (Dispositivo dispositivo : stanza.getDispositivi()) {
+				temp = "<html>";
 				temp += dispositivo.getTipo();
 				switch (dispositivo.getCodice()) {
 				case -1:
-					temp += " - Stato: spento";
+					temp += " - Stato: <font color=red>spento</font>";
 					break;
 				case 0:
-					temp += " - Stato: standby";
+					temp += " - Stato: <font color=orange>standby</font>";
 					break;
 				case 1:
-					temp += " - Stato: acceso";
+					temp += " - Stato: <font color=green>acceso</font>";
 					break;
 				}
+				temp += "</html>";
 				modello.addElement(temp);
 				temp = "";
 			}
+			temp += "</html>";
 			modello.addElement("Luci:");
 			for (Luce luce : stanza.getLuci()) {
 				switch (luce.getCodice()) {
 				case 1:
-					modello.addElement("Luce n: "+luce.getId()+" - Stato: accesa");
+					modello.addElement("<html>Luce n: "+luce.getId()+" - Stato: <font color=green>accesa</font></html>");
 					break;
 				case -1:
-					modello.addElement("Luce n: "+luce.getId()+" - Stato: spenta");
+					modello.addElement("<html>Luce n: "+luce.getId()+" - Stato: <font color=red>spenta</font></html>");
 					break;
 				}
 			}
