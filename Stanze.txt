@@ -26,7 +26,7 @@ PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
 ConsumoLuce: 5.0
 },
-Sensore: 1
+Sensore: -1
 };
 {
 Nome: Bagno ,
@@ -34,8 +34,8 @@ CodiceStanza: 1 ,
 Lista Dispositivi: 
 {
 Tipo: Tv ,
-CodiceDispositivo: 0 ,
-IdDispositivo: 0 ,
+CodiceDispositivo: 1 ,
+IdDispositivo: 1 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
@@ -43,7 +43,7 @@ ConsumoDispositivo: 120.0
 },
 Lista Luci: 
 {
-CodiceLuce: -1 ,
+CodiceLuce: 1 ,
 IdLuce: 1 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
@@ -55,6 +55,100 @@ IdLuce: 2 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
 ConsumoLuce: 5.0
+},
+Sensore: -1
+};
+{
+Nome: Camera ,
+CodiceStanza: 2 ,
+Lista Dispositivi: 
+{
+Tipo: Televisore ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 2 ,
+PuòEssereAcceso: true ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 123.0
+},
+{
+Tipo: Decoder ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 5 ,
+PuòEssereAcceso: true ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 165.0
+},
+Lista Luci: 
+{
+CodiceLuce: -1 ,
+IdLuce: 0 ,
+PuòEssereAccesa: true ,
+PuòEssereSpenta: true ,
+ConsumoLuce: 200.0
+},
+Sensore: -1
+};
+{
+Nome: Garage ,
+CodiceStanza: 3 ,
+Lista Dispositivi: 
+{
+Tipo: Televione ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 3 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 152.0
+},
+{
+Tipo: Lavatrice ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 1 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 2500.0
+},
+Lista Luci: 
+{
+CodiceLuce: -1 ,
+IdLuce: 0 ,
+PuòEssereAccesa: true ,
+PuòEssereSpenta: true ,
+ConsumoLuce: 200.0
+},
+Sensore: -1
+};
+{
+Nome: Salotto ,
+CodiceStanza: 4 ,
+Lista Dispositivi: 
+{
+Tipo: Televisone ,
+CodiceDispositivo: 0 ,
+IdDispositivo: 10 ,
+PuòEssereAcceso: false ,
+PuòEssereSpento: false ,
+PuòEssereMessoInStandby: false ,
+ConsumoDispositivo: 233.0
+},
+Lista Luci: 
+{
+CodiceLuce: -1 ,
+IdLuce: 0 ,
+PuòEssereAccesa: true ,
+PuòEssereSpenta: true ,
+ConsumoLuce: 200.0
+},
+{
+CodiceLuce: -1 ,
+IdLuce: 1 ,
+PuòEssereAccesa: true ,
+PuòEssereSpenta: true ,
+ConsumoLuce: 200.0
 },
 Sensore: -1
 };

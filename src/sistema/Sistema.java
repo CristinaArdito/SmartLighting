@@ -1,8 +1,12 @@
 package sistema;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.List;
 
-public class Sistema implements Runnable{
+import javax.swing.Timer;
+
+public class Sistema extends Thread{
 	
 	/*
 	 * Lista delle stanze monitorate dal sistema
@@ -95,39 +99,46 @@ public class Sistema implements Runnable{
 	 * stanze
 	 */
 	public void Control() {
-		Thread t = new Thread();	// Creo un nuovo thread 
-		t.setDaemon(true);			// Lo imposto come demone 
-		t.start();		// Avvio il thread 
+		System.out.println("Creazione Thread");
+		this.setDaemon(true);			// Lo imposto come demone 
+		this.start();		// Avvio il thread 
 	}
 	
 	public void run() {
+		
+		System.out.println("Esecuzione thread");
 		// Verifica se il thread è un demone
-		if(Thread.currentThread().isDaemon()){ 
+		if(Thread.currentThread().isDaemon()){
+			System.out.println("Il thread è un demone");
 			// Creo un iteratore delle stanze
-			Iterator<Stanza> i = stanze.iterator();
-			Stanza st;		// Creo un stanza d'appoggio
-			int j = 0;		// Indice 
-			while(true) {
-				while(i.hasNext()) {
-					st = i.next();
-					/*
-					 * Se il sensore di ogni stanza ha codice 1,
-					 * significa che vi è almeno una persona dentro la stanza quindi
-					 * avvio i dispositivi e le luci presenti nella stanza
-					 */
-					if(st.getSensore().getCodice() == 1) {
-						j++;
-						System.out.println("l'omino è qui");
-						// Avvio i dispositivi
-						deviceOn(j);
-						//Avvio le luci
-						lightOn(j);
+			
+			Timer t = new Timer(1500, new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Iterator<Stanza> i = stanze.iterator();
+					Stanza st;		// Creo un stanza d'appoggio
+					int j = 0;		// Indice 
+					while(i.hasNext()) {
+						st = i.next();
+						/*
+						 * Se il sensore di ogni stanza ha codice 1,
+						 * significa che vi è almeno una persona dentro la stanza quindi
+						 * avvio i dispositivi e le luci presenti nella stanza
+						 */
+						if(st.getSensore().getCodice() == 1) {
+							j++;
+							System.out.println("Omino");
+							// Avvio i dispositivi
+							deviceOn(j);
+							//Avvio le luci
+							lightOn(j);
+						}
 					}
+					// Inizializzo l'iteratore
+					i = stanze.iterator();
+					j = 0;
 				}
-				// Inizializzo l'iteratore
-				i = stanze.iterator();
-				j = 0;
-			}
+			});
+			t.start();
 		}
 	}
 	
