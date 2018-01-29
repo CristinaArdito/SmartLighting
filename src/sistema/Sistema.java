@@ -207,29 +207,6 @@ public class Sistema extends Thread{
 	}
 	
 	/**
-	 * Mette in standby i dispositivi presenti nella stanza
-	 * @param i		indice della stanza
-	 */
-	public void deviceStandBy(int i) {
-		// Ottengo la stanza
-		Stanza st = stanze.get(i);
-		// Creo un dispositivo d'appoggio
-		Dispositivo d;
-		// Ottengo la lista dei dispositivi presenti nella stanza
-		List<Dispositivo> dispositivi = st.getDispositivi();
-		// Creo un iteratore dei dispositivi
-		Iterator<Dispositivo> j = dispositivi.iterator();
-		while(j.hasNext()) {
-			d = j.next();
-			/*
-			 * Verifico se il dispositivo può essere messo in standby ed, in tal caso,
-			 * lo metto in standby
-			 */
-			if(d.puòEssereMessoInStandby() == true) d.setCodice(0);
-		}
-	}
-	
-	/**
 	 * Accende le luci nella stanza
 	 * @param i		indice di stanza
 	 */
