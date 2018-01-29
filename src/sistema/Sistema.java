@@ -34,6 +34,8 @@ public class Sistema extends Thread{
 	 */
 	private double consumoGiornaliero;
 	
+	private boolean[] eraNellaStanza;
+	
 	/**
 	 * Inizializza il sistema con la lista delle stanze presenti nell'appartamento
 	 * e la configurazione scelta dal cliente
@@ -43,6 +45,10 @@ public class Sistema extends Thread{
 	public Sistema(List<Stanza> stanze, Configurazione config) {
 		setStanze(stanze);
 		setConfigurazione(config);
+		eraNellaStanza = new boolean[stanze.size()];
+		for(int i=0; i<stanze.size();i++) {
+			eraNellaStanza[i] = false;
+		}
 	}
 
 	/**
@@ -125,12 +131,23 @@ public class Sistema extends Thread{
 						 * avvio i dispositivi e le luci presenti nella stanza
 						 */
 						if(st.getSensore().getCodice() == 1) {
+							
+							if(eraNellaStanza[j] == false) {
+								System.out.println("Omino");
+								// Avvio i dispositivi
+								deviceOn(j);
+								//Avvio le luci
+								lightOn(j);
+								eraNellaStanza[j] = true;
+							}
 							j++;
-							System.out.println("Omino");
-							// Avvio i dispositivi
-							deviceOn(j);
-							//Avvio le luci
-							lightOn(j);
+						}else { 
+							if(eraNellaStanza[j] == true) {
+								deviceOff(j);
+								lightOff(j);
+								eraNellaStanza[j] = false;
+							}
+						j++;
 						}
 					}
 					// Inizializzo l'iteratore
@@ -185,6 +202,7 @@ public class Sistema extends Thread{
 			 * lo spengo
 			 */
 			if(d.puòEssereSpento() == true) d.setCodice(-1);
+			else if(d.puòEssereMessoInStandby() == true) d.setCodice(0);
 		}
 	}
 	
