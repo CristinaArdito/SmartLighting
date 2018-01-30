@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URI;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -59,7 +60,9 @@ public class RisparmioEnergetico {
 		    FileOutputStream output = new FileOutputStream(file);
 		    PrintStream write = new PrintStream(output); 
 		    write.println("{");
-		    write.println("Data: " + this.data + " ,");
+		    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			String data = df.format(this.data);
+		    write.println("Data: " + data + " ,");
 		    write.println("Risparmio: " + this.risparmio + " ,");
 		    write.println("Lista dispositivi : ");
 		    write.println("{");
@@ -85,7 +88,6 @@ public class RisparmioEnergetico {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	public RisparmioEnergetico readRisparmioEnergetico(File file) throws ParseException {
 		// Restituisce un URI assoluto con uno schema uguale al file 
     	URI uri = file.toURI();	
@@ -120,8 +122,8 @@ public class RisparmioEnergetico {
         for(String line : lines) {
         	String[] words = line.split("\\s+");
         	if(line.contains("Data") == true) {
-        		data = words[1] + " " + words[2] + " " + words[3] + " " + words[4] + " " + words[5] + " " + words[6];
-                SimpleDateFormat parser = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        		data = words[1];
+                SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy");
                 data1 = parser.parse(data);
         	}
         	if(line.contains("Risparmio") == true) {

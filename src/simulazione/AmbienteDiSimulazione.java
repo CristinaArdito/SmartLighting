@@ -2,12 +2,16 @@ package simulazione;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import attori.Cliente;
 import interfacciaGrafica.Interfaccia;
@@ -89,9 +93,13 @@ public class AmbienteDiSimulazione {
 		File file = new File("RisparmioEnergetico.txt");
 		Configurazione c = new Configurazione(ottieniDispositivi());
 		RisparmioEnergetico re0 = null;
-        SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
-        String data = "Thu Jan 01 01:00:00 CET 1970";
-		Date d = parser.parse(data);
+		
+		/*
+		 * DEBUG
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        LocalDate localDate = LocalDate.now();
+        String data = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+		Date d = df.parse(data);
 		RisparmioEnergetico re = new RisparmioEnergetico(re0, c, d, 200);
 		re.writeRisparmioEnergetico(file);
 		RisparmioEnergetico prova;
@@ -107,6 +115,6 @@ public class AmbienteDiSimulazione {
 	        System.out.println(disp.getTipo() + disp.getCodice() + disp.getId() + disp.puòEssereAcceso() + disp.puòEssereSpento() + disp.puòEssereMessoInStandby() + disp.getConsumo());
 	      } 
 		
-		
+		*/
 	}
 }

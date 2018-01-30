@@ -118,7 +118,7 @@ CodiceDispositivo: -1 ,
 IdDispositivo: 11 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: false ,
-PuòEssereMessoInStandby: true ,
+PuòEssereMessoInStandby: false ,
 ConsumoDispositivo: 2500.0
 },
 Lista Luci: 
