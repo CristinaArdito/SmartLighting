@@ -86,9 +86,6 @@ public class Interfaccia extends JFrame {
 		      }
 		      System.out.println(s1.getSensore().getCodice()); 
 		    }*/
-		    
-		PannelloControlloSimulazione pannello = new PannelloControlloSimulazione(stanze);
-		pannello.setVisible(true);
 		
 		if(stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
@@ -98,6 +95,9 @@ public class Interfaccia extends JFrame {
 				}
 			}
 		}
+		
+		PannelloControlloSimulazione pannello = new PannelloControlloSimulazione(stanze, config);
+		pannello.setVisible(true);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 750);
@@ -188,8 +188,16 @@ public class Interfaccia extends JFrame {
 				if(stanze.size() == 0) {
 					JOptionPane.showMessageDialog(null, "Configurazione inesistente, modificare la configurazione");
 				}else {
-					Sistema sistema = new Sistema(stanze, config);
-					sistema.Control();
+					String messaggioErrore = "I seguenti dispositivi sono guasti o non funzionano più correttemente: \n";
+					if(Sistema.controlloDispostivi(config).isEmpty() == false) {
+						Sistema sistema = new Sistema(stanze, config);
+						sistema.Control();
+					}else{
+						for (Dispositivo disp : Sistema.controlloDispostivi(config)) {
+							messaggioErrore += "ID: "+disp.getId()+" - Tipo: "+disp.getTipo()+"\n";
+						}
+						JOptionPane.showMessageDialog(null, messaggioErrore);
+					}
 				}
 			}
 		});

@@ -3,6 +3,7 @@ package simulazione;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,25 +18,32 @@ import javax.swing.JSplitPane;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
+import sistema.Configurazione;
 import sistema.Dispositivo;
 import sistema.Luce;
 import sistema.Sensore;
 import sistema.Stanza;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
 
 public class PannelloControlloSimulazione extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel pannelloPrincipale;
+	private JPanel pannelloSinistro;
+	private JList<String> listaSensori = new JList<String>();
+	private DefaultListModel<String> modelloSensori = new DefaultListModel<String>();
 	private List<EspositoreStanze> espositoreStanze = new ArrayList<EspositoreStanze>();
+	private List<Boolean> listaSensoriAttivi = new ArrayList<Boolean>();
 	
-	public PannelloControlloSimulazione(List<Stanza> stanze) {
+	public PannelloControlloSimulazione(List<Stanza> stanze, Configurazione config) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 100, 1024, 720);
 		pannelloPrincipale = new JPanel();
 		pannelloPrincipale.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pannelloPrincipale);
 		pannelloPrincipale.setLayout(null);
-		JPanel pannelloSinistro = new JPanel();
+		pannelloSinistro = new JPanel();
 		pannelloSinistro.setBounds(0, 0, 250, 682);
 		
 		
@@ -45,6 +53,56 @@ public class PannelloControlloSimulazione extends JFrame {
 		splitPane.setDividerLocation(250);
 		splitPane.setLeftComponent(pannelloSinistro);
 		pannelloSinistro.setLayout(null);
+		
+		JButton btnInterruzioneCorrente = new JButton("Interruzione Corrente");
+		btnInterruzioneCorrente.setBounds(10, 11, 230, 32);
+		pannelloSinistro.add(btnInterruzioneCorrente);
+		
+		JButton btnSensoriGuasti = new JButton("Sensori guasti");
+		listaSensori.setBounds(10, 94, 230, 500);
+		listaSensori.setVisible(false);
+		pannelloSinistro.add(listaSensori);
+		btnSensoriGuasti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				modelloSensori.clear();
+				
+				for (Stanza stanza : stanze) {
+					for (Dispositivo dispositivo : stanza.getDispositivi()) {
+						modelloSensori.addElement("<html><div style='color:green'>"+dispositivo.getId()+" - "+dispositivo.getTipo()+" - ID: "+dispositivo.getId()+"</div></html>");
+						listaSensoriAttivi.add(new Boolean(true));
+					}
+				}
+
+				
+				listaSensori.setModel(modelloSensori);
+				listaSensori.setVisible(true);
+			}
+		});
+		listaSensori.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2) {
+					if(listaSensoriAttivi.get(listaSensori.getSelectedIndex()) == true) {
+						listaSensoriAttivi.set(listaSensori.getSelectedIndex(), new Boolean(false));
+						config.getDispositivi().get(listaSensori.getSelectedIndex()).setGuasto(false);
+						modelloSensori.setElementAt("<html><div style='color:red'>"+config.getDispositivi().get(listaSensori.getSelectedIndex()).getId()
+								+" - "+config.getDispositivi().get(listaSensori.getSelectedIndex()).getTipo()+" - ID: "
+								+config.getDispositivi().get(listaSensori.getSelectedIndex()).getId()+"</div></html>", listaSensori.getSelectedIndex());
+					}else {
+						listaSensoriAttivi.set(listaSensori.getSelectedIndex(), new Boolean(true));
+						config.getDispositivi().get(listaSensori.getSelectedIndex()).setGuasto(true);
+						modelloSensori.setElementAt("<html><div style='color:green'>"+config.getDispositivi().get(listaSensori.getSelectedIndex()).getId()
+								+" - "+config.getDispositivi().get(listaSensori.getSelectedIndex()).getTipo()+" - ID: "
+								+config.getDispositivi().get(listaSensori.getSelectedIndex()).getId()+"</div></html>", listaSensori.getSelectedIndex());
+					}	
+				listaSensori.setModel(modelloSensori);
+				}
+			}
+		});
+		
+		btnSensoriGuasti.setBounds(10, 54, 230, 32);
+		pannelloSinistro.add(btnSensoriGuasti);
 		pannelloPrincipale.add(splitPane);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -242,4 +300,5 @@ public class PannelloControlloSimulazione extends JFrame {
 			return stanza;
 		}
 	}
+
 }

@@ -1,6 +1,7 @@
 package sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -304,5 +305,18 @@ public class Sistema extends Thread{
 	 */
 	public double getConsumoGiornaliero() {
 		return this.consumoGiornaliero;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static List<Dispositivo> controlloDispostivi(Configurazione config){
+		
+		List<Dispositivo> listaDispositiviGuasti = new ArrayList<Dispositivo>();
+		for (Dispositivo disp : config.getDispositivi()) {
+			if(disp.isGuasto() == true) listaDispositiviGuasti.add(disp);
+		}
+		return listaDispositiviGuasti;
 	}
 }

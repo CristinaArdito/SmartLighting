@@ -27,6 +27,11 @@ public class Dispositivo {
 	 */
 	private double consumo;
 	
+	/*
+	 * Indica se il componente è guasto
+	 */
+	private boolean guasto;
+	
 	/**
 	 * Costruttore dispositivo
 	 * @param tipo			tipo del dispositivo
@@ -43,6 +48,7 @@ public class Dispositivo {
 		this.puòEssereAcceso = puòEssereAcceso;
 		this.puòEssereMessoInStandby = puòEssereMessoInStandby;
 		this.puòEssereSpento = puòEssereSpento;
+		this.guasto = false;
 	}
 	
 	/**
@@ -164,6 +170,22 @@ public class Dispositivo {
 		}else {
 			return false;
 		}
+	}
+	
+	/**
+	 * Imposta il valore dell'attributo "guasto"
+	 * @param valore - valore che indica se il dispositivo è guasto
+	 */
+	public void setGuasto(boolean valore) {
+		this.guasto = valore;
+	}
+	
+	/**
+	 * Restituisce il valore di "guasto"
+	 * @return boolean
+	 */
+	public boolean isGuasto() {
+		return guasto;
 	}
 	
 	public String toString() {

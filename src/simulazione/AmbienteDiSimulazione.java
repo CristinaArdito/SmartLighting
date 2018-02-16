@@ -2,17 +2,9 @@ package simulazione;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
-
 import attori.Cliente;
 import interfacciaGrafica.Interfaccia;
 import sistema.Configurazione;
