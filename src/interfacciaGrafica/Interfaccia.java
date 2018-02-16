@@ -37,6 +37,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
 import java.awt.Color;
 import javax.swing.JScrollPane;
 
@@ -46,6 +48,7 @@ public class Interfaccia extends JFrame {
 	private JPanel contentPane;
 	private List<Stanza> stanze;
 	private Configurazione config = new Configurazione();
+	private List<Dispositivo> dispositiviGuasti;
 	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
 	private ModificaConfigurazione nuovaConfigurazione;
 	private JList<String> listaStanze;
@@ -189,14 +192,31 @@ public class Interfaccia extends JFrame {
 					JOptionPane.showMessageDialog(null, "Configurazione inesistente, modificare la configurazione");
 				}else {
 					String messaggioErrore = "I seguenti dispositivi sono guasti o non funzionano più correttemente: \n";
-					if(Sistema.controlloDispostivi(config).isEmpty() == false) {
+					dispositiviGuasti = Sistema.controlloDispostivi(config);
+					if(dispositiviGuasti.isEmpty() == true) {
+						btnAvvia.setEnabled(false);
 						Sistema sistema = new Sistema(stanze, config);
 						sistema.Control();
+						Timer t = new Timer(1500, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								String messaggioErrore = "";
+								if(sistema.isOperativo() == false) {
+									dispositiviGuasti = Sistema.controlloDispostivi(config);
+									for (Dispositivo disp : dispositiviGuasti) {
+										messaggioErrore += "ID: "+disp.getId()+" - Tipo: "+disp.getTipo()+"\n";
+									}
+									JOptionPane.showMessageDialog(null, "I seguenti dispositivi sono guasti o non funzionano più correttemente: \n"+messaggioErrore);
+									btnAvvia.setEnabled(false);
+									System.exit(0);
+								}
+							}});
+						t.start();
 					}else{
-						for (Dispositivo disp : Sistema.controlloDispostivi(config)) {
+						for (Dispositivo disp : dispositiviGuasti) {
 							messaggioErrore += "ID: "+disp.getId()+" - Tipo: "+disp.getTipo()+"\n";
 						}
 						JOptionPane.showMessageDialog(null, messaggioErrore);
+						btnAvvia.setEnabled(false);
 					}
 				}
 			}

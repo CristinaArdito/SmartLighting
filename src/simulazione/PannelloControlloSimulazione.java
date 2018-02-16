@@ -85,13 +85,13 @@ public class PannelloControlloSimulazione extends JFrame {
 				if(e.getClickCount() == 2) {
 					if(listaSensoriAttivi.get(listaSensori.getSelectedIndex()) == true) {
 						listaSensoriAttivi.set(listaSensori.getSelectedIndex(), new Boolean(false));
-						config.getDispositivi().get(listaSensori.getSelectedIndex()).setGuasto(false);
+						config.getDispositivi().get(listaSensori.getSelectedIndex()).setGuasto(true);
 						modelloSensori.setElementAt("<html><div style='color:red'>"+config.getDispositivi().get(listaSensori.getSelectedIndex()).getId()
 								+" - "+config.getDispositivi().get(listaSensori.getSelectedIndex()).getTipo()+" - ID: "
 								+config.getDispositivi().get(listaSensori.getSelectedIndex()).getId()+"</div></html>", listaSensori.getSelectedIndex());
 					}else {
 						listaSensoriAttivi.set(listaSensori.getSelectedIndex(), new Boolean(true));
-						config.getDispositivi().get(listaSensori.getSelectedIndex()).setGuasto(true);
+						config.getDispositivi().get(listaSensori.getSelectedIndex()).setGuasto(false);
 						modelloSensori.setElementAt("<html><div style='color:green'>"+config.getDispositivi().get(listaSensori.getSelectedIndex()).getId()
 								+" - "+config.getDispositivi().get(listaSensori.getSelectedIndex()).getTipo()+" - ID: "
 								+config.getDispositivi().get(listaSensori.getSelectedIndex()).getId()+"</div></html>", listaSensori.getSelectedIndex());
@@ -209,6 +209,9 @@ public class PannelloControlloSimulazione extends JFrame {
 				case 1:
 					temp += " - Stato: <font color=green>acceso</font>";
 					break;
+				case 2:
+					temp += " - Stato: <font color=blue>guasto</font>";
+					break;
 				}
 				temp += "</html>";
 				modello.addElement(temp);
@@ -262,6 +265,9 @@ public class PannelloControlloSimulazione extends JFrame {
 					break;
 				case 1:
 					temp += " - Stato: <font color=green>acceso</font>";
+					break;
+				case 2:
+					temp += " - Stato: <font color=blue>guasto</font>";
 					break;
 				}
 				temp += "</html>";

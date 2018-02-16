@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class Sistema extends Thread{
@@ -37,6 +38,8 @@ public class Sistema extends Thread{
 	
 	private boolean[] eraNellaStanza;
 	
+	private boolean operativo;
+	
 	/**
 	 * Inizializza il sistema con la lista delle stanze presenti nell'appartamento
 	 * e la configurazione scelta dal cliente
@@ -50,6 +53,11 @@ public class Sistema extends Thread{
 		for(int i=0; i<stanze.size();i++) {
 			eraNellaStanza[i] = false;
 		}
+		operativo = true;
+	}
+	
+	public boolean isOperativo() {
+		return operativo;
 	}
 
 	/**
@@ -172,6 +180,10 @@ public class Sistema extends Thread{
 		Iterator<Dispositivo> j = dispositivi.iterator();
 		while(j.hasNext()) {
 			d = j.next();
+			if(d.isGuasto() == true) {
+				operativo = false;
+				this.interrupt();
+			}
 			/* 
 			 * Verifico se il dispositivo può essere acceso ed, in tal caso,
 			 * lo accendo
@@ -195,6 +207,10 @@ public class Sistema extends Thread{
 		Iterator<Dispositivo> j = dispositivi.iterator();
 		while(j.hasNext()) {
 			d = j.next();
+			if(d.isGuasto() == true) {
+				operativo = false;
+				this.interrupt();
+			}
 			/*
 			 * Verifico se il dispositivo può essere spento ed, in tal caso,
 			 * lo spengo
