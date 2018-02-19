@@ -51,6 +51,8 @@ public class Interfaccia extends JFrame {
 	private ModificaConfigurazione nuovaConfigurazione;
 	private JList<String> listaStanze;
 	private DefaultListModel<String> modello = new DefaultListModel<String>();
+	private JButton btnBack;
+	private JButton btnRisparmioEnergetico;
 
 	public Interfaccia(List<Integer> listaIdDispositivi) throws IOException {
 
@@ -157,7 +159,28 @@ public class Interfaccia extends JFrame {
 			}
 		}
 
-		JButton btnRisparmioEnergetico = new JButton("Risparmio Energetico");
+		btnRisparmioEnergetico = new JButton("Risparmio Energetico");
+		btnRisparmioEnergetico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String value = listaStanze.getSelectedValue();
+				modello.clear();
+				for (Stanza stanza : stanze) {
+					if (stanza.getNome() == value) {
+						for (Dispositivo disp : stanza.getDispositivi()) {
+							if (disp.getCodice() == 1) {
+								modello.addElement("Tipo: " + disp.getTipo() + " - Tempo attivo (minuti): Ancora attivo"+ " - Consumo attuale: " + disp.getConsumoParziale());
+							} else {
+								modello.addElement("Tipo: " + disp.getTipo() + " - Tempo attivo (minuti): "
+										+ disp.getTempoAttivo() + " - Consumo attuale: " + disp.getConsumoParziale());
+							}
+						}
+					}
+				}
+				listaStanze.setModel(modello);
+				btnRisparmioEnergetico.setEnabled(false);
+				btnBack.setVisible(true);
+			}
+		});
 		btnRisparmioEnergetico.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnRisparmioEnergetico.setBounds(111, 388, 236, 48);
 		panelloDati.add(btnRisparmioEnergetico);
@@ -168,8 +191,25 @@ public class Interfaccia extends JFrame {
 
 		listaStanze = new JList<String>();
 		scrollPane.setViewportView(listaStanze);
-		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		listaStanze.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		listaStanze.setModel(modello);
+
+		btnBack = new JButton("Ok");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modello.clear();
+				for (Stanza stanza : stanze) {
+					modello.addElement(stanza.getNome());
+				}
+				listaStanze.setModel(modello);
+				btnRisparmioEnergetico.setEnabled(true);
+				btnBack.setVisible(false);
+			}
+		});
+		btnBack.setBounds(350, 388, 63, 48);
+		btnBack.setVisible(false);
+		panelloDati.add(btnBack);
 
 		JButton btnAvvia = new JButton("Avvia");
 		btnAvvia.setFont(new Font("Tahoma", Font.PLAIN, 18));

@@ -1,32 +1,41 @@
 package sistema;
 
+import simulazione.AmbienteDiSimulazione;
+
 public class Luce {
 	/*
 	 * Id della luce
 	 */
 	private int id;
-	
+
 	/*
-	 * Codice: accessa: 1,  spenta: -1
+	 * Codice: accessa: 1, spenta: -1
 	 */
 	private int codice;
-	
+
 	/*
 	 * Consumo in watt
 	 */
 	private double consumo;
-	
+
 	/*
-	 * Flag per verificare in base alla configurazione se la luce
-	 * può essere accesa/spenta/messa in standby dal sistema
+	 * Flag per verificare in base alla configurazione se la luce può essere
+	 * accesa/spenta/messa in standby dal sistema
 	 */
 	private boolean puòEssereAccesa, puòEssereSpenta;
-	
+
+	private int tempoAcceso;
+	private int oraAccensione;
+
 	/**
 	 * Costruttore della luce
-	 * @param id			id
-	 * @param codice		codice
-	 * @param consumo		consumo orario
+	 * 
+	 * @param id
+	 *            id
+	 * @param codice
+	 *            codice
+	 * @param consumo
+	 *            consumo orario
 	 */
 	public Luce(int id, int codice, double consumo, boolean puòEssereAccesa, boolean puòEssereSpenta) {
 		super();
@@ -35,51 +44,65 @@ public class Luce {
 		this.consumo = consumo;
 		this.puòEssereAccesa = puòEssereAccesa;
 		this.puòEssereSpenta = puòEssereSpenta;
+		this.tempoAcceso = 0;
+		this.oraAccensione = 0;
 	}
-	
+
 	/**
 	 * Ritorna l'id della luce
-	 * @return	id
+	 * 
+	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
-	
+
 	/**
 	 * Inserisce l'id della luce
+	 * 
 	 * @param id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * Ritorna il codice della luce
-	 * @return	codice
+	 * 
+	 * @return codice
 	 */
 	public int getCodice() {
 		return codice;
 	}
-	
+
 	/**
 	 * Inserisce il codice della luce
+	 * 
 	 * @param codice
 	 */
 	public void setCodice(int codice) {
-		if((codice == -1) || (codice == 1))
-		this.codice = codice;
+		if ((codice == -1) || (codice == 1)) {
+			if (this.codice == 1) {
+				this.tempoAcceso = this.tempoAcceso + (AmbienteDiSimulazione.getOra() - oraAccensione);
+			} else {
+				oraAccensione = AmbienteDiSimulazione.getOra();
+			}
+			this.codice = codice;
+		}
 	}
-	
+
 	/**
 	 * Ritorna il consumo orario della luce
-	 * @return	consumo
+	 * 
+	 * @return consumo
 	 */
 	public double getConsumo() {
-		return consumo;
+		return (consumo/60)*tempoAcceso;
 	}
 
 	/**
 	 * Inserisce il consumo orario della luce
+	 * 
 	 * @param consumo
 	 */
 	public void setConsumo(double consumo) {
@@ -88,19 +111,20 @@ public class Luce {
 
 	/**
 	 * Verifica se la luce può essere accesa in base alla configurazione
-	 * @return	boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean puòEssereAccesa() {
 		return puòEssereAccesa;
 	}
-	
+
 	/**
 	 * Verifica se la luce può essere spenta in base alla configurazione
-	 * @return	boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean puòEssereSpenta() {
 		return puòEssereSpenta;
 	}
-	
-	
+
 }

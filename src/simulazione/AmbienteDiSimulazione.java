@@ -1,9 +1,13 @@
 package simulazione;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.Timer;
 
 import attori.Cliente;
 import interfacciaGrafica.Interfaccia;
@@ -16,7 +20,7 @@ public class AmbienteDiSimulazione {
 
 	private List<Integer> listaIdDispositivi = new ArrayList<Integer>();
 	private static int NUMERO_MASSIMO_DISPOSITIVI = 40;
-	private static int ora = 0; //Ora logica della simulazione
+	private static int ora = 0; // Ora logica della simulazione
 
 	public AmbienteDiSimulazione() {
 		populateListaIdDispositivi();
@@ -25,15 +29,15 @@ public class AmbienteDiSimulazione {
 	public List<Integer> getListaIdDispositivi() {
 		return listaIdDispositivi;
 	}
-	
+
 	public static int getOra() {
 		return ora;
 	}
-	
+
 	public static void setOra(int ora) {
-		if(ora>24) {
+		if (ora > 1440) {
 			AmbienteDiSimulazione.ora = 0;
-		}else {
+		} else {
 			AmbienteDiSimulazione.ora = ora;
 		}
 	}
@@ -88,10 +92,24 @@ public class AmbienteDiSimulazione {
 
 	}
 
+	public void Tempo() {
+
+		Timer t = new Timer(10000, new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				AmbienteDiSimulazione.setOra(getOra() + 10);
+				System.out.println(AmbienteDiSimulazione.getOra());
+			}
+		});
+
+		t.start();
+	}
+
 	public static void main(String args[]) throws IOException, ParseException {
 		AmbienteDiSimulazione ambiente = new AmbienteDiSimulazione();
 		Interfaccia frame = new Interfaccia(ambiente.getListaIdDispositivi());
 		frame.setVisible(true);
+		ambiente.Tempo();
 
 		/*
 		 * File file = new File("RisparmioEnergetico.txt"); Configurazione c = new

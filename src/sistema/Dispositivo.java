@@ -109,7 +109,11 @@ public class Dispositivo {
 	 * @return	consumo
 	 */
 	public double getConsumo() {
-		return consumo*tempoAcceso;
+		return (consumo/60)*tempoAcceso;
+	}
+	
+	public double getConsumoParziale() {
+		return (consumo/60)*(tempoAcceso+(AmbienteDiSimulazione.getOra()-oraAccensione));
 	}
 
 	/**
@@ -197,6 +201,10 @@ public class Dispositivo {
 	 */
 	public boolean isGuasto() {
 		return guasto;
+	}
+	
+	public int getTempoAttivo() {
+		return tempoAcceso;
 	}
 	
 	public String toString() {

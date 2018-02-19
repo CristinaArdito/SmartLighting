@@ -315,7 +315,7 @@ public class Sistema extends Thread {
 			}
 		}
 	}
-
+	
 	/**
 	 * Ritorna il consumo totale
 	 * 

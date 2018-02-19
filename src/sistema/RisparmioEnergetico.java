@@ -17,15 +17,13 @@ public class RisparmioEnergetico {
 	private RisparmioEnergetico statoPrecedente;
 	private Configurazione configurazione;
 	private Date data;
-	private int risparmio;
+	private double risparmio;
 
-	public RisparmioEnergetico(RisparmioEnergetico statoPrecedente, Configurazione configurazione, Date data,
-			int risparmio) {
+	public RisparmioEnergetico(RisparmioEnergetico statoPrecedente, Configurazione configurazione, Date data) {
 		super();
 		this.statoPrecedente = statoPrecedente;
 		this.configurazione = configurazione;
 		this.data = data;
-		this.risparmio = risparmio;
 	}
 
 	public RisparmioEnergetico getStatoPrecedente() {
@@ -52,11 +50,11 @@ public class RisparmioEnergetico {
 		this.data = data;
 	}
 
-	public int getRisparmio() {
+	public double getRisparmio() {
 		return risparmio;
 	}
 
-	public void setRisparmio(int risparmio) {
+	public void setRisparmio(double risparmio) {
 		this.risparmio = risparmio;
 	}
 
@@ -106,7 +104,6 @@ public class RisparmioEnergetico {
 		String data = new String();
 		Date data1 = new Date();
 		int codice = 0;
-		int risparmio = 0;
 		String tipo = new String();
 		int id = 0;
 		boolean on = false;
@@ -131,7 +128,6 @@ public class RisparmioEnergetico {
 				data1 = parser.parse(data);
 			}
 			if (line.contains("Risparmio") == true) {
-				risparmio = Integer.parseInt(words[1]);
 			}
 			if (line.contains("Tipo") == true) {
 				tipo = words[1];
@@ -154,10 +150,10 @@ public class RisparmioEnergetico {
 			} else if (line.contains("};") == true) {
 				c = new Configurazione(dispositivi);
 				if (counter == 0) {
-					re = new RisparmioEnergetico(re0, c, data1, risparmio);
+					re = new RisparmioEnergetico(re0, c, data1);
 					re1 = re;
 				} else {
-					re = new RisparmioEnergetico(re1, c, data1, risparmio);
+					re = new RisparmioEnergetico(re1, c, data1);
 					re1 = re;
 				}
 			}
