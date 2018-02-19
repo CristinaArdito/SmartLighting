@@ -264,6 +264,8 @@ public class Interfaccia extends JFrame {
 		JButton btnSpegni = new JButton("Spegni");
 		btnSpegni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				System.exit(0);
 			}
 		});
