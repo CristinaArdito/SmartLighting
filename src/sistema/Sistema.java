@@ -1,68 +1,73 @@
 package sistema;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
+public class Sistema extends Thread {
 
-public class Sistema extends Thread{
-	
 	/*
 	 * Lista delle stanze monitorate dal sistema
 	 */
 	private List<Stanza> stanze;
-	
+
 	/*
 	 * Configurazione corrente impostata dal cliente
 	 */
 	private Configurazione configurazione;
-	
+
 	/*
-	 * Risparmio energetico ottenuto dal cliente mediante l'uso
-	 * del sistema
+	 * Risparmio energetico ottenuto dal cliente mediante l'uso del sistema
 	 */
 	private RisparmioEnergetico risparmio;
-	
+
 	/*
 	 * Consumo totale dei dispositivi e delle luci
 	 */
 	private double consumoTot;
-	
+
 	/*
 	 * Consumo giornaliero effettivo dei dispositivi e delle luci
 	 */
 	private double consumoGiornaliero;
-	
+
 	private boolean[] eraNellaStanza;
-	
+
 	private boolean operativo;
-	
+	private boolean guasto;
+
 	/**
-	 * Inizializza il sistema con la lista delle stanze presenti nell'appartamento
-	 * e la configurazione scelta dal cliente
-	 * @param stanze	lista delle stanze
-	 * @param config	configurazione
+	 * Inizializza il sistema con la lista delle stanze presenti nell'appartamento e
+	 * la configurazione scelta dal cliente
+	 * 
+	 * @param stanze
+	 *            lista delle stanze
+	 * @param config
+	 *            configurazione
 	 */
 	public Sistema(List<Stanza> stanze, Configurazione config) {
 		setStanze(stanze);
 		setConfigurazione(config);
 		eraNellaStanza = new boolean[stanze.size()];
-		for(int i=0; i<stanze.size();i++) {
+		for (int i = 0; i < stanze.size(); i++) {
 			eraNellaStanza[i] = false;
 		}
 		operativo = true;
+		guasto = true;
 	}
-	
+
 	public boolean isOperativo() {
-		return operativo;
+		return guasto;
+	}
+
+	public void stopControllo() {
+		this.operativo = false;
 	}
 
 	/**
 	 * Ritorna le stanze monitorate dal sistema
-	 * @return	stanze
+	 * 
+	 * @return stanze
 	 */
 	public List<Stanza> getStanze() {
 		return stanze;
@@ -70,6 +75,7 @@ public class Sistema extends Thread{
 
 	/**
 	 * Inserisce le stanze che il sistema deve monitorare
+	 * 
 	 * @param stanze
 	 */
 	public void setStanze(List<Stanza> stanze) {
@@ -78,7 +84,8 @@ public class Sistema extends Thread{
 
 	/**
 	 * Ritorna la configurazione corrente
-	 * @return	configurazione
+	 * 
+	 * @return configurazione
 	 */
 	public Configurazione getConfigurazione() {
 		return configurazione;
@@ -86,15 +93,17 @@ public class Sistema extends Thread{
 
 	/**
 	 * Inserisce la configurazione scelta dal cliente
+	 * 
 	 * @param configurazione
 	 */
 	public void setConfigurazione(Configurazione configurazione) {
 		this.configurazione = configurazione;
 	};
-	
+
 	/**
 	 * Ritorna il risparmio energetico ottenuto
-	 * @return	risparmio
+	 * 
+	 * @return risparmio
 	 */
 	public RisparmioEnergetico getRisparmio() {
 		return risparmio;
@@ -102,72 +111,73 @@ public class Sistema extends Thread{
 
 	/**
 	 * Inserisce il risparmio
+	 * 
 	 * @param risparmio
 	 */
 	public void setRisparmio(RisparmioEnergetico risparmio) {
 		this.risparmio = risparmio;
 	}
-	
+
 	/**
-	 * Crea un thread che agisce come demone e controlla continuativamente
-	 * le stanze e l'eventuale presenza delle persone nelle suddette
-	 * stanze
+	 * Crea un thread che agisce come demone e controlla continuativamente le stanze
+	 * e l'eventuale presenza delle persone nelle suddette stanze
 	 */
 	public void Control() {
 		System.out.println("Creazione Thread");
-		this.setDaemon(true);			// Lo imposto come demone 
-		this.start();		// Avvio il thread 
+		this.start(); // Avvio il thread
 	}
-	
+
 	public void run() {
-		
-		// Verifica se il thread è un demone
-		if(Thread.currentThread().isDaemon()){
-			// Creo un iteratore delle stanze
-			
-			Timer t = new Timer(1500, new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Iterator<Stanza> i = stanze.iterator();
-					Stanza st;		// Creo un stanza d'appoggio
-					int j = 0;		// Indice 
-					while(i.hasNext()) {
-						st = i.next();
-						/*
-						 * Se il sensore di ogni stanza ha codice 1,
-						 * significa che vi è almeno una persona dentro la stanza quindi
-						 * avvio i dispositivi e le luci presenti nella stanza
-						 */
-						if(st.getSensore().getCodice() == 1) {
-							
-							if(eraNellaStanza[j] == false) {
-								// Avvio i dispositivi
-								deviceOn(j);
-								//Avvio le luci
-								lightOn(j);
-								eraNellaStanza[j] = true;
-							}
-							j++;
-						}else { 
-							if(eraNellaStanza[j] == true) {
-								deviceOff(j);
-								lightOff(j);
-								eraNellaStanza[j] = false;
-							}
-						j++;
+		System.out.println("Thread Attivo");
+		operativo = true;
+
+			while (operativo) {
+				// Creo un iteratore delle stanze
+				Iterator<Stanza> i = stanze.iterator();
+				Stanza st; // Creo un stanza d'appoggio
+				int j = 0; // Indice
+				while (i.hasNext()) {
+					st = i.next();
+					/*
+					 * Se il sensore di ogni stanza ha codice 1, significa che vi è almeno una
+					 * persona dentro la stanza quindi avvio i dispositivi e le luci presenti nella
+					 * stanza
+					 */
+					if (st.getSensore().getCodice() == 1) {
+
+						if (eraNellaStanza[j] == false) {
+							// Avvio i dispositivi
+							deviceOn(j);
+							// Avvio le luci
+							lightOn(j);
+							eraNellaStanza[j] = true;
 						}
+						j++;
+					} else {
+						if (eraNellaStanza[j] == true) {
+							deviceOff(j);
+							lightOff(j);
+							eraNellaStanza[j] = false;
+						}
+						j++;
 					}
-					// Inizializzo l'iteratore
-					i = stanze.iterator();
-					j = 0;
 				}
-			});
-			t.start();
-		}
+				// Inizializzo l'iteratore
+				i = stanze.iterator();
+				j = 0;
+				try {
+					Sistema.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 	}
-	
+
 	/**
 	 * Accendo i dispositivi presenti nella stanza
-	 * @param i		indice di stanza
+	 * 
+	 * @param i
+	 *            indice di stanza
 	 */
 	public void deviceOn(int i) {
 		// Ottengo la stanza
@@ -178,23 +188,25 @@ public class Sistema extends Thread{
 		List<Dispositivo> dispositivi = st.getDispositivi();
 		// Creo un iteratore dei dispositivi
 		Iterator<Dispositivo> j = dispositivi.iterator();
-		while(j.hasNext()) {
+		while (j.hasNext()) {
 			d = j.next();
-			if(d.isGuasto() == true) {
-				operativo = false;
+			if (d.isGuasto() == true) {
+				guasto = false;
 				this.interrupt();
 			}
-			/* 
-			 * Verifico se il dispositivo può essere acceso ed, in tal caso,
-			 * lo accendo
+			/*
+			 * Verifico se il dispositivo può essere acceso ed, in tal caso, lo accendo
 			 */
-			if(d.puòEssereAcceso() == true) d.setCodice(1);
+			if (d.puòEssereAcceso() == true)
+				d.setCodice(1);
 		}
 	}
-	
+
 	/**
 	 * Spengo i dispositivi presenti nella stanza
-	 * @param i		indice di stanza
+	 * 
+	 * @param i
+	 *            indice di stanza
 	 */
 	public void deviceOff(int i) {
 		// Ottengo la stanza
@@ -205,24 +217,27 @@ public class Sistema extends Thread{
 		List<Dispositivo> dispositivi = st.getDispositivi();
 		// Creo un iteratore dei dispositivi
 		Iterator<Dispositivo> j = dispositivi.iterator();
-		while(j.hasNext()) {
+		while (j.hasNext()) {
 			d = j.next();
-			if(d.isGuasto() == true) {
-				operativo = false;
+			if (d.isGuasto() == true) {
+				guasto = false;
 				this.interrupt();
 			}
 			/*
-			 * Verifico se il dispositivo può essere spento ed, in tal caso,
-			 * lo spengo
+			 * Verifico se il dispositivo può essere spento ed, in tal caso, lo spengo
 			 */
-			if(d.puòEssereSpento() == true) d.setCodice(-1);
-			else if(d.puòEssereMessoInStandby() == true) d.setCodice(0);
+			if (d.puòEssereSpento() == true)
+				d.setCodice(-1);
+			else if (d.puòEssereMessoInStandby() == true)
+				d.setCodice(0);
 		}
 	}
-	
+
 	/**
 	 * Accende le luci nella stanza
-	 * @param i		indice di stanza
+	 * 
+	 * @param i
+	 *            indice di stanza
 	 */
 	public void lightOn(int i) {
 		// Ottengo la stanza
@@ -233,19 +248,21 @@ public class Sistema extends Thread{
 		List<Luce> luci = st.getLuci();
 		// Creo un iteratore delle luci
 		Iterator<Luce> j = luci.iterator();
-		while(j.hasNext()) {
+		while (j.hasNext()) {
 			l = j.next();
 			/*
-			 * Verifico se la luce può essere accesa ed, in tal caso,
-			 * la accendo
+			 * Verifico se la luce può essere accesa ed, in tal caso, la accendo
 			 */
-			if(l.puòEssereAccesa() == true) l.setCodice(1);
+			if (l.puòEssereAccesa() == true)
+				l.setCodice(1);
 		}
 	}
-	
+
 	/**
 	 * Spegne le luci nella stanza
-	 * @param i		indice di stanza
+	 * 
+	 * @param i
+	 *            indice di stanza
 	 */
 	public void lightOff(int i) {
 		// Ottengo la stanza
@@ -256,82 +273,85 @@ public class Sistema extends Thread{
 		List<Luce> luci = st.getLuci();
 		// Creo un iteratore delle luci
 		Iterator<Luce> j = luci.iterator();
-		while(j.hasNext()) {
+		while (j.hasNext()) {
 			l = j.next();
 			/*
-			 * Verifico se la luce può essere spenta ed, in tal caso,
-			 * la spengo
+			 * Verifico se la luce può essere spenta ed, in tal caso, la spengo
 			 */
-			if(l.puòEssereSpenta() == true) l.setCodice(-1);
+			if (l.puòEssereSpenta() == true)
+				l.setCodice(-1);
 		}
 	}
-	
+
 	/**
-	 * Calcola il consumo totale dei dispositivi sommati alle luci
-	 * presenti nella casa
+	 * Calcola il consumo totale dei dispositivi sommati alle luci presenti nella
+	 * casa
 	 */
 	public void setConsumoTot() {
 		// Creo l'iteratore delle stanze
 		Iterator<Stanza> i = stanze.iterator();
-		Stanza st;		// Creo un stanza d'appoggio
-		Dispositivo d;	// Dispositivo di appoggio
+		Stanza st; // Creo un stanza d'appoggio
+		Dispositivo d; // Dispositivo di appoggio
 		Luce l;
-			while(i.hasNext()) {		// Itero le stanze
-				st = i.next();
-				// Creo una lista di dispositivi presenti nella stanza
-				List<Dispositivo> dispositivi = st.getDispositivi();
-				// Creo un iteratore dei dispositivi
-				Iterator<Dispositivo> j = dispositivi.iterator();
-				while(j.hasNext()) {
-					d = j.next();
-					// Sommo il consumo di ogni singolo dispositivo della stanza
-					this.consumoTot += d.getConsumo();
-				}
-				// Creo una lista delle luci presenti nella stanza
-				List<Luce> luci = st.getLuci();
-				// Creo un iteratore
-				Iterator<Luce> z = luci.iterator();
-				while(z.hasNext()) {
-					l = z.next();
-					// Sommo il consumo di ogni singola luce della stanza
-					this.consumoTot +=  l.getConsumo();
-				}
-			}	
-	}	
-	
-	/** 
+		while (i.hasNext()) { // Itero le stanze
+			st = i.next();
+			// Creo una lista di dispositivi presenti nella stanza
+			List<Dispositivo> dispositivi = st.getDispositivi();
+			// Creo un iteratore dei dispositivi
+			Iterator<Dispositivo> j = dispositivi.iterator();
+			while (j.hasNext()) {
+				d = j.next();
+				// Sommo il consumo di ogni singolo dispositivo della stanza
+				this.consumoTot += d.getConsumo();
+			}
+			// Creo una lista delle luci presenti nella stanza
+			List<Luce> luci = st.getLuci();
+			// Creo un iteratore
+			Iterator<Luce> z = luci.iterator();
+			while (z.hasNext()) {
+				l = z.next();
+				// Sommo il consumo di ogni singola luce della stanza
+				this.consumoTot += l.getConsumo();
+			}
+		}
+	}
+
+	/**
 	 * Ritorna il consumo totale
-	 * @return	consumoTot
+	 * 
+	 * @return consumoTot
 	 */
 	public double getConsumoTot() {
 		return consumoTot;
 	}
-	
+
 	/**
-	 * Calcola il consumo giornaliero dei vari dispositivi
-	 * e delle luci tenute accese durante la giornata
+	 * Calcola il consumo giornaliero dei vari dispositivi e delle luci tenute
+	 * accese durante la giornata
 	 */
-	public void setConsumoGiornaliero( ) {
+	public void setConsumoGiornaliero() {
 		
 	}
-	
+
 	/**
 	 * Ritorna il consumo giornaliero
+	 * 
 	 * @return
 	 */
 	public double getConsumoGiornaliero() {
 		return this.consumoGiornaliero;
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 */
-	public static List<Dispositivo> controlloDispostivi(Configurazione config){
-		
+	public static List<Dispositivo> controlloDispostivi(Configurazione config) {
+
 		List<Dispositivo> listaDispositiviGuasti = new ArrayList<Dispositivo>();
 		for (Dispositivo disp : config.getDispositivi()) {
-			if(disp.isGuasto() == true) listaDispositiviGuasti.add(disp);
+			if (disp.isGuasto() == true)
+				listaDispositiviGuasti.add(disp);
 		}
 		return listaDispositiviGuasti;
 	}

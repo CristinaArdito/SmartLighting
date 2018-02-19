@@ -1,5 +1,7 @@
 package sistema;
 
+import simulazione.AmbienteDiSimulazione;
+
 public class Dispositivo {
 	/*
 	 * Tipologia dispositivo
@@ -32,6 +34,9 @@ public class Dispositivo {
 	 */
 	private boolean guasto;
 	
+	private int tempoAcceso;
+	private int oraAccensione;
+	
 	/**
 	 * Costruttore dispositivo
 	 * @param tipo			tipo del dispositivo
@@ -49,6 +54,7 @@ public class Dispositivo {
 		this.puòEssereMessoInStandby = puòEssereMessoInStandby;
 		this.puòEssereSpento = puòEssereSpento;
 		this.guasto = false;
+		this.tempoAcceso = 0;
 	}
 	
 	/**
@@ -89,6 +95,11 @@ public class Dispositivo {
 	 */
 	public void setCodice(int codice) {
 		if((codice >= -1) && (codice <= 1)) {
+			if(this.codice==1) {
+				this.tempoAcceso = this.tempoAcceso+(AmbienteDiSimulazione.getOra()-oraAccensione);
+			}else {
+				oraAccensione = AmbienteDiSimulazione.getOra();
+			}
 			this.codice = (byte) codice;
 		}
 	}
@@ -98,7 +109,7 @@ public class Dispositivo {
 	 * @return	consumo
 	 */
 	public double getConsumo() {
-		return consumo;
+		return consumo*tempoAcceso;
 	}
 
 	/**
