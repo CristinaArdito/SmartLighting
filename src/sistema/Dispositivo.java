@@ -58,6 +58,27 @@ public class Dispositivo {
 	}
 	
 	/**
+	 * Costruttore dispositivo
+	 * @param tipo			tipo del dispositivo
+	 * @param codice		codice del dispositivo
+	 * @param id			id del dispositivo
+	 * @param consumo		consumo medio orario
+	 * @param tempoOn		tempo di utilizzo del dispositivo
+	 */
+	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso, boolean puòEssereSpento, boolean puòEssereMessoInStandby, int tempoOn) {
+		super();
+		this.codice = codice;
+		this.id = id;
+		this.tipo = tipo;
+		this.consumo = consumo;
+		this.puòEssereAcceso = puòEssereAcceso;
+		this.puòEssereMessoInStandby = puòEssereMessoInStandby;
+		this.puòEssereSpento = puòEssereSpento;
+		this.guasto = false;
+		this.tempoAcceso = tempoOn;
+	}
+	
+	/**
 	 * Ritorna l'id del dispositivo
 	 * @return	id
 	 */

@@ -92,12 +92,12 @@ public class ConfiguraDispositivo extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler confermare le modifiche?", "Conferma modifiche",
 				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					if(checkAccendibile.isSelected()) config.ConfiguraDispositivo(idDispositivo, 1, true);
-					else config.ConfiguraDispositivo(idDispositivo, 1, false);
-					if(checkStandBy.isSelected()) config.ConfiguraDispositivo(idDispositivo, 2, true);
-					else config.ConfiguraDispositivo(idDispositivo, 2, false);
-					if(checkSpegnibile.isSelected()) config.ConfiguraDispositivo(idDispositivo, 3, true);
-					else config.ConfiguraDispositivo(idDispositivo, 3, false);
+					if(checkAccendibile.isSelected()) config.configuraDispositivo(idDispositivo, 1, true);
+					else config.configuraDispositivo(idDispositivo, 1, false);
+					if(checkStandBy.isSelected()) config.configuraDispositivo(idDispositivo, 2, true);
+					else config.configuraDispositivo(idDispositivo, 2, false);
+					if(checkSpegnibile.isSelected()) config.configuraDispositivo(idDispositivo, 3, true);
+					else config.configuraDispositivo(idDispositivo, 3, false);
 					dispose();
 				}
 			}

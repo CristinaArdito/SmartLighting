@@ -115,7 +115,7 @@ public class Configurazione {
 	 * @param attributo		attributo
 	 * @return		true/false
 	 */
-	public boolean ConfiguraDispositivo(int id, int stato, boolean attributo) {
+	public boolean configuraDispositivo(int id, int stato, boolean attributo) {
 		for (Dispositivo dispositivo : dispositivi) {
 			 if(dispositivo.getId() == id) {
 				 switch(stato) {

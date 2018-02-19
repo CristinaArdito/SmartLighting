@@ -80,6 +80,7 @@ public class RisparmioEnergetico {
 				write.println("PuòEssereAcceso: " + d.puòEssereAcceso() + " ,");
 				write.println("PuòEssereSpento: " + d.puòEssereSpento() + " ,");
 				write.println("PuòEssereMessoInStandby: " + d.puòEssereMessoInStandby() + " ,");
+				write.println("TempoAcceso: " + d.getTempoAttivo() + " ,");
 				write.println("Consumo: " + d.getConsumo());
 				write.println("},");
 			}
@@ -110,6 +111,7 @@ public class RisparmioEnergetico {
 		boolean off = false;
 		boolean stand = false;
 		double consumo = 0;
+		int tempoOn = 0;
 		int counter = 0;
 		try {
 			/* Leggo tutti i byte del file */
@@ -143,9 +145,11 @@ public class RisparmioEnergetico {
 				off = Boolean.parseBoolean(words[1]);
 			} else if (line.contains("PuòEssereMessoInStandby ") == true) {
 				stand = Boolean.parseBoolean(words[1]);
+			} else if (line.contains("TempoAcceso ") == true) {
+				tempoOn = Integer.parseInt(words[1]);
 			} else if (line.contains("Consumo") == true) {
 				consumo = Double.parseDouble(words[1]);
-				d = new Dispositivo(tipo, codice, id, consumo, on, off, stand);
+				d = new Dispositivo(tipo, codice, id, consumo, on, off, stand, tempoOn);
 				dispositivi.add(d);
 			} else if (line.contains("};") == true) {
 				c = new Configurazione(dispositivi);
