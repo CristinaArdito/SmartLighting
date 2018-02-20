@@ -91,7 +91,7 @@ public class RisparmioEnergetico {
 		}
 	}
 
-	public RisparmioEnergetico readRisparmioEnergetico(File file) throws ParseException {
+	public static RisparmioEnergetico readRisparmioEnergetico(File file) throws ParseException {
 		// Restituisce un URI assoluto con uno schema uguale al file
 		URI uri = file.toURI();
 		// Creo un array di bytes

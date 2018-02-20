@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -36,6 +37,7 @@ import simulazione.PannelloControlloSimulazione;
 import sistema.Configurazione;
 import sistema.Dispositivo;
 import sistema.Luce;
+import sistema.RisparmioEnergetico;
 import sistema.Sensore;
 import sistema.Sistema;
 import sistema.Stanza;
@@ -264,9 +266,12 @@ public class Interfaccia extends JFrame {
 		JButton btnSpegni = new JButton("Spegni");
 		btnSpegni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				System.exit(0);
+				try {
+					Resoconto res = new Resoconto(RisparmioEnergetico.readRisparmioEnergetico(new File("Risparmio.txt")), config);
+					res.setVisible(true);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSpegni.setFont(new Font("Tahoma", Font.PLAIN, 18));
