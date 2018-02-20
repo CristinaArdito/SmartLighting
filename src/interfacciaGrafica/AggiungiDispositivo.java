@@ -120,6 +120,10 @@ public class AggiungiDispositivo extends JDialog {
 		button.addActionListener(listener);
 	}
 	
+	/**
+	 * Ritorna il dispositivo
+	 * @return		dispositivo
+	 */
 	public Dispositivo getDispositivo() {
 		int id;
 		try {

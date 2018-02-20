@@ -31,9 +31,19 @@ public class Sistema extends Thread {
 	 */
 	private double consumoGiornaliero;
 
+	/*
+	 * Verifica la presenza del cliente nella stanza
+	 */
 	private boolean[] eraNellaStanza;
 
+	/*
+	 * Verifica che il sistema sia in funzione
+	 */
 	private boolean operativo;
+	
+	/*
+	 * Verifica se il dispositivo è guasto
+	 */
 	private boolean guasto;
 
 	/**
@@ -46,8 +56,14 @@ public class Sistema extends Thread {
 	 *            configurazione
 	 */
 	public Sistema(List<Stanza> stanze, Configurazione config) {
+		// Imposta le stanze
 		setStanze(stanze);
+		// Imposta la configurazione
 		setConfigurazione(config);
+		/*
+		 * Crea un array della dimensione delle stanze per
+		 * verificare se l'utente è presente nelle stanze
+		 */
 		eraNellaStanza = new boolean[stanze.size()];
 		for (int i = 0; i < stanze.size(); i++) {
 			eraNellaStanza[i] = false;
@@ -56,10 +72,17 @@ public class Sistema extends Thread {
 		guasto = true;
 	}
 
+	/**
+	 * Verifica se vi è un guasto
+	 * @return		boolean
+	 */
 	public boolean isOperativo() {
 		return guasto;
 	}
 
+	/**
+	 * Ferma il sistema
+	 */
 	public void stopControllo() {
 		this.operativo = false;
 	}
@@ -155,7 +178,9 @@ public class Sistema extends Thread {
 						j++;
 					} else {
 						if (eraNellaStanza[j] == true) {
+							// Spengo i dispositivi
 							deviceOff(j);
+							// Spengo le luci
 							lightOff(j);
 							eraNellaStanza[j] = false;
 						}
@@ -343,11 +368,11 @@ public class Sistema extends Thread {
 	}
 
 	/**
-	 * 
+	 * Controlla i dispositivi per individuare guasti
 	 * @return
 	 */
 	public static List<Dispositivo> controlloDispostivi(Configurazione config) {
-
+		// Crea una lista di dispositivi guasti
 		List<Dispositivo> listaDispositiviGuasti = new ArrayList<Dispositivo>();
 		for (Dispositivo disp : config.getDispositivi()) {
 			if (disp.isGuasto() == true)

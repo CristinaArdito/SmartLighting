@@ -14,11 +14,32 @@ import java.util.Iterator;
 import java.util.List;
 
 public class RisparmioEnergetico {
+	/*
+	 * Risparmio energetico precedente
+	 */
 	private RisparmioEnergetico statoPrecedente;
+	
+	/*
+	 * Configurazione corrente
+	 */
 	private Configurazione configurazione;
+	
+	/*
+	 * Data
+	 */
 	private Date data;
+	
+	/* 
+	 * Risparmio
+	 */
 	private double risparmio;
 
+	/**
+	 * Costruttore del risparmio energetico
+	 * @param statoPrecedente		risparmio precedente
+	 * @param configurazione		configurazione corrente
+	 * @param data					data
+	 */
 	public RisparmioEnergetico(RisparmioEnergetico statoPrecedente, Configurazione configurazione, Date data) {
 		super();
 		this.statoPrecedente = statoPrecedente;
@@ -26,50 +47,89 @@ public class RisparmioEnergetico {
 		this.data = data;
 	}
 
+	/**
+	 * Ritorna il risparmio energetico precedente
+	 * @return		statoPrecedente
+	 */
 	public RisparmioEnergetico getStatoPrecedente() {
 		return statoPrecedente;
 	}
 
+	/**
+	 * Imposta lo stato precedente del risparmio
+	 * @param statoPrecedente		risparmio pregresso
+	 */
 	public void setStatoPrecedente(RisparmioEnergetico statoPrecedente) {
 		this.statoPrecedente = statoPrecedente;
 	}
 
+	/**
+	 * Ritorna la configurazione
+	 * @return		configurazione
+	 */
 	public Configurazione getConfigurazione() {
 		return configurazione;
 	}
 
+	/**
+	 * Imposta la configurazione
+	 * @param configurazione		configurazione corrente
+	 */
 	public void setConfigurazione(Configurazione configurazione) {
 		this.configurazione = configurazione;
 	}
 
+	/**
+	 * Ritorna la data
+	 * @return		data
+	 */
 	public Date getData() {
 		return data;
 	}
 
+	/**
+	 * Imposta la data
+	 * @param data
+	 */
 	public void setData(Date data) {
 		this.data = data;
 	}
 
+	/**
+	 * Ritorna il risparmio
+	 * @return		risparmio
+	 */
 	public double getRisparmio() {
 		return risparmio;
 	}
 
+	/**
+	 * Imposta il risparmio
+	 * @param risparmio
+	 */
 	public void setRisparmio(double risparmio) {
 		this.risparmio = risparmio;
 	}
 
+	/**
+	 * Scrive il risparmio su file
+	 * @param file		file di scrittura
+	 */
 	public void writeRisparmioEnergetico(File file) {
 		try {
 			FileOutputStream output = new FileOutputStream(file);
 			PrintStream write = new PrintStream(output);
 			write.println("{");
+			// Creo il formato per la data
 			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 			String data = df.format(this.data);
 			write.println("Data: " + data + " ,");
 			write.println("Risparmio: " + this.risparmio + " ,");
 			write.println("Lista dispositivi : ");
 			write.println("{");
+			// Creo una lista dei dispositivi sulla base della configurazione corrente
 			List<Dispositivo> dispositivi = configurazione.getDispositivi();
+			// Iteratore per i dispositivi
 			Iterator<Dispositivo> i = dispositivi.iterator();
 			Dispositivo d;
 			while (i.hasNext()) {
@@ -91,15 +151,23 @@ public class RisparmioEnergetico {
 		}
 	}
 
+	/**
+	 * Lettura del risparmio memorizzato su file
+	 * @param file		file da leggere
+	 * @return			RisparmioEnergetico
+	 * @throws ParseException
+	 */
 	public static RisparmioEnergetico readRisparmioEnergetico(File file) throws ParseException {
 		// Restituisce un URI assoluto con uno schema uguale al file
 		URI uri = file.toURI();
 		// Creo un array di bytes
 		byte[] bytes = null;
+		// Variabili d'appoggio
 		RisparmioEnergetico re0 = null;
 		RisparmioEnergetico re = null;
 		RisparmioEnergetico re1 = null;
 		Dispositivo d;
+		// Lista dei dispositivi
 		List<Dispositivo> dispositivi = new ArrayList<>();
 		Configurazione c;
 		String data = new String();
@@ -121,7 +189,9 @@ public class RisparmioEnergetico {
 		}
 		/* Trasformo l'array di byte in una stringa */
 		String stanza = new String(bytes);
+		// Separo le linee del file
 		String[] lines = stanza.split(System.getProperty("line.separator"));
+		// Itero le varie linee
 		for (String line : lines) {
 			String[] words = line.split("\\s+");
 			if (line.contains("Data") == true) {
@@ -149,11 +219,15 @@ public class RisparmioEnergetico {
 				tempoOn = Integer.parseInt(words[1]);
 			} else if (line.contains("Consumo") == true) {
 				consumo = Double.parseDouble(words[1]);
+				// Creo un nuovo dispositivo
 				d = new Dispositivo(tipo, codice, id, consumo, on, off, stand, tempoOn);
+				// Lo aggiungo alla lista
 				dispositivi.add(d);
 			} else if (line.contains("};") == true) {
+				// Creo una nuova configurazione
 				c = new Configurazione(dispositivi);
 				if (counter == 0) {
+					// Se è la prima imposto lo stato precedente a null
 					re = new RisparmioEnergetico(re0, c, data1);
 					re1 = re;
 				} else {
@@ -162,6 +236,7 @@ public class RisparmioEnergetico {
 				}
 			}
 		}
+		// Ritorno il risparmio
 		return re;
 	}
 

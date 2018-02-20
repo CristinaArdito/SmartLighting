@@ -34,7 +34,14 @@ public class Dispositivo {
 	 */
 	private boolean guasto;
 	
+	/*
+	 * Contatore del tempo in cui è rimasto acceso il dispositivo
+	 */
 	private int tempoAcceso;
+	
+	/*
+	 * Ora di accensione del dispositivo
+	 */
 	private int oraAccensione;
 	
 	/**
@@ -117,8 +124,10 @@ public class Dispositivo {
 	public void setCodice(int codice) {
 		if((codice >= -1) && (codice <= 1)) {
 			if(this.codice==1) {
+				// Incremento il tempo di accensione del dispositivo
 				this.tempoAcceso = this.tempoAcceso+(AmbienteDiSimulazione.getOra()-oraAccensione);
 			}else {
+				// Ottengo l'ora in cui il dispositivo è stato acceso
 				oraAccensione = AmbienteDiSimulazione.getOra();
 			}
 			this.codice = (byte) codice;
@@ -133,6 +142,10 @@ public class Dispositivo {
 		return (consumo/60)*tempoAcceso;
 	}
 	
+	/**
+	 * Ritorna il consumo parziale
+	 * @return   consumo
+	 */
 	public double getConsumoParziale() {
 		return (consumo/60)*(tempoAcceso+(AmbienteDiSimulazione.getOra()-oraAccensione));
 	}
@@ -224,10 +237,18 @@ public class Dispositivo {
 		return guasto;
 	}
 	
+	/**
+	 * Restituisce il tempo in cui il dispositivo è
+	 * stato attivo
+	 * @return	tempoAcceso
+	 */
 	public int getTempoAttivo() {
 		return tempoAcceso;
 	}
 	
+	/**
+	 * Ridefinizione toString()
+	 */
 	public String toString() {
 		return "Tipo: "+tipo+" - ID: "+id+" - Consumo: "+consumo+" watt";
 	}

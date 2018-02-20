@@ -24,7 +24,14 @@ public class Luce {
 	 */
 	private boolean puòEssereAccesa, puòEssereSpenta;
 
+	/*
+	 * Contatore del tempo in cui la luce è rimasta accesa
+	 */
 	private int tempoAcceso;
+	
+	/*
+	 * Ora di accensione della luce
+	 */
 	private int oraAccensione;
 
 	/**
