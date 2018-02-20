@@ -170,7 +170,8 @@ public class Interfaccia extends JFrame {
 					if (stanza.getNome() == value) {
 						for (Dispositivo disp : stanza.getDispositivi()) {
 							if (disp.getCodice() == 1) {
-								modello.addElement("Tipo: " + disp.getTipo() + " - Tempo attivo (minuti): Ancora attivo"+ " - Consumo attuale: " + disp.getConsumoParziale());
+								modello.addElement("Tipo: " + disp.getTipo() + " - Tempo attivo (minuti): Ancora attivo"
+										+ " - Consumo attuale: " + disp.getConsumoParziale());
 							} else {
 								modello.addElement("Tipo: " + disp.getTipo() + " - Tempo attivo (minuti): "
 										+ disp.getTempoAttivo() + " - Consumo attuale: " + disp.getConsumoParziale());
@@ -267,7 +268,8 @@ public class Interfaccia extends JFrame {
 		btnSpegni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Resoconto res = new Resoconto(RisparmioEnergetico.readRisparmioEnergetico(new File("Risparmio.txt")), config);
+					Resoconto res = new Resoconto(
+							RisparmioEnergetico.readRisparmioEnergetico(new File("Risparmio.txt")), config);
 					res.setVisible(true);
 				} catch (ParseException e1) {
 					e1.printStackTrace();

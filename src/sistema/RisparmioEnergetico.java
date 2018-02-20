@@ -18,27 +18,31 @@ public class RisparmioEnergetico {
 	 * Risparmio energetico precedente
 	 */
 	private RisparmioEnergetico statoPrecedente;
-	
+
 	/*
 	 * Configurazione corrente
 	 */
 	private Configurazione configurazione;
-	
+
 	/*
 	 * Data
 	 */
 	private Date data;
-	
-	/* 
+
+	/*
 	 * Risparmio
 	 */
 	private double risparmio;
 
 	/**
 	 * Costruttore del risparmio energetico
-	 * @param statoPrecedente		risparmio precedente
-	 * @param configurazione		configurazione corrente
-	 * @param data					data
+	 * 
+	 * @param statoPrecedente
+	 *            risparmio precedente
+	 * @param configurazione
+	 *            configurazione corrente
+	 * @param data
+	 *            data
 	 */
 	public RisparmioEnergetico(RisparmioEnergetico statoPrecedente, Configurazione configurazione, Date data) {
 		super();
@@ -49,7 +53,8 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Ritorna il risparmio energetico precedente
-	 * @return		statoPrecedente
+	 * 
+	 * @return statoPrecedente
 	 */
 	public RisparmioEnergetico getStatoPrecedente() {
 		return statoPrecedente;
@@ -57,7 +62,9 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Imposta lo stato precedente del risparmio
-	 * @param statoPrecedente		risparmio pregresso
+	 * 
+	 * @param statoPrecedente
+	 *            risparmio pregresso
 	 */
 	public void setStatoPrecedente(RisparmioEnergetico statoPrecedente) {
 		this.statoPrecedente = statoPrecedente;
@@ -65,7 +72,8 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Ritorna la configurazione
-	 * @return		configurazione
+	 * 
+	 * @return configurazione
 	 */
 	public Configurazione getConfigurazione() {
 		return configurazione;
@@ -73,7 +81,9 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Imposta la configurazione
-	 * @param configurazione		configurazione corrente
+	 * 
+	 * @param configurazione
+	 *            configurazione corrente
 	 */
 	public void setConfigurazione(Configurazione configurazione) {
 		this.configurazione = configurazione;
@@ -81,7 +91,8 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Ritorna la data
-	 * @return		data
+	 * 
+	 * @return data
 	 */
 	public Date getData() {
 		return data;
@@ -89,6 +100,7 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Imposta la data
+	 * 
 	 * @param data
 	 */
 	public void setData(Date data) {
@@ -97,7 +109,8 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Ritorna il risparmio
-	 * @return		risparmio
+	 * 
+	 * @return risparmio
 	 */
 	public double getRisparmio() {
 		return risparmio;
@@ -105,6 +118,7 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Imposta il risparmio
+	 * 
 	 * @param risparmio
 	 */
 	public void setRisparmio(double risparmio) {
@@ -113,7 +127,9 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Scrive il risparmio su file
-	 * @param file		file di scrittura
+	 * 
+	 * @param file
+	 *            file di scrittura
 	 */
 	public void writeRisparmioEnergetico(File file) {
 		try {
@@ -140,8 +156,14 @@ public class RisparmioEnergetico {
 				write.println("PuòEssereAcceso: " + d.puòEssereAcceso() + " ,");
 				write.println("PuòEssereSpento: " + d.puòEssereSpento() + " ,");
 				write.println("PuòEssereMessoInStandby: " + d.puòEssereMessoInStandby() + " ,");
-				write.println("TempoAcceso: " + d.getTempoAttivo() + " ,");
-				write.println("Consumo: " + d.getConsumo());
+				if (d.getCodice() == 1) {
+					write.println("TempoAcceso: " + d.getTempoParziale() + " ,");
+					write.println("Consumo: " + d.getConsumoParziale());
+				} else {
+					write.println("TempoAcceso: " + d.getTempoAttivo() + " ,");
+					write.println("Consumo: " + d.getConsumo());
+				}
+
 				write.println("},");
 			}
 			write.println("};");
@@ -153,8 +175,10 @@ public class RisparmioEnergetico {
 
 	/**
 	 * Lettura del risparmio memorizzato su file
-	 * @param file		file da leggere
-	 * @return			RisparmioEnergetico
+	 * 
+	 * @param file
+	 *            file da leggere
+	 * @return RisparmioEnergetico
 	 * @throws ParseException
 	 */
 	public static RisparmioEnergetico readRisparmioEnergetico(File file) throws ParseException {
@@ -185,7 +209,7 @@ public class RisparmioEnergetico {
 			/* Leggo tutti i byte del file */
 			bytes = java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(uri));
 		} catch (IOException e) {
-			e.printStackTrace();
+			return null;
 		}
 		/* Trasformo l'array di byte in una stringa */
 		String stanza = new String(bytes);

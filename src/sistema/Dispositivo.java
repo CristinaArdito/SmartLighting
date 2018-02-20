@@ -7,51 +7,57 @@ public class Dispositivo {
 	 * Tipologia dispositivo
 	 */
 	private String tipo;
-	
+
 	/*
 	 * Codice: accesso: 1, standby: 0, spento: -1
 	 */
 	private int codice;
-	
+
 	/*
 	 * Id
 	 */
 	private int id;
-	
+
 	/*
-	 * Flag per verificare in base alla configurazione se il dispositivo
-	 * può essere acceso/spento/messo in standby dal sistema
+	 * Flag per verificare in base alla configurazione se il dispositivo può essere
+	 * acceso/spento/messo in standby dal sistema
 	 */
 	private boolean puòEssereAcceso, puòEssereSpento, puòEssereMessoInStandby;
-	
+
 	/*
 	 * Consumo orario del dispositivo
 	 */
 	private double consumo;
-	
+
 	/*
 	 * Indica se il componente è guasto
 	 */
 	private boolean guasto;
-	
+
 	/*
 	 * Contatore del tempo in cui è rimasto acceso il dispositivo
 	 */
 	private int tempoAcceso;
-	
+
 	/*
 	 * Ora di accensione del dispositivo
 	 */
 	private int oraAccensione;
-	
+
 	/**
 	 * Costruttore dispositivo
-	 * @param tipo			tipo del dispositivo
-	 * @param codice		codice del dispositivo
-	 * @param id			id del dispositivo
-	 * @param consumo		consumo medio orario
+	 * 
+	 * @param tipo
+	 *            tipo del dispositivo
+	 * @param codice
+	 *            codice del dispositivo
+	 * @param id
+	 *            id del dispositivo
+	 * @param consumo
+	 *            consumo medio orario
 	 */
-	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso, boolean puòEssereSpento, boolean puòEssereMessoInStandby) {
+	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso,
+			boolean puòEssereSpento, boolean puòEssereMessoInStandby) {
 		super();
 		this.codice = codice;
 		this.id = id;
@@ -63,16 +69,23 @@ public class Dispositivo {
 		this.guasto = false;
 		this.tempoAcceso = 0;
 	}
-	
+
 	/**
 	 * Costruttore dispositivo
-	 * @param tipo			tipo del dispositivo
-	 * @param codice		codice del dispositivo
-	 * @param id			id del dispositivo
-	 * @param consumo		consumo medio orario
-	 * @param tempoOn		tempo di utilizzo del dispositivo
+	 * 
+	 * @param tipo
+	 *            tipo del dispositivo
+	 * @param codice
+	 *            codice del dispositivo
+	 * @param id
+	 *            id del dispositivo
+	 * @param consumo
+	 *            consumo medio orario
+	 * @param tempoOn
+	 *            tempo di utilizzo del dispositivo
 	 */
-	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso, boolean puòEssereSpento, boolean puòEssereMessoInStandby, int tempoOn) {
+	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso,
+			boolean puòEssereSpento, boolean puòEssereMessoInStandby, int tempoOn) {
 		super();
 		this.codice = codice;
 		this.id = id;
@@ -84,10 +97,11 @@ public class Dispositivo {
 		this.guasto = false;
 		this.tempoAcceso = tempoOn;
 	}
-	
+
 	/**
 	 * Ritorna l'id del dispositivo
-	 * @return	id
+	 * 
+	 * @return id
 	 */
 	public int getId() {
 		return this.id;
@@ -95,7 +109,8 @@ public class Dispositivo {
 
 	/**
 	 * Ritorna il tipo del dispositivo
-	 * @return	tipo
+	 * 
+	 * @return tipo
 	 */
 	public String getTipo() {
 		return tipo;
@@ -103,6 +118,7 @@ public class Dispositivo {
 
 	/**
 	 * Inserisce il tipo di dispositivo
+	 * 
 	 * @param tipo
 	 */
 	public void setTipo(String tipo) {
@@ -111,7 +127,8 @@ public class Dispositivo {
 
 	/**
 	 * Ritorna il codice del dispositivo
-	 * @return	codice
+	 * 
+	 * @return codice
 	 */
 	public int getCodice() {
 		return codice;
@@ -119,39 +136,47 @@ public class Dispositivo {
 
 	/**
 	 * Inserisce il codice del dispositivo
+	 * 
 	 * @param codice
 	 */
 	public void setCodice(int codice) {
-		if((codice >= -1) && (codice <= 1)) {
-			if(this.codice==1) {
+		if ((codice >= -1) && (codice <= 1)) {
+			if (this.codice == 1) {
 				// Incremento il tempo di accensione del dispositivo
-				this.tempoAcceso = this.tempoAcceso+(AmbienteDiSimulazione.getOra()-oraAccensione);
-			}else {
+				this.tempoAcceso = this.tempoAcceso + (AmbienteDiSimulazione.getOra() - oraAccensione);
+			} else {
 				// Ottengo l'ora in cui il dispositivo è stato acceso
 				oraAccensione = AmbienteDiSimulazione.getOra();
 			}
 			this.codice = (byte) codice;
 		}
 	}
-	
+
 	/**
 	 * Ritorna il consumo del dispositivo
-	 * @return	consumo
+	 * 
+	 * @return consumo
 	 */
 	public double getConsumo() {
-		return (consumo/60)*tempoAcceso;
+		return (consumo / 60) * tempoAcceso;
 	}
-	
+
 	/**
 	 * Ritorna il consumo parziale
-	 * @return   consumo
+	 * 
+	 * @return consumo
 	 */
 	public double getConsumoParziale() {
-		return (consumo/60)*(tempoAcceso+(AmbienteDiSimulazione.getOra()-oraAccensione));
+		return (consumo / 60) * (tempoAcceso + (AmbienteDiSimulazione.getOra() - oraAccensione));
+	}
+
+	public int getTempoParziale() {
+		return tempoAcceso + (AmbienteDiSimulazione.getOra() - oraAccensione);
 	}
 
 	/**
 	 * Inserisce il consumo del dispositivo
+	 * 
 	 * @param consumo
 	 */
 	public void setConsumo(double consumo) {
@@ -160,96 +185,105 @@ public class Dispositivo {
 
 	/**
 	 * Verifica se può essere acceso
-	 * @return	boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean puòEssereAcceso() {
 		return puòEssereAcceso;
 	}
-	
+
 	/**
 	 * Verifica se può essere spento
-	 * @return	boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean puòEssereSpento() {
 		return puòEssereSpento;
 	}
-	
+
 	/**
 	 * Verifica se può essere messo in standby
-	 * @return	boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean puòEssereMessoInStandby() {
 		return puòEssereMessoInStandby;
 	}
-	
+
 	/**
 	 * Imposta il dispositivo come accendibile
-	 * @return	boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean impostaAcceso(boolean valore) {
-		if(puòEssereAcceso != valore) {
+		if (puòEssereAcceso != valore) {
 			puòEssereAcceso = valore;
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Imposta il flag per mettere il dispositivo in standby
-	 * @return	boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean impostaStandby(boolean valore) {
-		if(puòEssereMessoInStandby != valore) {
+		if (puòEssereMessoInStandby != valore) {
 			puòEssereMessoInStandby = valore;
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Imposta il dispositivo come spegnibile
-	 * @return	boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean impostaSpento(boolean valore) {
-		if(puòEssereSpento != valore) {
+		if (puòEssereSpento != valore) {
 			puòEssereSpento = valore;
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Imposta il valore dell'attributo "guasto"
-	 * @param valore - valore che indica se il dispositivo è guasto
+	 * 
+	 * @param valore
+	 *            - valore che indica se il dispositivo è guasto
 	 */
 	public void setGuasto(boolean valore) {
 		this.guasto = valore;
 	}
-	
+
 	/**
 	 * Restituisce il valore di "guasto"
+	 * 
 	 * @return boolean
 	 */
 	public boolean isGuasto() {
 		return guasto;
 	}
-	
+
 	/**
-	 * Restituisce il tempo in cui il dispositivo è
-	 * stato attivo
-	 * @return	tempoAcceso
+	 * Restituisce il tempo in cui il dispositivo è stato attivo
+	 * 
+	 * @return tempoAcceso
 	 */
 	public int getTempoAttivo() {
 		return tempoAcceso;
 	}
-	
+
 	/**
 	 * Ridefinizione toString()
 	 */
 	public String toString() {
-		return "Tipo: "+tipo+" - ID: "+id+" - Consumo: "+consumo+" watt";
+		return "Tipo: " + tipo + " - ID: " + id + " - Consumo: " + consumo + " watt";
 	}
 }

@@ -40,7 +40,7 @@ public class Sistema extends Thread {
 	 * Verifica che il sistema sia in funzione
 	 */
 	private boolean operativo;
-	
+
 	/*
 	 * Verifica se il dispositivo è guasto
 	 */
@@ -61,8 +61,8 @@ public class Sistema extends Thread {
 		// Imposta la configurazione
 		setConfigurazione(config);
 		/*
-		 * Crea un array della dimensione delle stanze per
-		 * verificare se l'utente è presente nelle stanze
+		 * Crea un array della dimensione delle stanze per verificare se l'utente è
+		 * presente nelle stanze
 		 */
 		eraNellaStanza = new boolean[stanze.size()];
 		for (int i = 0; i < stanze.size(); i++) {
@@ -74,7 +74,8 @@ public class Sistema extends Thread {
 
 	/**
 	 * Verifica se vi è un guasto
-	 * @return		boolean
+	 * 
+	 * @return boolean
 	 */
 	public boolean isOperativo() {
 		return guasto;
@@ -154,48 +155,48 @@ public class Sistema extends Thread {
 		System.out.println("Thread Attivo");
 		operativo = true;
 
-			while (operativo) {
-				// Creo un iteratore delle stanze
-				Iterator<Stanza> i = stanze.iterator();
-				Stanza st; // Creo un stanza d'appoggio
-				int j = 0; // Indice
-				while (i.hasNext()) {
-					st = i.next();
-					/*
-					 * Se il sensore di ogni stanza ha codice 1, significa che vi è almeno una
-					 * persona dentro la stanza quindi avvio i dispositivi e le luci presenti nella
-					 * stanza
-					 */
-					if (st.getSensore().getCodice() == 1) {
+		while (operativo) {
+			// Creo un iteratore delle stanze
+			Iterator<Stanza> i = stanze.iterator();
+			Stanza st; // Creo un stanza d'appoggio
+			int j = 0; // Indice
+			while (i.hasNext()) {
+				st = i.next();
+				/*
+				 * Se il sensore di ogni stanza ha codice 1, significa che vi è almeno una
+				 * persona dentro la stanza quindi avvio i dispositivi e le luci presenti nella
+				 * stanza
+				 */
+				if (st.getSensore().getCodice() == 1) {
 
-						if (eraNellaStanza[j] == false) {
-							// Avvio i dispositivi
-							deviceOn(j);
-							// Avvio le luci
-							lightOn(j);
-							eraNellaStanza[j] = true;
-						}
-						j++;
-					} else {
-						if (eraNellaStanza[j] == true) {
-							// Spengo i dispositivi
-							deviceOff(j);
-							// Spengo le luci
-							lightOff(j);
-							eraNellaStanza[j] = false;
-						}
-						j++;
+					if (eraNellaStanza[j] == false) {
+						// Avvio i dispositivi
+						deviceOn(j);
+						// Avvio le luci
+						lightOn(j);
+						eraNellaStanza[j] = true;
 					}
-				}
-				// Inizializzo l'iteratore
-				i = stanze.iterator();
-				j = 0;
-				try {
-					Sistema.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+					j++;
+				} else {
+					if (eraNellaStanza[j] == true) {
+						// Spengo i dispositivi
+						deviceOff(j);
+						// Spengo le luci
+						lightOff(j);
+						eraNellaStanza[j] = false;
+					}
+					j++;
 				}
 			}
+			// Inizializzo l'iteratore
+			i = stanze.iterator();
+			j = 0;
+			try {
+				Sistema.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -340,7 +341,7 @@ public class Sistema extends Thread {
 			}
 		}
 	}
-	
+
 	/**
 	 * Ritorna il consumo totale
 	 * 
@@ -355,7 +356,7 @@ public class Sistema extends Thread {
 	 * accese durante la giornata
 	 */
 	public void setConsumoGiornaliero() {
-		
+
 	}
 
 	/**
@@ -369,6 +370,7 @@ public class Sistema extends Thread {
 
 	/**
 	 * Controlla i dispositivi per individuare guasti
+	 * 
 	 * @return
 	 */
 	public static List<Dispositivo> controlloDispostivi(Configurazione config) {

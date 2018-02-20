@@ -44,6 +44,7 @@ public class PannelloControlloSimulazione extends JFrame {
 		this.interfaccia = frame;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 100, 1024, 720);
+		setResizable(false);
 		pannelloPrincipale = new JPanel();
 		pannelloPrincipale.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pannelloPrincipale);
@@ -61,7 +62,7 @@ public class PannelloControlloSimulazione extends JFrame {
 		JButton btnInterruzioneCorrente = new JButton("Interruzione Corrente");
 		btnInterruzioneCorrente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sistema != null) {
+				if (sistema != null) {
 					interfaccia.setVisible(false);
 					sistema.stopControllo();
 				}
@@ -197,7 +198,7 @@ public class PannelloControlloSimulazione extends JFrame {
 
 		setListeners(pannelloDestro, stanze);
 	}
-	
+
 	public void setSistema(Sistema sistema) {
 		this.sistema = sistema;
 	}

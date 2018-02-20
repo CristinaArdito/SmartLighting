@@ -94,10 +94,10 @@ public class AmbienteDiSimulazione {
 
 	public void Tempo() {
 
-		Timer t = new Timer(10000, new ActionListener() {
+		Timer t = new Timer(5000, new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				AmbienteDiSimulazione.setOra(getOra() + 10);
+				AmbienteDiSimulazione.setOra(getOra() + 5);
 				System.out.println(AmbienteDiSimulazione.getOra());
 			}
 		});

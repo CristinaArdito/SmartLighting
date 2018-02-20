@@ -1,6 +1,12 @@
 package interfacciaGrafica;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Date;
+
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -8,9 +14,6 @@ import javax.swing.JPanel;
 import sistema.Configurazione;
 import sistema.Dispositivo;
 import sistema.RisparmioEnergetico;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Resoconto extends JDialog {
 
@@ -27,21 +30,66 @@ public class Resoconto extends JDialog {
 
 		resoconto = new JList<String>();
 		resoconto.setBounds(2, 2, 496, 713);
+		modelloResoconto = new DefaultListModel<String>();
+
+		Dispositivo precedente;
+		Dispositivo attuale;
 
 		for (int i = 0; i < config.getDispositivi().size(); i++) {
-			
-			Dispositivo attuale = config.getDispositivi().get(i);
-			Dispositivo precedente = risparmio.getConfigurazione().getDispositivi().get(i);
-			
-			modelloResoconto
-					.addElement("<html><div style='color: green'Tipo: " + attuale.getTipo()
-							+ " - ID: " + attuale.getId() + "</div></html>\n"
-							+ "Tempo attivo (precedente): "+precedente.getTempoAttivo()+" - Consumo (precedente): "+precedente.getConsumo()+"\n"
-							+ "Tempo attivo (odierno): "+attuale.getTempoAttivo()+" - Consumo (odierno): "+attuale.getConsumo()+"\n");
+
+			attuale = config.getDispositivi().get(i);
+			if (risparmio != null) {
+				precedente = risparmio.getConfigurazione().getDispositivi().get(i);
+
+				if (attuale.getCodice() == 1) {
+					modelloResoconto.addElement("<html><div style='color: green'>Tipo: " + attuale.getTipo() + " - ID: "
+							+ attuale.getId() + "</div></html>");
+					modelloResoconto.addElement(
+							"<html><div style='color: orange'>Tempo attivo (precedente): " + precedente.getTempoAttivo()
+									+ " - Consumo (precedente): " + precedente.getConsumo() + "</div></html>");
+					modelloResoconto.addElement(
+							"<html><div style='color: blue'>Tempo attivo (odierno): " + attuale.getTempoParziale()
+									+ " - Consumo (odierno): " + attuale.getConsumoParziale() + "</div></html>");
+				} else {
+					modelloResoconto.addElement("<html><div style='color: green'>Tipo: " + attuale.getTipo() + " - ID: "
+							+ attuale.getId() + "</div></html>");
+					modelloResoconto.addElement(
+							"<html><div style='color: orange'>Tempo attivo (precedente): " + precedente.getTempoAttivo()
+									+ " - Consumo (precedente): " + precedente.getConsumo() + "</div></html>");
+					modelloResoconto.addElement(
+							"<html><div style='color: blue'>Tempo attivo (odierno): " + attuale.getTempoAttivo()
+									+ " - Consumo (odierno): " + attuale.getConsumo() + "</div></html>");
+				}
+			} else {
+				if (attuale.getCodice() == 1) {
+					modelloResoconto.addElement("<html><div style='color: green'>Tipo: " + attuale.getTipo() + " - ID: "
+							+ attuale.getId() + "</div></html>");
+					modelloResoconto.addElement(
+							"<html><div style='color: orange'>Tempo attivo (precedente): Inesistente - Consumo (precedente): Inesistente"
+									+ "</div></html>");
+					modelloResoconto.addElement(
+							"<html><div style='color: blue'>Tempo attivo (odierno): " + attuale.getTempoParziale()
+									+ " - Consumo (odierno): " + attuale.getConsumoParziale() + "</div></html>");
+				} else {
+					modelloResoconto.addElement("<html><div style='color: green'>Tipo: " + attuale.getTipo() + " - ID: "
+							+ attuale.getId() + "</div></html>");
+					modelloResoconto.addElement(
+							"<html><div style='color: orange'>Tempo attivo (precedente): Inesistente - Consumo (precedente): Inesistente"
+									+ "</div></html>");
+					modelloResoconto.addElement(
+							"<html><div style='color: blue'>Tempo attivo (odierno): " + attuale.getTempoAttivo()
+									+ " - Consumo (odierno): " + attuale.getConsumo() + "</div></html>");
+				}
+			}
 		}
 
+		resoconto.setModel(modelloResoconto);
+
 		getContentPane().add(resoconto);
-		
+
+		RisparmioEnergetico risp = new RisparmioEnergetico(risparmio, config, new Date());
+		risp.writeRisparmioEnergetico(new File("Risparmio.txt"));
+
 		JButton btnSpegni = new JButton("Spegni");
 		btnSpegni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
