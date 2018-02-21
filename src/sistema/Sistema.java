@@ -27,11 +27,6 @@ public class Sistema extends Thread {
 	private double consumoTot;
 
 	/*
-	 * Consumo giornaliero effettivo dei dispositivi e delle luci
-	 */
-	private double consumoGiornaliero;
-
-	/*
 	 * Verifica la presenza del cliente nella stanza
 	 */
 	private boolean[] eraNellaStanza;

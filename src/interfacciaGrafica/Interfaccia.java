@@ -423,12 +423,20 @@ public class Interfaccia extends JFrame {
 		return liststanze;
 	}
 
+	/**
+	 * Ottiene i dispositivi
+	 * @return 		listaDispositivi
+	 */
 	public static List<Dispositivo> ottiniDispositivi() {
 		List<Dispositivo> listaDispositivi = new ArrayList<Dispositivo>();
 		listaDispositivi.add(new Dispositivo("Tv", 1, 00, 120.00, true, false, false));
 		return listaDispositivi;
 	}
 
+	/**
+	 * Ottiene le luci
+	 * @return		listaLuci
+	 */
 	public static List<Luce> ottieniLuci() {
 		List<Luce> listaLuci = new ArrayList<Luce>();
 		listaLuci.add(new Luce(1, -1, 10.00, true, true));
