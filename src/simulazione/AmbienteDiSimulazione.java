@@ -72,7 +72,7 @@ public class AmbienteDiSimulazione {
 	}
 
 	public void posizionaCliente() {
-		Cliente c = new Cliente("Rosario", "Culmone", "0737666666", "rosario.culmone@polmoni.it", "Via Merelli 1");
+		Cliente c = new Cliente("Mario", "Rossi", "0737666866", "mario.rossi@gmail.com", "Via Roma 32");
 		c.getNome();
 	}
 
