@@ -88,17 +88,12 @@ public class AmbienteDiSimulazione {
 		}
 	}
 
-	public void populateRisparmioEnergetico() {
-
-	}
-
 	public void Tempo() {
 
 		Timer t = new Timer(5000, new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				AmbienteDiSimulazione.setOra(getOra() + 5);
-				System.out.println(AmbienteDiSimulazione.getOra());
 			}
 		});
 
@@ -110,27 +105,5 @@ public class AmbienteDiSimulazione {
 		Interfaccia frame = new Interfaccia(ambiente.getListaIdDispositivi());
 		frame.setVisible(true);
 		ambiente.Tempo();
-
-		/*
-		 * File file = new File("RisparmioEnergetico.txt"); Configurazione c = new
-		 * Configurazione(ottieniDispositivi()); RisparmioEnergetico re0 = null;
-		 */
-
-		/*
-		 * DEBUG DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); LocalDate localDate
-		 * = LocalDate.now(); String data =
-		 * DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate); Date d =
-		 * df.parse(data); RisparmioEnergetico re = new RisparmioEnergetico(re0, c, d,
-		 * 200); re.writeRisparmioEnergetico(file); RisparmioEnergetico prova; prova =
-		 * re.readRisparmioEnergetico(file); System.out.println("data"+prova.getData());
-		 * System.out.println("risparmio"+prova.getRisparmio()); c =
-		 * prova.getConfigurazione(); Dispositivo disp; List<Dispositivo> dispositivi =
-		 * c.getDispositivi(); Iterator<Dispositivo> i = dispositivi.iterator();
-		 * while(i.hasNext()) { disp = i.next(); System.out.println(disp.getTipo() +
-		 * disp.getCodice() + disp.getId() + disp.puòEssereAcceso() +
-		 * disp.puòEssereSpento() + disp.puòEssereMessoInStandby() + disp.getConsumo());
-		 * }
-		 * 
-		 */
 	}
 }

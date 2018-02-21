@@ -83,8 +83,28 @@ public class Resoconto extends JDialog {
 			}
 		}
 
-		resoconto.setModel(modelloResoconto);
+		modelloResoconto.addElement("");
+		modelloResoconto.addElement("");
+		
+		if (risparmio == null) {
+			modelloResoconto.addElement("<html><div style='color: orange; font-size: 20'>Consumo totale precedente: Non registrato");
+		} else {
+			modelloResoconto.addElement(
+					"<html><div style='color: orange; font-size: 20'>Consumo totale precedente: " + risparmio.getRisparmio());
+		}
 
+		int consumoTot = 0;
+
+		for (Dispositivo dispositivo : config.getDispositivi()) {
+			if (dispositivo.getCodice() == 1) {
+				consumoTot += dispositivo.getConsumoParziale();
+			} else {
+				consumoTot += dispositivo.getConsumo();
+			}
+		}
+		modelloResoconto.addElement("<html><div style='color: blue; font-size: 20'> Consumo totale odierno: " + consumoTot);
+
+		resoconto.setModel(modelloResoconto);
 		getContentPane().add(resoconto);
 
 		RisparmioEnergetico risp = new RisparmioEnergetico(risparmio, config, new Date());

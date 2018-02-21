@@ -62,25 +62,6 @@ public class Interfaccia extends JFrame {
 
 		stanze = readStanzaFromFile(new File("Stanze.txt"));
 
-		// DEBUG
-		/*
-		 * File file = new File("Stanze.txt"); stanze.add(new Stanza(0, "Cucina",
-		 * ottiniDispositivi(), ottieniLuci(), new Sensore(1))); stanze.add(new
-		 * Stanza(1, "Bagno", ottiniDispositivi(), ottieniLuci(), new Sensore(-1)));
-		 * writeStanzaOnFile(file); List<Stanza> list1= readStanzaFromFile(file);
-		 * Iterator<Stanza> j = list1.iterator(); Stanza s1; while(j.hasNext()) { s1 =
-		 * j.next(); System.out.println(s1.getNome());
-		 * System.out.println(s1.getCodice()); System.out.println("dispositivi:");
-		 * List<Dispositivo> list = s1.getDispositivi(); Dispositivo d;
-		 * Iterator<Dispositivo> i = list.iterator(); while(i.hasNext()) { d = i.next();
-		 * System.out.println(d.getTipo() + d.getCodice() + d.getId() +
-		 * d.puòEssereAcceso() + d.puòEssereSpento() + d.puòEssereMessoInStandby() +
-		 * d.getConsumo()); } List<Luce> luci = s1.getLuci(); Iterator<Luce> z =
-		 * luci.iterator(); Luce l; while(z.hasNext()) { l = z.next();
-		 * System.out.println(l.getCodice() + l.getId() + l.getConsumo()); }
-		 * System.out.println(s1.getSensore().getCodice()); }
-		 */
-
 		if (stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
 				for (Dispositivo dispositivo : stanza.getDispositivi()) {
@@ -282,12 +263,6 @@ public class Interfaccia extends JFrame {
 
 	}
 
-	/*
-	 * private void importaConfigurazione() { for (Stanza stanza : stanze) { for
-	 * (Dispositivo dispositivo : stanza.getDispositivi()) {
-	 * config.addDispositivo(dispositivo); } } }
-	 */
-
 	public static List<Integer> getSensori() {
 		return sensori;
 	}
@@ -451,13 +426,6 @@ public class Interfaccia extends JFrame {
 	public static List<Dispositivo> ottiniDispositivi() {
 		List<Dispositivo> listaDispositivi = new ArrayList<Dispositivo>();
 		listaDispositivi.add(new Dispositivo("Tv", 1, 00, 120.00, true, false, false));
-		/*
-		 * listaDispositivi.add(new Dispositivo("Minitor", 1, 01, 90.00, true, false,
-		 * false)); listaDispositivi.add(new Dispositivo("Computer", 0, 02, 20.00, true,
-		 * false, false)); listaDispositivi.add(new Dispositivo("Lavatrice", -1, 03,
-		 * 220.00, true, false, false)); listaDispositivi.add(new Dispositivo("Radio",
-		 * 0, 04, 10.00, true, false, false));
-		 */
 		return listaDispositivi;
 	}
 

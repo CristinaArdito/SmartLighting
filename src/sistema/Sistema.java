@@ -147,12 +147,10 @@ public class Sistema extends Thread {
 	 * e l'eventuale presenza delle persone nelle suddette stanze
 	 */
 	public void Control() {
-		System.out.println("Creazione Thread");
 		this.start(); // Avvio il thread
 	}
 
 	public void run() {
-		System.out.println("Thread Attivo");
 		operativo = true;
 
 		while (operativo) {

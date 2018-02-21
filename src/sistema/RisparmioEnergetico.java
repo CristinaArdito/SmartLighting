@@ -49,6 +49,24 @@ public class RisparmioEnergetico {
 		this.statoPrecedente = statoPrecedente;
 		this.configurazione = configurazione;
 		this.data = data;
+		this.risparmio = 0;
+
+		for (Dispositivo dispositivo : configurazione.getDispositivi()) {
+			if (dispositivo.getCodice() == 1) {
+				this.risparmio += dispositivo.getConsumoParziale();
+			} else {
+				this.risparmio += dispositivo.getConsumo();
+			}
+		}
+	}
+
+	public RisparmioEnergetico(RisparmioEnergetico statoPrecedente, Configurazione configurazione, Date data,
+			double risparmio) {
+		super();
+		this.statoPrecedente = statoPrecedente;
+		this.configurazione = configurazione;
+		this.data = data;
+		this.risparmio = risparmio;
 	}
 
 	/**
@@ -199,6 +217,7 @@ public class RisparmioEnergetico {
 		int codice = 0;
 		String tipo = new String();
 		int id = 0;
+		double risparmio = 0;
 		boolean on = false;
 		boolean off = false;
 		boolean stand = false;
@@ -224,6 +243,7 @@ public class RisparmioEnergetico {
 				data1 = parser.parse(data);
 			}
 			if (line.contains("Risparmio") == true) {
+				risparmio = Double.parseDouble(words[1]);
 			}
 			if (line.contains("Tipo") == true) {
 				tipo = words[1];
@@ -237,9 +257,9 @@ public class RisparmioEnergetico {
 				on = Boolean.parseBoolean(words[1]);
 			} else if (line.contains("PuòEssereSpento") == true) {
 				off = Boolean.parseBoolean(words[1]);
-			} else if (line.contains("PuòEssereMessoInStandby ") == true) {
+			} else if (line.contains("PuòEssereMessoInStandby") == true) {
 				stand = Boolean.parseBoolean(words[1]);
-			} else if (line.contains("TempoAcceso ") == true) {
+			} else if (line.contains("TempoAcceso") == true) {
 				tempoOn = Integer.parseInt(words[1]);
 			} else if (line.contains("Consumo") == true) {
 				consumo = Double.parseDouble(words[1]);
@@ -252,10 +272,10 @@ public class RisparmioEnergetico {
 				c = new Configurazione(dispositivi);
 				if (counter == 0) {
 					// Se è la prima imposto lo stato precedente a null
-					re = new RisparmioEnergetico(re0, c, data1);
+					re = new RisparmioEnergetico(re0, c, data1, risparmio);
 					re1 = re;
 				} else {
-					re = new RisparmioEnergetico(re1, c, data1);
+					re = new RisparmioEnergetico(re1, c, data1, risparmio);
 					re1 = re;
 				}
 			}
