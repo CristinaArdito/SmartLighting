@@ -350,23 +350,6 @@ public class Sistema extends Thread {
 	}
 
 	/**
-	 * Calcola il consumo giornaliero dei vari dispositivi e delle luci tenute
-	 * accese durante la giornata
-	 */
-	public void setConsumoGiornaliero() {
-
-	}
-
-	/**
-	 * Ritorna il consumo giornaliero
-	 * 
-	 * @return
-	 */
-	public double getConsumoGiornaliero() {
-		return this.consumoGiornaliero;
-	}
-
-	/**
 	 * Controlla i dispositivi per individuare guasti
 	 * 
 	 * @return
