@@ -11,7 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JList;
 
 import sistema.Configurazione;
-import sistema.Dispositivo;
+import sistema.ControlloreDispositivo;
 import sistema.Stanza;
 
 import java.awt.event.ActionListener;
@@ -76,7 +76,7 @@ public class ModificaDispositivi extends JDialog {
 		
 		for (Stanza stanza : stanze) {
 			if(stanza.getCodice() == idStanza) {
-				for (Dispositivo dispositivo : stanza.getDispositivi()) {
+				for (ControlloreDispositivo dispositivo : stanza.getDispositivi()) {
 					modelloDispositivi.addElement(dispositivo.getTipo()+" - ID:"+dispositivo.getId());
 				}
 				break;
@@ -108,7 +108,7 @@ public class ModificaDispositivi extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						for (Stanza stanza : stanze) {
 							if(stanza.getCodice() == idStanza) {
-								Dispositivo temp = aggiungiDispositivo.getDispositivo();
+								ControlloreDispositivo temp = aggiungiDispositivo.getDispositivo();
 								stanza.getDispositivi().add(temp);
 								modelloDispositivi.addElement(temp.getTipo()+" - ID:"+temp.getId());
 								listaDispositivi.setModel(modelloDispositivi);

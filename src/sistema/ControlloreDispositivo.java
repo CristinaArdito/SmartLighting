@@ -2,7 +2,7 @@ package sistema;
 
 import simulazione.AmbienteDiSimulazione;
 
-public class Dispositivo {
+public class ControlloreDispositivo {
 	/*
 	 * Tipologia dispositivo
 	 */
@@ -56,7 +56,7 @@ public class Dispositivo {
 	 * @param consumo
 	 *            consumo medio orario
 	 */
-	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso,
+	public ControlloreDispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso,
 			boolean puòEssereSpento, boolean puòEssereMessoInStandby) {
 		super();
 		this.codice = codice;
@@ -84,7 +84,7 @@ public class Dispositivo {
 	 * @param tempoOn
 	 *            tempo di utilizzo del dispositivo
 	 */
-	public Dispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso,
+	public ControlloreDispositivo(String tipo, int codice, int id, double consumo, boolean puòEssereAcceso,
 			boolean puòEssereSpento, boolean puòEssereMessoInStandby, int tempoOn) {
 		super();
 		this.codice = codice;

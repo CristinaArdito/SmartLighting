@@ -9,7 +9,7 @@ IdDispositivo: 0 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: true ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 120.0
+ConsumoDispositivo: 0.0
 },
 Lista Luci: 
 {
@@ -17,14 +17,14 @@ CodiceLuce: -1 ,
 IdLuce: 1 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 10.0
+ConsumoLuce: 0.0
 },
 {
 CodiceLuce: -1 ,
 IdLuce: 2 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 5.0
+ConsumoLuce: 0.0
 },
 Sensore: -1
 };
@@ -39,7 +39,7 @@ IdDispositivo: 1 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: true ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 120.0
+ConsumoDispositivo: 0.0
 },
 {
 Tipo: Stufa ,
@@ -48,7 +48,7 @@ IdDispositivo: 13 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: true ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 450.0
+ConsumoDispositivo: 0.0
 },
 Lista Luci: 
 {
@@ -56,14 +56,14 @@ CodiceLuce: -1 ,
 IdLuce: 1 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 10.0
+ConsumoLuce: 0.0
 },
 {
 CodiceLuce: -1 ,
 IdLuce: 2 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 5.0
+ConsumoLuce: 0.0
 },
 Sensore: -1
 };
@@ -78,7 +78,7 @@ IdDispositivo: 2 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: true ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 123.0
+ConsumoDispositivo: 0.0
 },
 {
 Tipo: Decoder ,
@@ -87,7 +87,7 @@ IdDispositivo: 5 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: true ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 165.0
+ConsumoDispositivo: 0.0
 },
 Lista Luci: 
 {
@@ -95,7 +95,7 @@ CodiceLuce: -1 ,
 IdLuce: 0 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 200.0
+ConsumoLuce: 0.0
 },
 Sensore: -1
 };
@@ -110,7 +110,7 @@ IdDispositivo: 3 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: true ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 152.0
+ConsumoDispositivo: 0.0
 },
 {
 Tipo: Lavatrice ,
@@ -119,7 +119,7 @@ IdDispositivo: 11 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: false ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 2500.0
+ConsumoDispositivo: 0.0
 },
 Lista Luci: 
 {
@@ -127,7 +127,7 @@ CodiceLuce: -1 ,
 IdLuce: 0 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 200.0
+ConsumoLuce: 0.0
 },
 Sensore: -1
 };
@@ -142,7 +142,7 @@ IdDispositivo: 10 ,
 PuòEssereAcceso: true ,
 PuòEssereSpento: true ,
 PuòEssereMessoInStandby: false ,
-ConsumoDispositivo: 233.0
+ConsumoDispositivo: 0.0
 },
 Lista Luci: 
 {
@@ -150,14 +150,14 @@ CodiceLuce: -1 ,
 IdLuce: 0 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 200.0
+ConsumoLuce: 0.0
 },
 {
 CodiceLuce: -1 ,
 IdLuce: 1 ,
 PuòEssereAccesa: true ,
 PuòEssereSpenta: true ,
-ConsumoLuce: 200.0
+ConsumoLuce: 0.0
 },
 Sensore: -1
 };

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import sistema.Configurazione;
-import sistema.Dispositivo;
+import sistema.ControlloreDispositivo;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -45,7 +45,7 @@ public class ConfiguraDispositivo extends JDialog {
 		picLabel.setBounds(37, 11, 432, 86);
 		getContentPane().add(picLabel);
 		
-		Dispositivo dispositivo = config.getDispositivo(idDispositivo);
+		ControlloreDispositivo dispositivo = config.getDispositivo(idDispositivo);
 		
 		JLabel accendibile = new JLabel("Il dispositivo può essere acceso");
 		accendibile.setBounds(10, 215, 290, 64);

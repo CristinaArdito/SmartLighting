@@ -35,8 +35,8 @@ import javax.swing.border.EmptyBorder;
 import simulazione.AmbienteDiSimulazione;
 import simulazione.PannelloControlloSimulazione;
 import sistema.Configurazione;
-import sistema.Dispositivo;
-import sistema.Luce;
+import sistema.ControlloreDispositivo;
+import sistema.ControlloreLuce;
 import sistema.RisparmioEnergetico;
 import sistema.Sensore;
 import sistema.Sistema;
@@ -48,7 +48,7 @@ public class Interfaccia extends JFrame {
 	private JPanel contentPane;
 	private List<Stanza> stanze;
 	private Configurazione config = new Configurazione();
-	private List<Dispositivo> dispositiviGuasti;
+	private List<ControlloreDispositivo> dispositiviGuasti;
 	private static List<Integer> sensori = AmbienteDiSimulazione.ottieniSensori();
 	private ModificaConfigurazione nuovaConfigurazione;
 	private JList<String> listaStanze;
@@ -64,7 +64,7 @@ public class Interfaccia extends JFrame {
 
 		if (stanze.size() != 0) {
 			for (Stanza stanza : stanze) {
-				for (Dispositivo dispositivo : stanza.getDispositivi()) {
+				for (ControlloreDispositivo dispositivo : stanza.getDispositivi()) {
 					config.addDispositivo(dispositivo);
 					listaIdDispositivi.remove(dispositivo.getId());
 				}
@@ -149,7 +149,7 @@ public class Interfaccia extends JFrame {
 				modello.clear();
 				for (Stanza stanza : stanze) {
 					if (stanza.getNome() == value) {
-						for (Dispositivo disp : stanza.getDispositivi()) {
+						for (ControlloreDispositivo disp : stanza.getDispositivi()) {
 							if (disp.getCodice() == 1) {
 								modello.addElement("Tipo: " + disp.getTipo() + " - Tempo attivo (minuti): Ancora attivo"
 										+ " - Consumo attuale: " + disp.getConsumoParziale());
@@ -214,7 +214,7 @@ public class Interfaccia extends JFrame {
 								String messaggioErrore = "";
 								if (sistema.isOperativo() == false) {
 									dispositiviGuasti = Sistema.controlloDispostivi(config);
-									for (Dispositivo disp : dispositiviGuasti) {
+									for (ControlloreDispositivo disp : dispositiviGuasti) {
 										messaggioErrore += "ID: " + disp.getId() + " - Tipo: " + disp.getTipo() + "\n";
 									}
 									JOptionPane.showMessageDialog(null,
@@ -227,7 +227,7 @@ public class Interfaccia extends JFrame {
 						});
 						t.start();
 					} else {
-						for (Dispositivo disp : dispositiviGuasti) {
+						for (ControlloreDispositivo disp : dispositiviGuasti) {
 							messaggioErrore += "ID: " + disp.getId() + " - Tipo: " + disp.getTipo() + "\n";
 						}
 						JOptionPane.showMessageDialog(null, messaggioErrore);
@@ -286,15 +286,15 @@ public class Interfaccia extends JFrame {
 			while (j.hasNext()) {
 				s = j.next();
 				// Ottengo i dispositivi della stanza
-				List<Dispositivo> dispositivi = s.getDispositivi();
+				List<ControlloreDispositivo> dispositivi = s.getDispositivi();
 				// Creo un iteratore per i dispositivi
-				Iterator<Dispositivo> i = dispositivi.iterator();
-				Dispositivo d;
-				Luce l;
+				Iterator<ControlloreDispositivo> i = dispositivi.iterator();
+				ControlloreDispositivo d;
+				ControlloreLuce l;
 				// Ottengo le luci della stanza
-				List<Luce> luci = s.getLuci();
+				List<ControlloreLuce> luci = s.getLuci();
 				// Creo un iteratore per le luci
-				Iterator<Luce> z = luci.iterator();
+				Iterator<ControlloreLuce> z = luci.iterator();
 				// Organizzo il file con una struttura json
 				write.println("{");
 				write.println("Nome: " + s.getNome() + " ,");
@@ -347,9 +347,9 @@ public class Interfaccia extends JFrame {
 		// Creo un array di bytes
 		byte[] bytes = null;
 		// Creo una lista per i dispositivi
-		List<Dispositivo> list = new ArrayList<Dispositivo>();
+		List<ControlloreDispositivo> list = new ArrayList<ControlloreDispositivo>();
 		// Creo una lista per le luci
-		List<Luce> listluci = new ArrayList<Luce>();
+		List<ControlloreLuce> listluci = new ArrayList<ControlloreLuce>();
 		// Creo variabili di appoggio per codice id e codice della stanza
 		int codice = 0;
 		int id = 0;
@@ -401,7 +401,7 @@ public class Interfaccia extends JFrame {
 				stand = Boolean.parseBoolean(words[1]);
 			} else if (line.contains("ConsumoDispositivo") == true) {
 				consumo = Double.parseDouble(words[1]);
-				list.add(new Dispositivo(tipo, codice, id, consumo, on, off, stand));
+				list.add(new ControlloreDispositivo(tipo, codice, id, consumo, on, off, stand));
 			} else if (line.contains("CodiceLuce") == true) {
 				codiceluce = Integer.parseInt(words[1]);
 			} else if (line.contains("IdLuce") == true) {
@@ -412,7 +412,7 @@ public class Interfaccia extends JFrame {
 				luceoff = Boolean.parseBoolean(words[1]);
 			} else if (line.contains("ConsumoLuce") == true) {
 				consumoluce = Double.parseDouble(words[1]);
-				listluci.add(new Luce(idluce, codiceluce, consumoluce, luceon, luceoff));
+				listluci.add(new ControlloreLuce(idluce, codiceluce, consumoluce, luceon, luceoff));
 			} else if (line.contains("Sensore") == true) {
 				s = new Sensore(Integer.parseInt(words[1]));
 				liststanze.add(new Stanza(codicestanza, nome, list, listluci, s));
@@ -427,9 +427,9 @@ public class Interfaccia extends JFrame {
 	 * Ottiene i dispositivi
 	 * @return 		listaDispositivi
 	 */
-	public static List<Dispositivo> ottiniDispositivi() {
-		List<Dispositivo> listaDispositivi = new ArrayList<Dispositivo>();
-		listaDispositivi.add(new Dispositivo("Tv", 1, 00, 120.00, true, false, false));
+	public static List<ControlloreDispositivo> ottiniDispositivi() {
+		List<ControlloreDispositivo> listaDispositivi = new ArrayList<ControlloreDispositivo>();
+		listaDispositivi.add(new ControlloreDispositivo("Tv", 1, 00, 120.00, true, false, false));
 		return listaDispositivi;
 	}
 
@@ -437,10 +437,10 @@ public class Interfaccia extends JFrame {
 	 * Ottiene le luci
 	 * @return		listaLuci
 	 */
-	public static List<Luce> ottieniLuci() {
-		List<Luce> listaLuci = new ArrayList<Luce>();
-		listaLuci.add(new Luce(1, -1, 10.00, true, true));
-		listaLuci.add(new Luce(2, 1, 5.00, true, true));
+	public static List<ControlloreLuce> ottieniLuci() {
+		List<ControlloreLuce> listaLuci = new ArrayList<ControlloreLuce>();
+		listaLuci.add(new ControlloreLuce(1, -1, 10.00, true, true));
+		listaLuci.add(new ControlloreLuce(2, 1, 5.00, true, true));
 		return listaLuci;
 	}
 }

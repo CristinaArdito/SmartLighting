@@ -19,7 +19,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import sistema.Configurazione;
-import sistema.Dispositivo;
+import sistema.ControlloreDispositivo;
 import sistema.Stanza;
 
 import java.awt.event.MouseAdapter;
@@ -83,7 +83,7 @@ public class ModificaConfigurazione extends JDialog{
 						model.addElement(s.getNome()+" - ID:"+s.getCodice());
 						listaStanze.setModel(model);
 						stanze.add(s);
-						for (Dispositivo dispositivo : s.getDispositivi()) {
+						for (ControlloreDispositivo dispositivo : s.getDispositivi()) {
 							config.addDispositivo(dispositivo);
 						}
 						aggiungiStanza.dispose();

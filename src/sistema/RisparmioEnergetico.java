@@ -51,7 +51,7 @@ public class RisparmioEnergetico {
 		this.data = data;
 		this.risparmio = 0;
 
-		for (Dispositivo dispositivo : configurazione.getDispositivi()) {
+		for (ControlloreDispositivo dispositivo : configurazione.getDispositivi()) {
 			if (dispositivo.getCodice() == 1) {
 				this.risparmio += dispositivo.getConsumoParziale();
 			} else {
@@ -162,10 +162,10 @@ public class RisparmioEnergetico {
 			write.println("Lista dispositivi : ");
 			write.println("{");
 			// Creo una lista dei dispositivi sulla base della configurazione corrente
-			List<Dispositivo> dispositivi = configurazione.getDispositivi();
+			List<ControlloreDispositivo> dispositivi = configurazione.getDispositivi();
 			// Iteratore per i dispositivi
-			Iterator<Dispositivo> i = dispositivi.iterator();
-			Dispositivo d;
+			Iterator<ControlloreDispositivo> i = dispositivi.iterator();
+			ControlloreDispositivo d;
 			while (i.hasNext()) {
 				d = i.next();
 				write.println("Tipo: " + d.getTipo() + " ,");
@@ -208,9 +208,9 @@ public class RisparmioEnergetico {
 		RisparmioEnergetico re0 = null;
 		RisparmioEnergetico re = null;
 		RisparmioEnergetico re1 = null;
-		Dispositivo d;
+		ControlloreDispositivo d;
 		// Lista dei dispositivi
-		List<Dispositivo> dispositivi = new ArrayList<>();
+		List<ControlloreDispositivo> dispositivi = new ArrayList<>();
 		Configurazione c;
 		String data = new String();
 		Date data1 = new Date();
@@ -264,7 +264,7 @@ public class RisparmioEnergetico {
 			} else if (line.contains("Consumo") == true) {
 				consumo = Double.parseDouble(words[1]);
 				// Creo un nuovo dispositivo
-				d = new Dispositivo(tipo, codice, id, consumo, on, off, stand, tempoOn);
+				d = new ControlloreDispositivo(tipo, codice, id, consumo, on, off, stand, tempoOn);
 				// Lo aggiungo alla lista
 				dispositivi.add(d);
 			} else if (line.contains("};") == true) {

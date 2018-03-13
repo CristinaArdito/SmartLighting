@@ -21,8 +21,8 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 
 import simulazione.AmbienteDiSimulazione;
-import sistema.Dispositivo;
-import sistema.Luce;
+import sistema.ControlloreDispositivo;
+import sistema.ControlloreLuce;
 import sistema.Stanza;
 
 public class AggiungiStanza extends JDialog {
@@ -31,8 +31,8 @@ public class AggiungiStanza extends JDialog {
 	private JTextField nomeStanza;
 	private JTextField numeroLuci;
 	private AggiungiDispositivo aggiungiDispositivo;
-	private List<Dispositivo> dispositivi = new ArrayList<Dispositivo>();
-	private List<Luce> luci = new ArrayList<Luce>();
+	private List<ControlloreDispositivo> dispositivi = new ArrayList<ControlloreDispositivo>();
+	private List<ControlloreLuce> luci = new ArrayList<ControlloreLuce>();
 	private JList<String> listaDispositiviStanza;
 	private DefaultListModel<String> modelloListaDispositiviStanza = new DefaultListModel<String>();
 	private JButton button;
@@ -117,7 +117,7 @@ public class AggiungiStanza extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						 dispositivi.add(aggiungiDispositivo.getDispositivo());
 						 modelloListaDispositiviStanza.clear();
-						 for (Dispositivo dispositivo : dispositivi) {
+						 for (ControlloreDispositivo dispositivo : dispositivi) {
 							 modelloListaDispositiviStanza.addElement(dispositivo.toString());
 						}
 						listaDispositiviStanza.setModel(modelloListaDispositiviStanza);
@@ -141,7 +141,7 @@ public class AggiungiStanza extends JDialog {
 	 */
 	public Stanza getStanza() {
 		for(int i=0;i<Integer.parseInt(numeroLuci.getText());i++) {
-			luci.add(new Luce(i, -1, 200, true, true));
+			luci.add(new ControlloreLuce(i, -1, 200, true, true));
 		}
 		return new Stanza(-1, nomeStanza.getText(), dispositivi, luci, AmbienteDiSimulazione.generaSensore());
 	}

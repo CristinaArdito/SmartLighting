@@ -8,15 +8,15 @@ public class Configurazione {
 	/*
 	 * Lista dispositivi 
 	 */
-	private List<Dispositivo> dispositivi;
+	private List<ControlloreDispositivo> dispositivi;
 	
 	/**
 	 * Costruttore della Configurazione con parametri
 	 * @param dispositivi
 	 */
-	public Configurazione(List<Dispositivo> dispositivi) {
+	public Configurazione(List<ControlloreDispositivo> dispositivi) {
 		super();
-		this.dispositivi = new ArrayList<Dispositivo>();
+		this.dispositivi = new ArrayList<ControlloreDispositivo>();
 		this.dispositivi.addAll(dispositivi);
 	}
 	
@@ -25,14 +25,14 @@ public class Configurazione {
 	 */
 	public Configurazione() {
 		super();
-		this.dispositivi = new ArrayList<Dispositivo>();
+		this.dispositivi = new ArrayList<ControlloreDispositivo>();
 	}
 
 	/**
 	 * Ritorna la lista dei dispositivi della configurazione
 	 * @return		dispositivi
 	 */
-	public List<Dispositivo> getDispositivi() {
+	public List<ControlloreDispositivo> getDispositivi() {
 		return dispositivi;
 	}
 
@@ -44,7 +44,7 @@ public class Configurazione {
 		// Creo un iteratore
 		Iterator<Stanza> i = stanze.iterator();
 		// Dispositivo di appoggio
-		Dispositivo d;
+		ControlloreDispositivo d;
 		// Stanza di appoggio
 		Stanza stanza;
 		
@@ -52,9 +52,9 @@ public class Configurazione {
 		while(i.hasNext()) {
 			stanza = i.next();
 			// Ottengo i vari dispositivi della stanza
-			List<Dispositivo> listdisp = stanza.getDispositivi();
+			List<ControlloreDispositivo> listdisp = stanza.getDispositivi();
 			// Itero i dispositivi
-			Iterator<Dispositivo> j = listdisp.iterator();
+			Iterator<ControlloreDispositivo> j = listdisp.iterator();
 			while(j.hasNext()) {
 				d = j.next();
 				// Aggiungo i dispositivi alla lista
@@ -68,7 +68,7 @@ public class Configurazione {
 	 * Inserisce la configurazione
 	 * @param dispositivi
 	 */
-	public void setConfigurazione(List<Dispositivo> dispositivi) {
+	public void setConfigurazione(List<ControlloreDispositivo> dispositivi) {
 		this.dispositivi = dispositivi;
 	}
 	
@@ -85,8 +85,8 @@ public class Configurazione {
 	 * @param idDispositivo
 	 * @return		dispositivo
 	 */
-	public Dispositivo getDispositivo(int idDispositivo) {
-		for (Dispositivo dispositivo : dispositivi) {
+	public ControlloreDispositivo getDispositivo(int idDispositivo) {
+		for (ControlloreDispositivo dispositivo : dispositivi) {
 			if(dispositivo.getId() == idDispositivo) {
 				return dispositivo;
 			}
@@ -99,7 +99,7 @@ public class Configurazione {
 	 * @param dispositivo
 	 * @return
 	 */
-	public boolean addDispositivo(Dispositivo dispositivo) {
+	public boolean addDispositivo(ControlloreDispositivo dispositivo) {
 		try {
 			dispositivi.add(dispositivo);
 			return true;
@@ -116,7 +116,7 @@ public class Configurazione {
 	 * @return		true/false
 	 */
 	public boolean configuraDispositivo(int id, int stato, boolean attributo) {
-		for (Dispositivo dispositivo : dispositivi) {
+		for (ControlloreDispositivo dispositivo : dispositivi) {
 			 if(dispositivo.getId() == id) {
 				 switch(stato) {
 				 case 1: dispositivo.impostaAcceso(attributo);

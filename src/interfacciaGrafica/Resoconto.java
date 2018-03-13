@@ -12,7 +12,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import sistema.Configurazione;
-import sistema.Dispositivo;
+import sistema.ControlloreDispositivo;
 import sistema.RisparmioEnergetico;
 
 public class Resoconto extends JDialog {
@@ -32,8 +32,8 @@ public class Resoconto extends JDialog {
 		resoconto.setBounds(2, 2, 496, 713);
 		modelloResoconto = new DefaultListModel<String>();
 
-		Dispositivo precedente;
-		Dispositivo attuale;
+		ControlloreDispositivo precedente;
+		ControlloreDispositivo attuale;
 
 		for (int i = 0; i < config.getDispositivi().size(); i++) {
 
@@ -95,7 +95,7 @@ public class Resoconto extends JDialog {
 
 		int consumoTot = 0;
 
-		for (Dispositivo dispositivo : config.getDispositivi()) {
+		for (ControlloreDispositivo dispositivo : config.getDispositivi()) {
 			if (dispositivo.getCodice() == 1) {
 				consumoTot += dispositivo.getConsumoParziale();
 			} else {

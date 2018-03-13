@@ -202,11 +202,11 @@ public class Sistema extends Thread {
 		// Ottengo la stanza
 		Stanza st = stanze.get(i);
 		// Creo un dispositivo d'appoggio
-		Dispositivo d;
+		ControlloreDispositivo d;
 		// Ottengo la lista dei dispositivi presenti nella stanza
-		List<Dispositivo> dispositivi = st.getDispositivi();
+		List<ControlloreDispositivo> dispositivi = st.getDispositivi();
 		// Creo un iteratore dei dispositivi
-		Iterator<Dispositivo> j = dispositivi.iterator();
+		Iterator<ControlloreDispositivo> j = dispositivi.iterator();
 		while (j.hasNext()) {
 			d = j.next();
 			if (d.isGuasto() == true) {
@@ -231,11 +231,11 @@ public class Sistema extends Thread {
 		// Ottengo la stanza
 		Stanza st = stanze.get(i);
 		// Creo un dispositivo d'appoggio
-		Dispositivo d;
+		ControlloreDispositivo d;
 		// Ottengo la lista dei dispositivi
-		List<Dispositivo> dispositivi = st.getDispositivi();
+		List<ControlloreDispositivo> dispositivi = st.getDispositivi();
 		// Creo un iteratore dei dispositivi
-		Iterator<Dispositivo> j = dispositivi.iterator();
+		Iterator<ControlloreDispositivo> j = dispositivi.iterator();
 		while (j.hasNext()) {
 			d = j.next();
 			if (d.isGuasto() == true) {
@@ -262,11 +262,11 @@ public class Sistema extends Thread {
 		// Ottengo la stanza
 		Stanza st = stanze.get(i);
 		// Creo una luce di appoggio
-		Luce l;
+		ControlloreLuce l;
 		// Creo una lista di luci presenti nella stanza
-		List<Luce> luci = st.getLuci();
+		List<ControlloreLuce> luci = st.getLuci();
 		// Creo un iteratore delle luci
-		Iterator<Luce> j = luci.iterator();
+		Iterator<ControlloreLuce> j = luci.iterator();
 		while (j.hasNext()) {
 			l = j.next();
 			/*
@@ -287,11 +287,11 @@ public class Sistema extends Thread {
 		// Ottengo la stanza
 		Stanza st = stanze.get(i);
 		// Creo una luce di appoggio
-		Luce l;
+		ControlloreLuce l;
 		// Creo una lista di luci presenti nella stanza
-		List<Luce> luci = st.getLuci();
+		List<ControlloreLuce> luci = st.getLuci();
 		// Creo un iteratore delle luci
-		Iterator<Luce> j = luci.iterator();
+		Iterator<ControlloreLuce> j = luci.iterator();
 		while (j.hasNext()) {
 			l = j.next();
 			/*
@@ -310,23 +310,23 @@ public class Sistema extends Thread {
 		// Creo l'iteratore delle stanze
 		Iterator<Stanza> i = stanze.iterator();
 		Stanza st; // Creo un stanza d'appoggio
-		Dispositivo d; // Dispositivo di appoggio
-		Luce l;
+		ControlloreDispositivo d; // Dispositivo di appoggio
+		ControlloreLuce l;
 		while (i.hasNext()) { // Itero le stanze
 			st = i.next();
 			// Creo una lista di dispositivi presenti nella stanza
-			List<Dispositivo> dispositivi = st.getDispositivi();
+			List<ControlloreDispositivo> dispositivi = st.getDispositivi();
 			// Creo un iteratore dei dispositivi
-			Iterator<Dispositivo> j = dispositivi.iterator();
+			Iterator<ControlloreDispositivo> j = dispositivi.iterator();
 			while (j.hasNext()) {
 				d = j.next();
 				// Sommo il consumo di ogni singolo dispositivo della stanza
 				this.consumoTot += d.getConsumo();
 			}
 			// Creo una lista delle luci presenti nella stanza
-			List<Luce> luci = st.getLuci();
+			List<ControlloreLuce> luci = st.getLuci();
 			// Creo un iteratore
-			Iterator<Luce> z = luci.iterator();
+			Iterator<ControlloreLuce> z = luci.iterator();
 			while (z.hasNext()) {
 				l = z.next();
 				// Sommo il consumo di ogni singola luce della stanza
@@ -349,10 +349,10 @@ public class Sistema extends Thread {
 	 * 
 	 * @return
 	 */
-	public static List<Dispositivo> controlloDispostivi(Configurazione config) {
+	public static List<ControlloreDispositivo> controlloDispostivi(Configurazione config) {
 		// Crea una lista di dispositivi guasti
-		List<Dispositivo> listaDispositiviGuasti = new ArrayList<Dispositivo>();
-		for (Dispositivo disp : config.getDispositivi()) {
+		List<ControlloreDispositivo> listaDispositiviGuasti = new ArrayList<ControlloreDispositivo>();
+		for (ControlloreDispositivo disp : config.getDispositivi()) {
 			if (disp.isGuasto() == true)
 				listaDispositiviGuasti.add(disp);
 		}

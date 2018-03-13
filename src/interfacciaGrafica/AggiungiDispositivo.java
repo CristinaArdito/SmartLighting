@@ -7,7 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import sistema.Dispositivo;
+import sistema.ControlloreDispositivo;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -124,7 +124,7 @@ public class AggiungiDispositivo extends JDialog {
 	 * Ritorna il dispositivo
 	 * @return		dispositivo
 	 */
-	public Dispositivo getDispositivo() {
+	public ControlloreDispositivo getDispositivo() {
 		int id;
 		try {
 			id = Integer.parseInt((String) listaIDDispositivi.getSelectedItem());
@@ -132,6 +132,6 @@ public class AggiungiDispositivo extends JDialog {
 			id = Integer.parseInt((String) modelloIDDispositivi.getElementAt(0));
 		}
 		listaID.remove(id);
-		return new Dispositivo(tipoDispositivo.getText(), -1, id, Double.parseDouble(consumoDispositivo.getText()), false,false,false);
+		return new ControlloreDispositivo(tipoDispositivo.getText(), -1, id, Double.parseDouble(consumoDispositivo.getText()), false,false,false);
 	}
 }

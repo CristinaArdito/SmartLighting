@@ -22,8 +22,8 @@ import javax.swing.border.EmptyBorder;
 
 import interfacciaGrafica.Interfaccia;
 import sistema.Configurazione;
-import sistema.Dispositivo;
-import sistema.Luce;
+import sistema.ControlloreLuce;
+import sistema.ControlloreDispositivo;
 import sistema.Sensore;
 import sistema.Sistema;
 import sistema.Stanza;
@@ -81,7 +81,7 @@ public class PannelloControlloSimulazione extends JFrame {
 				modelloSensori.clear();
 
 				for (Stanza stanza : stanze) {
-					for (Dispositivo dispositivo : stanza.getDispositivi()) {
+					for (ControlloreDispositivo dispositivo : stanza.getDispositivi()) {
 						modelloSensori.addElement("<html><div style='color:green'>" + dispositivo.getId() + " - "
 								+ dispositivo.getTipo() + " - ID: " + dispositivo.getId() + "</div></html>");
 						listaSensoriAttivi.add(new Boolean(true));
@@ -227,13 +227,13 @@ public class PannelloControlloSimulazione extends JFrame {
 		private JCheckBox presenzaUtente = new JCheckBox();
 		private Stanza stanza;
 
-		public EspositoreStanze(Stanza stanza, String nome, List<Dispositivo> dispositivi, List<Luce> luci,
+		public EspositoreStanze(Stanza stanza, String nome, List<ControlloreDispositivo> dispositivi, List<ControlloreLuce> luci,
 				Sensore sensore) {
 			this.nome.setText(nome);
 			this.stanza = stanza;
 			String temp = "";
 			modello.addElement("Dispositivi:");
-			for (Dispositivo dispositivo : dispositivi) {
+			for (ControlloreDispositivo dispositivo : dispositivi) {
 				temp = "<html>";
 				temp += dispositivo.getTipo();
 				switch (dispositivo.getCodice()) {
@@ -255,7 +255,7 @@ public class PannelloControlloSimulazione extends JFrame {
 				temp = "";
 			}
 			modello.addElement("Luci:");
-			for (Luce luce : luci) {
+			for (ControlloreLuce luce : luci) {
 				switch (luce.getCodice()) {
 				case 1:
 					modello.addElement(
@@ -292,7 +292,7 @@ public class PannelloControlloSimulazione extends JFrame {
 			String temp = "";
 			modello.clear();
 			modello.addElement("Dispositivi:");
-			for (Dispositivo dispositivo : stanza.getDispositivi()) {
+			for (ControlloreDispositivo dispositivo : stanza.getDispositivi()) {
 				temp = "<html>";
 				temp += dispositivo.getTipo();
 				switch (dispositivo.getCodice()) {
@@ -315,7 +315,7 @@ public class PannelloControlloSimulazione extends JFrame {
 			}
 			temp += "</html>";
 			modello.addElement("Luci:");
-			for (Luce luce : stanza.getLuci()) {
+			for (ControlloreLuce luce : stanza.getLuci()) {
 				switch (luce.getCodice()) {
 				case 1:
 					modello.addElement(

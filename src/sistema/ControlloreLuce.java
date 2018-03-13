@@ -2,7 +2,7 @@ package sistema;
 
 import simulazione.AmbienteDiSimulazione;
 
-public class Luce {
+public class ControlloreLuce {
 	/*
 	 * Id della luce
 	 */
@@ -44,7 +44,7 @@ public class Luce {
 	 * @param consumo
 	 *            consumo orario
 	 */
-	public Luce(int id, int codice, double consumo, boolean puòEssereAccesa, boolean puòEssereSpenta) {
+	public ControlloreLuce(int id, int codice, double consumo, boolean puòEssereAccesa, boolean puòEssereSpenta) {
 		super();
 		this.id = id;
 		this.codice = codice;

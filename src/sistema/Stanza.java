@@ -3,8 +3,8 @@ package sistema;
 import java.util.ArrayList;
 import java.util.List;
 
-import sistema.Dispositivo;
-import sistema.Luce;
+import sistema.ControlloreDispositivo;
+import sistema.ControlloreLuce;
 import sistema.Sensore;
 
 public class Stanza {
@@ -21,12 +21,12 @@ public class Stanza {
 	/*
 	 * Lista dispositivi presenti nella stanza
 	 */
-	private List<Dispositivo> dispositivi;
+	private List<ControlloreDispositivo> dispositivi;
 	
 	/*
 	 * Lista delle luci presenti nella stanza
 	 */
-	private List<Luce> luci;
+	private List<ControlloreLuce> luci;
 	
 	/*
 	 * Sensore della stanza
@@ -40,7 +40,7 @@ public class Stanza {
 	 * @param listaDispositivi		lista dei dispositivi presenti nella stanza
 	 * @param sensore				sensore della stanza
 	 */
-	public Stanza(int codice, String nome, List<Dispositivo> listaDispositivi, List<Luce> listaLuci, Sensore sensore) {
+	public Stanza(int codice, String nome, List<ControlloreDispositivo> listaDispositivi, List<ControlloreLuce> listaLuci, Sensore sensore) {
 		setLuci(listaLuci);
 		setDispositivi(listaDispositivi);
 		setSensore(sensore);
@@ -68,7 +68,7 @@ public class Stanza {
 	 * Ritorna la lista dei dispositivi presenti nella stanza
 	 * @return	dispositivi
 	 */
-	public List<Dispositivo> getDispositivi() {
+	public List<ControlloreDispositivo> getDispositivi() {
 		return dispositivi;
 	}
 	
@@ -76,8 +76,8 @@ public class Stanza {
 	 * Inserisce la lista dei dispositivi presenti nella stanza
 	 * @param dispositivi
 	 */
-	public void setDispositivi(List<Dispositivo> dispositivi) {
-		this.dispositivi = new ArrayList<Dispositivo>();
+	public void setDispositivi(List<ControlloreDispositivo> dispositivi) {
+		this.dispositivi = new ArrayList<ControlloreDispositivo>();
 		this.dispositivi.addAll(dispositivi);
 	}
 	
@@ -85,7 +85,7 @@ public class Stanza {
 	 * Ritorna la lista delle luci presenti nella stanza
 	 * @return
 	 */
-	public List<Luce> getLuci() {
+	public List<ControlloreLuce> getLuci() {
 		return luci;
 	}
 	
@@ -93,8 +93,8 @@ public class Stanza {
 	 * Inserisce la lista delle luci presenti nella stanza
 	 * @param luci
 	 */
-	public void setLuci(List<Luce> luci) {
-		this.luci = new ArrayList<Luce>();
+	public void setLuci(List<ControlloreLuce> luci) {
+		this.luci = new ArrayList<ControlloreLuce>();
 		this.luci.addAll(luci);
 	}
 	

@@ -11,8 +11,8 @@ import javax.swing.Timer;
 
 import attori.Cliente;
 import interfacciaGrafica.Interfaccia;
-import sistema.Dispositivo;
-import sistema.Luce;
+import sistema.ControlloreDispositivo;
+import sistema.ControlloreLuce;
 import sistema.Sensore;
 import sistema.Stanza;
 
@@ -54,20 +54,20 @@ public class AmbienteDiSimulazione {
 		return new Sensore(-1);
 	};
 
-	public static List<Luce> ottieniLuci() {
-		List<Luce> listaLuci = new ArrayList<Luce>();
-		listaLuci.add(new Luce(1, -1, 10.00, true, true));
-		listaLuci.add(new Luce(2, 1, 5.00, true, true));
+	public static List<ControlloreLuce> ottieniLuci() {
+		List<ControlloreLuce> listaLuci = new ArrayList<ControlloreLuce>();
+		listaLuci.add(new ControlloreLuce(1, -1, 10.00, true, true));
+		listaLuci.add(new ControlloreLuce(2, 1, 5.00, true, true));
 		return listaLuci;
 	}
 
-	public static List<Dispositivo> ottieniDispositivi() {
-		List<Dispositivo> listaDispositivi = new ArrayList<Dispositivo>();
-		listaDispositivi.add(new Dispositivo("Tv", 1, 00, 120.00, true, false, false));
-		listaDispositivi.add(new Dispositivo("Monitor", 1, 01, 90.00, true, false, false));
-		listaDispositivi.add(new Dispositivo("Computer", 0, 02, 20.00, true, false, false));
-		listaDispositivi.add(new Dispositivo("Lavatrice", -1, 03, 220.00, true, false, false));
-		listaDispositivi.add(new Dispositivo("Radio", 0, 04, 10.00, true, false, false));
+	public static List<ControlloreDispositivo> ottieniDispositivi() {
+		List<ControlloreDispositivo> listaDispositivi = new ArrayList<ControlloreDispositivo>();
+		listaDispositivi.add(new ControlloreDispositivo("Tv", 1, 00, 120.00, true, false, false));
+		listaDispositivi.add(new ControlloreDispositivo("Monitor", 1, 01, 90.00, true, false, false));
+		listaDispositivi.add(new ControlloreDispositivo("Computer", 0, 02, 20.00, true, false, false));
+		listaDispositivi.add(new ControlloreDispositivo("Lavatrice", -1, 03, 220.00, true, false, false));
+		listaDispositivi.add(new ControlloreDispositivo("Radio", 0, 04, 10.00, true, false, false));
 		return listaDispositivi;
 	}
 
